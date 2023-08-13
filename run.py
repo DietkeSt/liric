@@ -3,14 +3,15 @@ import time
 import random
 
 
-def slow_print(text):
+def slow_print(t, typing_speed=50):
     """
-    This function uses the time module to delay
-    printing each character to achieve a typing effect.
+    This function simulates a human typing effect by introducing
+    a random delay between printing each character.
     """
-    for char in text:
-        print(char, end="", flush=True)
-        time.sleep(0.05)
+    for l in t:
+        sys.stdout.write(l)
+        sys.stdout.flush()
+        time.sleep(random.random() * 10.0 / typing_speed)
     print()
 
 
