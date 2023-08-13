@@ -25,54 +25,54 @@ if startGame.lower() != "yes":
 
     #print Song Lyrics
 
-    lyrics = (
+    print(
 
         "(Verse 1)\n" 
         "I packed my bags, set off on a flight"
         "To a place where dreams take flight"
         "Golden beaches, the sun so bright"
-        "In the land of [Place1], everything felt just right\n"
+        "In the land of" + place1 + "everything felt just right\n"
         
         "(Chorus)\n"
-        "[Name] by my side, we explored the shore"
+        + name + "by my side, we explored the shore"
         "Danced with the waves, feeling the pure"
-        "[Animal1] playing in the sand"
+        + animal1 + "playing in the sand"
         "Time slipping away like grains in my hand\n"
         
         "(Verse 2)\n"
-        "Ventured through [Place2], a magical sight"
+        "Ventured through" + place2 + "a magical sight"
         "Mountains kissed the heavens, such a breathtaking height"
-        "[Activity1] in the morning, under the clear blue sky"
-        "[Name] and I felt like we could fly\n"
+        + activity1 + "in the morning, under the clear blue sky"
+        + name + "and I felt like we could fly\n"
         
         "(Chorus)\n"
-        "[Name] by my side, we climbed so high"
+        + name + "by my side, we climbed so high"
         "Lost in the moment, reaching for the sky"
-        "[Animal2] cheering from the trees"
+        + animal2 + "cheering from the trees"
         "Nature's symphony, bringing us to our knees\n"
         
         "(Bridge)\n"
         "Every moment, every sight"
-        "[Place3]'s beauty, pure delight"
-        "[Activity2] under the stars"
+        + place3 + "'s beauty, pure delight"
+        + activity2 + "under the stars"
         "Lost in time, no walls, no bars\n"
         
         "(Verse 3)\n"
-        "From [Place1] to [Place2], the adventure goes on"
-        "Through [Activity1] and [Activity2], we carry on"
-        "Hand in hand with [Name], heart full of glee"
+        "From" + place1 + "to" + place2 + ", the adventure goes on"
+        "Through" + activity1 + "and" + activity2 + ", we carry on"
+        "Hand in hand with" + name + ", heart full of glee"
         "This vacation, a dream, a moment of glee\n"
         
         "(Chorus)\n"
-        "[Name] by my side, we sail the sea"
+        + name + "by my side, we sail the sea"
         "The horizon ahead, full of mystery"
-        "[Animal3] guiding our way"
+        + animal3 + "guiding our way"
         "In this paradise, we're destined to stay\n"
         
         "(Outro)\n"
         "As the sun sets, painting the sky"
-        "[Place4]'s memories, forever in my eye"
+        + place4 + "'s memories, forever in my eye"
         "A vacation to treasure, a love so true"
-        "[Name] and I, under the starry blue"
-        
+        + name + "and I, under the starry blue"
+
     )
