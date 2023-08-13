@@ -5,12 +5,15 @@ import copy
 print("Welcome to Liric!")
 print("A game that allows you to create your own Vacation Serenade.\n")
 
-startGame = input("Ready to get started? Type in yes or no:\n")
+while True:
+    startGame = input("Ready to get started? Type in 'yes' to continue:\n")
 
-if startGame.lower() != "yes":
-    quit()
+    if startGame.lower() == "yes":
+        print("Okay, let's go!\n")
+        break
+    else:
+        print("Invalid input. Please type 'yes' to start the game.\n")
 
-print("Okay, let's go!\n")
 
 place1 = input("Name your favourite place with a beach: ")
 name = input("What is your partner's (or crush’s) name? ")
