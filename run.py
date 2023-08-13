@@ -1,5 +1,17 @@
 import time
 
+
+def slow_print(text):
+    """
+    This function uses the time module to delay
+    printing each character to achieve a typing effect.
+    """
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.05)
+    print()
+
+
 def create_song_lyrics(lyrics_template, words):
     """
     This function generates song lyrics by replacing placeholders
