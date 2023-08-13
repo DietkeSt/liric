@@ -129,7 +129,7 @@ with open(f"{chosen_topic}_lyrics_template.txt", "r") as file:
 pbar = tqdm (total=100, position=0, leave=False)
 for i in range(10):
     time.sleep(0.3)
-    pbar.set_description("Generating lyrics...".format(i))
+    pbar.set_description("\nGenerating lyrics...".format(i))
     pbar.update(10)
 pbar.close()
 
