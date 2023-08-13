@@ -18,6 +18,8 @@ while True:
 
     if startGame.lower() == "yes":
         print("Okay, let's go!\n")
+        time.sleep(1)
+        print("Please let me know the following:\n")
         break
     else:
         print("Invalid input. Please type 'yes' to start the game.\n")
@@ -25,16 +27,16 @@ while True:
 
 # Define keywords for user input questions
 words = {
-    "place1": input("Name your favourite place with a beach: "),
-    "partner_name": input("What is your partner's (or crush’s) name? "),
-    "pet_name": input("What is your pet’s name? "),
-    "place2": input("Name your favourite place with a mountain view: "),
-    "day_activity": input("What is your favourite daytime outdoor activity? "),
-    "flying_animal": input("What is your favourite animal that can fly? "),
-    "beautiful_place": input("Name the most beautiful place you ever visited: "),
-    "night_activity": input("What is your favourite nighttime outdoor activity? "),
-    "swimming_animal": input("What is your favourite animal that can swim? "),
-    "last_vacation_spot": input("Name your last vacation spot by the sea: "),
+    "place1": input("Your favourite place with a beach: "),
+    "partner_name": input("Your partner's (or crush’s) name: "),
+    "pet_name": input("Your pet’s name: "),
+    "place2": input("Your favourite place with a mountain view: "),
+    "day_activity": input("Your favourite daytime outdoor activity: "),
+    "flying_animal": input("Your favourite animal that can fly: "),
+    "beautiful_place": input("The most beautiful place you ever visited: "),
+    "night_activity": input("Your favourite nighttime outdoor activity: "),
+    "swimming_animal": input("Your favourite animal that can swim: "),
+    "last_vacation_spot": input("Your last vacation spot by the sea: "),
 }
 
 
