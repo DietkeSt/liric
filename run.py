@@ -47,7 +47,7 @@ def get_valid_input(prompt):
         if user_input.strip() and not user_input.isdigit():
             return user_input
         else:
-            print("Invalid input. Please enter valid text.")
+            slow_print("Invalid input. Please enter valid text.")
 
 
 # Welcome message for the game
