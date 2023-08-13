@@ -60,7 +60,7 @@ else:
 
 # Question intro text
 slow_print(
-    "I need some more info from you to generate your song lyrics:\n"
+    "I need some more info from you to generate your song lyrics.\n"
     "Please type in your answers...\n")
 
 
@@ -95,5 +95,5 @@ pbar.close()
 
 # Create and print song lyrics
 song_lyrics = create_song_lyrics(lyrics_template, words)
-slow_print("Ready! Here are your song lyrics: \n")
+slow_print("\nReady! Here are your song lyrics: \n")
 slow_print(song_lyrics)
