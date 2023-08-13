@@ -3,7 +3,7 @@ import time
 import random
 
 
-def slow_print(t, typing_speed=50):
+def slow_print(t, typing_speed=80):
     """
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
@@ -38,16 +38,16 @@ def get_valid_input(prompt):
             print("Invalid input. Please enter valid text.")
 
 
-print("Welcome to Liric!")
-print("A game that allows you to create your own Vacation Serenade.\n")
+slow_print("Welcome to Liric!")
+slow_print("A game that allows you to create your own Vacation Serenade.\n")
 
 while True:
     startGame = input("Ready to get started? Type in 'yes' to continue:\n")
 
     if startGame.lower() == "yes":
-        print("Okay, let's go!\n")
-        time.sleep(1)
-        print("Please let me know the following:\n")
+        slow_print("Okay, let's go!\n")
+        time.sleep(0.5)
+        slow_print("Please let me know the following:\n")
         break
     else:
         print("Invalid input. Please type 'yes' to start the game.\n")
@@ -67,6 +67,10 @@ words = {
     "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: "),
 }
 
+# Acknowledge user input
+for key, value in words.items():
+    slow_print(f"You entered: {value}")
+
 
 # Read lyrics template from file
 with open("lyrics_template.txt", "r") as file:
@@ -75,4 +79,4 @@ with open("lyrics_template.txt", "r") as file:
 
 # Create and print song lyrics
 song_lyrics = create_song_lyrics(lyrics_template, words)
-print(song_lyrics)
+slow_print(song_lyrics)
