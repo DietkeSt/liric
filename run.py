@@ -8,7 +8,7 @@ def slow_print(t, typing_speed=50):
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
     """
-    for l in t:
+    for 1 in t:
         sys.stdout.write(l)
         sys.stdout.flush()
         time.sleep(random.random() * 10.0 / typing_speed)
@@ -23,6 +23,19 @@ def create_song_lyrics(lyrics_template, words):
     with the values from the words dictionary.
     """
     return lyrics_template.format(**words)
+
+
+def get_valid_input(prompt):
+    """
+    This function gets valid text input from the user,
+    ensuring that the input is not empty or a number.
+    """
+    while True:
+        user_input = input(prompt)
+        if user_input.strip() and not user_input.isdigit():
+            return user_input
+        else:
+            print("Invalid input. Please enter valid text.")
 
 
 print("Welcome to Liric!")
