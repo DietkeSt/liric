@@ -31,8 +31,14 @@ while True:
         print("Invalid input. Please type 'yes' to start the game.\n")
 
 
-#Read input questions from file
-input_questions = read_input_questions("input_questions.txt")
+# Read input questions from file
+user_input_questions = read_user_input_questions("user_input_questions.txt")
+
+
+# Ask the user for input
+words = {}
+for question in user_input_questions:
+    words[question] = input(question)
 
 # User input
 """
