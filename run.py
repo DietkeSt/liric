@@ -1,13 +1,3 @@
-def read_user_input_questions(filename):
-    """
-    This function reads user input questions file.
-    It reads each line and removes whitespace using strip(),
-    then collects the lines into a list and returns it.
-    """
-    with open(filename, "r") as file:
-        return [line.strip() for line in file.readlines()]
-
-
 def create_song_lyrics(lyrics_template, words):
     """
     This function generates song lyrics by replacing placeholders
@@ -31,14 +21,19 @@ while True:
         print("Invalid input. Please type 'yes' to start the game.\n")
 
 
-# Read input questions from file
-user_input_questions = read_user_input_questions("user_input_questions.txt")
-
-
-# Ask the user for input
-words = {}
-for question in user_input_questions:
-    words[question] = input(question)
+# Define keywords for user input questions
+words = {
+    "place1": input("Name your favourite place with a beach: "),
+    "partner_name": input("What is your partner's (or crush’s) name? "),
+    "pet_name": input("What is your pet’s name? "),
+    "place2": input("Name your favourite place with a mountain view: "),
+    "day_activity": input("What is your favourite daytime outdoor activity? "),
+    "flying_animal": input("What is your favourite animal that can fly? "),
+    "beautiful_place": input("Name the most beautiful place you ever visited: "),
+    "night_activity": input("What is your favourite nighttime outdoor activity? "),
+    "swimming_animal": input("What is your favourite animal that can swim? "),
+    "last_vacation_spot": input("Name your last vacation spot by the sea: "),
+}
 
 
 # Read lyrics template from file
