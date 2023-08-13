@@ -57,20 +57,22 @@ slow_print("A game that allows you to create your own song lyrics.\n")
 
 
 # Prompt to choose a topic
-slow_print("Please choose a topic for your song lyrics:")
-topics = ["beach", "love", "nature"]  # Add more topics here
-for i, topic in enumerate(topics):
-    print(f"{i + 1}. {topic.capitalize()}")
-topic_letter = get_valid_input("Enter the first letter of the topic you want: ")
+slow_print("Please choose a topic for your song lyrics:\n")
+topics = ["beach", "love", "nature"]
+for topic in topics:
+    print(f"{topic.capitalize()}")
+topic_letter = get_valid_input("\nEnter the first letter of the topic you want: ")
+
 
 # Validate the user's topic choice
 matching_topics = [topic for topic in topics if topic.startswith(topic_letter.lower())]
 if len(matching_topics) == 1:
     chosen_topic = matching_topics[0]
-    slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
+    slow_print(f"\nYou've chosen the topic: {chosen_topic.capitalize()}.\n")
 else:
     slow_print("Invalid input. Please choose a valid topic.\n")
     exit()
+
 
 # Load the chosen lyric template from the file
 template_filename = f"{chosen_topic}_lyrics_template.txt"
