@@ -1,6 +1,7 @@
 import sys
 import time
 import random
+from tqdm import tqdm
 
 
 def slow_print(t, typing_speed=90):
@@ -71,6 +72,15 @@ words = {
 # Read lyrics template from file
 with open("lyrics_template.txt", "r") as file:
     lyrics_template = file.read()
+
+
+# Progess bar for lyric generation
+pbar = tqdm (total=100, position=0, leave=False)
+for i in range(10):
+    time.sleep(0.3)
+    pbar.set_description("Loading...".format(i))
+    pbar.update(10)
+pbar.close()
 
 
 # Create and print song lyrics
