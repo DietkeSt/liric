@@ -1,3 +1,5 @@
+import time
+
 def create_song_lyrics(lyrics_template, words):
     """
     This function generates song lyrics by replacing placeholders
