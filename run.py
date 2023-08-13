@@ -45,6 +45,11 @@ for question in user_input_questions:
 with open("lyrics_template.txt", "r") as file:
     lyrics_template = file.read()
 
+
+# Create and print song lyrics
+song_lyrics = create_song_lyrics(lyrics_template, words)
+print(song_lyrics)
+
 # User input
 """
 place1 = input("Name your favourite place with a beach: ")
@@ -112,5 +117,3 @@ lyricsTemplate = (
     f"{name} and I, under the starry blue\n"
 )
 """
-
-print(lyricsTemplate)
