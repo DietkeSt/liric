@@ -39,19 +39,29 @@ def get_valid_input(prompt):
             print("Invalid input. Please enter valid text.")
 
 
+# Welcome message for the game
 slow_print("Welcome to Liric!")
 slow_print("A game that allows you to create your own Vacation Serenade.\n")
 
-while True:
-    startGame = input("Ready to get started? Type in 'yes' to continue:\n")
 
-    if startGame.lower() == "yes":
-        slow_print("Okay, let's go!\n")
-        time.sleep(0.5)
-        slow_print("Please let me know the following:\n")
-        break
-    else:
-        print("Invalid input. Please type 'yes' to start the game.\n")
+# Prompt to start game
+slow_print("Ready to get started? Type in 'yes' to continue:")
+startGame = input()
+
+
+# Validate the user's input
+if startGame.lower() == "yes":
+    slow_print("Okay, let's go!\n")
+    time.sleep(0.5)
+else:
+    slow_print("Invalid input. Please type 'yes' to start the game.\n")
+    exit()
+
+
+# Question intro text
+slow_print(
+    "I need some more info from you to generate your song lyrics:\n"
+    "Please type in your answers...\n")
 
 
 # Define keywords for user input questions
@@ -85,4 +95,5 @@ pbar.close()
 
 # Create and print song lyrics
 song_lyrics = create_song_lyrics(lyrics_template, words)
+slow_print("Ready! Here are your song lyrics: \n")
 slow_print(song_lyrics)
