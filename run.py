@@ -3,7 +3,7 @@ import time
 import random
 
 
-def slow_print(t, typing_speed=80):
+def slow_print(t, typing_speed=90):
     """
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
@@ -11,7 +11,7 @@ def slow_print(t, typing_speed=80):
     for char in t:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(random.random() * 10.0 / typing_speed)
+        time.sleep(random.random() * 5.0 / typing_speed)
     print()
 
 
@@ -66,10 +66,6 @@ words = {
     "swimming_animal": get_valid_input("Your favourite animal that can swim: "),
     "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: "),
 }
-
-# Acknowledge user input
-for key, value in words.items():
-    slow_print(f"You entered: {value}")
 
 
 # Read lyrics template from file
