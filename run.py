@@ -1,3 +1,21 @@
+def read_user_input_questions(filename):
+    """
+    This function reads user input questions file.
+    It reads each line and removes whitespace using strip(),
+    then collects the lines into a list and returns it.
+    """
+    with open(filename, "r") as file:
+        return [line.strip() for line in file.readlines()]
+
+def create_song_lyrics(lyrics_template, words):
+    """
+    This function generates song lyrics by replacing placeholders
+    in the given lyrics template with specific words.
+    It uses the format() method of the string to replace the placeholders
+    with the values from the words dictionary.
+    """
+    return lyrics_template.format(**words)
+
 print("Welcome to Liric!")
 print("A game that allows you to create your own Vacation Serenade.\n")
 
@@ -11,7 +29,7 @@ while True:
         print("Invalid input. Please type 'yes' to start the game.\n")
 
 # User input
-
+"""
 place1 = input("Name your favourite place with a beach: ")
 name = input("What is your partner's (or crush’s) name? ")
 animal1 = input("What is your pet’s name? ")
@@ -22,9 +40,10 @@ place3 = input("Name the most beautiful place you ever visited: ")
 activity2 = input("What is your favourite nighttime outdoor activity? ")
 animal3 = input("What is your favourite animal that can swim? ")
 place4 = input("Name your last vacation spot by the sea: ")
+"""
     
 # print Song Lyrics
-
+"""
 lyricsTemplate = (
     "\n"
     "(Verse 1)\n\n" 
@@ -75,5 +94,6 @@ lyricsTemplate = (
     "A vacation to treasure, a love so true\n"
     f"{name} and I, under the starry blue\n"
 )
+"""
 
 print(lyricsTemplate)
