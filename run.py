@@ -27,8 +27,8 @@ def create_song_lyrics(lyrics_template, words):
 
 def get_valid_input(prompt):
     """
-    This function gets valid text input from the user,
-    ensuring that the input is not empty or a number.
+    This function gets valid text input from the user.
+    It ensures that the input is not empty and not a number.
     """
     while True:
         user_input = input(prompt)
@@ -55,16 +55,16 @@ while True:
 
 # Define keywords for user input questions
 words = {
-    "place1": input("Your favourite place with a beach: "),
-    "partner_name": input("Your partner's (or crush’s) name: "),
-    "pet_name": input("Your pet’s name: "),
-    "place2": input("Your favourite place with a mountain view: "),
-    "day_activity": input("Your favourite daytime outdoor activity: "),
-    "flying_animal": input("Your favourite animal that can fly: "),
-    "beautiful_place": input("The most beautiful place you ever visited: "),
-    "night_activity": input("Your favourite nighttime outdoor activity: "),
-    "swimming_animal": input("Your favourite animal that can swim: "),
-    "last_vacation_spot": input("Your last vacation spot by the sea: "),
+    "place1": get_valid_input("Your favourite place with a beach: "),
+    "partner_name": get_valid_input("Your partner's (or crush’s) name: "),
+    "pet_name": get_valid_input("Your pet’s name: "),
+    "place2": get_valid_input("Your favourite place with a mountain view: "),
+    "day_activity": get_valid_input("Your favourite daytime outdoor activity: "),
+    "flying_animal": get_valid_input("Your favourite animal that can fly: "),
+    "beautiful_place": get_valid_input("The most beautiful place you ever visited: "),
+    "night_activity": get_valid_input("Your favourite nighttime outdoor activity: "),
+    "swimming_animal": get_valid_input("Your favourite animal that can swim: "),
+    "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: "),
 }
 
 
