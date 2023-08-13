@@ -15,6 +15,18 @@ def slow_print(t, typing_speed=90):
         time.sleep(random.random() * 5.0 / typing_speed)
     print()
 
+def slow_print_lyrics(t, typing_speed=180):
+    """
+    This function simulates a human typing effect by introducing
+    a random delay between printing each character. 
+    Adjusting speed for lyrics.
+    """
+    for char in t:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(random.random() * 5.0 / typing_speed)
+    print()
+
 
 def create_song_lyrics(lyrics_template, words):
     """
@@ -41,7 +53,7 @@ def get_valid_input(prompt):
 
 # Welcome message for the game
 slow_print("Welcome to Liric!")
-slow_print("A game that allows you to create your own Vacation Serenade.\n")
+slow_print("A game that allows you to create your own song lyrics.\n")
 
 
 # Prompt to start game
@@ -51,7 +63,7 @@ startGame = input()
 
 # Validate the user's input
 if startGame.lower() == "yes":
-    slow_print("Okay, let's go!\n")
+    slow_print("\nOkay, let's go!\n")
     time.sleep(0.5)
 else:
     slow_print("Invalid input. Please type 'yes' to start the game.\n")
@@ -62,6 +74,7 @@ else:
 slow_print(
     "I need some more info from you to generate your song lyrics.\n"
     "Please type in your answers...\n")
+time.sleep(0.5)
 
 
 # Define keywords for user input questions
@@ -96,4 +109,4 @@ pbar.close()
 # Create and print song lyrics
 song_lyrics = create_song_lyrics(lyrics_template, words)
 slow_print("\nReady! Here are your song lyrics: \n")
-slow_print(song_lyrics)
+slow_print_lyrics(song_lyrics)
