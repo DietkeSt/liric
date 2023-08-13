@@ -28,7 +28,7 @@ place4 = input("Name your last vacation spot by the sea: ")
     
 # print Song Lyrics
 
-print(
+lyricsTemplate = (
     "\n"
     "(Verse 1)\n\n" 
     "I packed my bags, set off on a flight\n"
@@ -79,3 +79,5 @@ print(
     + name + " and I, under the starry blue\n"
 
     )
+
+print(lyricsTemplate)
