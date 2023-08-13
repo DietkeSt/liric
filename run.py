@@ -7,6 +7,7 @@ def read_user_input_questions(filename):
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
 
+
 def create_song_lyrics(lyrics_template, words):
     """
     This function generates song lyrics by replacing placeholders
@@ -15,6 +16,7 @@ def create_song_lyrics(lyrics_template, words):
     with the values from the words dictionary.
     """
     return lyrics_template.format(**words)
+
 
 print("Welcome to Liric!")
 print("A game that allows you to create your own Vacation Serenade.\n")
@@ -27,6 +29,10 @@ while True:
         break
     else:
         print("Invalid input. Please type 'yes' to start the game.\n")
+
+
+#Read input questions from file
+input_questions = read_input_questions("input_questions.txt")
 
 # User input
 """
