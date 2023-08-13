@@ -17,9 +17,8 @@ def slow_print(t, typing_speed=90):
 
 def slow_print_lyrics(t, typing_speed=180):
     """
-    This function simulates a human typing effect by introducing
-    a random delay between printing each character. 
-    Adjusting speed for lyrics.
+    This function is used to display the lyric text faster
+    by adjusting the typing_speed.
     """
     for char in t:
         sys.stdout.write(char)
