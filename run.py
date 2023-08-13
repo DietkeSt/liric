@@ -40,6 +40,11 @@ words = {}
 for question in user_input_questions:
     words[question] = input(question)
 
+
+# Read lyrics template from file
+with open("lyrics_template.txt", "r") as file:
+    lyrics_template = file.read()
+
 # User input
 """
 place1 = input("Name your favourite place with a beach: ")
