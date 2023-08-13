@@ -1,4 +1,6 @@
+import sys
 import time
+import random
 
 
 def slow_print(text):
@@ -7,7 +9,7 @@ def slow_print(text):
     printing each character to achieve a typing effect.
     """
     for char in text:
-        print(char, end='', flush=True)
+        print(char, end="", flush=True)
         time.sleep(0.05)
     print()
 
