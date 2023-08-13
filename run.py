@@ -8,8 +8,8 @@ def slow_print(t, typing_speed=50):
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
     """
-    for 1 in t:
-        sys.stdout.write(l)
+    for char in t:
+        sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(random.random() * 10.0 / typing_speed)
     print()
