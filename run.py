@@ -21,12 +21,12 @@ animal2 = input("What is your favourite animal that can fly? ")
 place3 = input("Name the most beautiful place you ever visited: ")
 activity2 = input("What is your favourite nighttime outdoor activity? ")
 animal3 = input("What is your favourite animal that can swim? ")
-place4 = input("Name your last vacation spot by the sea: \n")
+place4 = input("Name your last vacation spot by the sea: ")
     
 # print Song Lyrics
 
 print(
-
+    "\n"
     "(Verse 1)\n\n" 
     "I packed my bags, set off on a flight\n"
     "To a place where dreams take flight\n"
@@ -40,7 +40,7 @@ print(
     "Time slipping away like grains in my hand\n\n"
         
     "(Verse 2)\n\n"
-    "Ventured through " + place2 + " a magical sight\n"
+    "Ventured through " + place2 + ", a magical sight\n"
     "Mountains kissed the heavens, such a breathtaking height\n"
     + activity1 + " in the morning, under the clear blue sky\n"
     + name + " and I felt like we could fly\n\n"
