@@ -15,6 +15,7 @@ def slow_print(t, typing_speed=90):
         time.sleep(random.random() * 5.0 / typing_speed)
     print()
 
+
 def slow_print_lyrics(t, typing_speed=180):
     """
     This function is used to display the lyric text faster
@@ -47,7 +48,7 @@ def get_valid_input(prompt):
         if user_input.strip() and not user_input.isdigit():
             return user_input
         else:
-            slow_print("Invalid input. Please enter valid text.")
+            slow_print("Invalid input. Please enter valid text.\n")
 
 
 # Welcome message for the game
@@ -63,7 +64,7 @@ for topic in topics:
 
 
 while True:
-    topic_letter = get_valid_input("\nEnter the first letter of the topic you want: ")
+    topic_letter = get_valid_input("\nEnter the first letter of the topic you want: \n")
 
     # Validate the user's topic choice
     matching_topics = [topic for topic in topics if topic.startswith(topic_letter.lower())]
@@ -82,9 +83,8 @@ with open(template_filename, "r") as file:
     lyrics_template = file.read()
 
 
-
 # Prompt to start game
-slow_print("Ready to get started? Type in 'yes' to continue:")
+slow_print("Ready to get started? Type in 'yes' to continue:\n")
 startGame = input()
 
 
@@ -106,16 +106,16 @@ time.sleep(0.5)
 
 # Define keywords for user input questions
 words = {
-    "place1": get_valid_input("Your favourite place with a beach: "),
-    "partner_name": get_valid_input("Your partner's (or crush’s) name: "),
-    "pet_name": get_valid_input("Your pet’s name: "),
-    "place2": get_valid_input("Your favourite place with a mountain view: "),
-    "day_activity": get_valid_input("Your favourite daytime outdoor activity: "),
-    "flying_animal": get_valid_input("Your favourite animal that can fly: "),
-    "beautiful_place": get_valid_input("The most beautiful place you ever visited: "),
-    "night_activity": get_valid_input("Your favourite nighttime outdoor activity: "),
-    "swimming_animal": get_valid_input("Your favourite animal that can swim: "),
-    "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: "),
+    "place1": get_valid_input("Your favourite place with a beach: \n"),
+    "partner_name": get_valid_input("Your partner's (or crush’s) name: \n"),
+    "pet_name": get_valid_input("Your pet’s name: \n"),
+    "place2": get_valid_input("Your favourite place with a mountain view: \n"),
+    "day_activity": get_valid_input("Your favourite daytime outdoor activity: \n"),
+    "flying_animal": get_valid_input("Your favourite animal that can fly: \n"),
+    "beautiful_place": get_valid_input("The most beautiful place you ever visited: \n"),
+    "night_activity": get_valid_input("Your favourite nighttime outdoor activity: \n"),
+    "swimming_animal": get_valid_input("Your favourite animal that can swim: \n"),
+    "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: \n"),
 }
 
 
