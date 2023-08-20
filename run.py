@@ -82,7 +82,7 @@ def get_valid_input(prompt, max_length=25):
         
 
 def welcome_message():
-    slow_print("\nWelcome to Liric!")
+    slow_print("Welcome to Liric!")
     slow_print("A game that allows you to create your own song lyrics.\n")
 
 
@@ -91,8 +91,8 @@ def choose_topic():
     This function gives the user a topic chooser 
     option using a terminal menu.
     """
-    topics = ["Beach", "Love", "Nature"]
-    terminal_menu = TerminalMenu(topics, title="Choose a topic for your song lyrics:\n")
+    topics = ["beach", "love", "nature"]
+    terminal_menu = TerminalMenu(topics.capitalize(), title="Choose a topic for your song lyrics:\n")
     chosen_index = terminal_menu.show()
     cls()
     time.sleep(0.5)
