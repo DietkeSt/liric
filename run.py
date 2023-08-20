@@ -55,6 +55,19 @@ def get_valid_input(prompt, max_length=25):
             slow_print("Please do not just type standalone special characters. Special characters within words are allowed, e.g. ', -, ñ.\n")
         else:
             return user_input
+        
+
+def welcome_message():
+    slow_print("\nWelcome to Liric!")
+    slow_print("A game that allows you to create your own song lyrics.\n")
+    slow_print("Some rules...\n"
+               "When entering your data, please keep the following in mind:\n"
+               "1. You have to enter at least 1 letter.\n"
+               "2. The word can contain between 2-25 characters.\n"
+               "3. You are not allowed to enter nothing, or just a space.\n"
+               "4. Special characters are only allowed, if they belong to the word.\n"
+               "5. Words like 'C3PO' are allowed.\n"
+    )
 
 
 def choose_topic():
@@ -67,7 +80,7 @@ def choose_topic():
     chosen_index = terminal_menu.show()
 
     chosen_topic = topics[chosen_index]
-    slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
+    slow_print(f"\nYou've chosen the topic: {chosen_topic.capitalize()}.\n")
     return chosen_topic
 
 
@@ -150,7 +163,7 @@ def generate_song(chosen_topic, words):
     lyrics_template = load_lyric_template(chosen_topic)
     time.sleep(0.5)
 
-    slow_print("Thanks for your answers! Generating your lyrics now...")
+    slow_print("\nThanks for your answers! Generating your lyrics now...")
     time.sleep(0.5)
 
     # Progess bar for lyric generation
@@ -196,16 +209,7 @@ def main():
     """
 
     # Welcome message for the game
-    slow_print("\nWelcome to Liric!")
-    slow_print("A game that allows you to create your own song lyrics.\n")
-    slow_print("Some rules...\n"
-               "When entering your data, please keep the following in mind:\n"
-               "1. You have to enter at least 1 letter.\n"
-               "2. The word can contain between 2-25 characters.\n"
-               "3. You are not allowed to enter nothing, or just a space.\n"
-               "4. Special characters are only allowed, if they belong to the word.\n"
-               "5. Words like 'C3PO' are allowed.\n"
-    )
+    welcome_message()
 
     # Choose a topic
     chosen_topic = choose_topic()
