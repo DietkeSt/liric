@@ -63,7 +63,7 @@ def choose_topic():
     option using a terminal menu.
     """
     topics = ["Beach", "Love", "Nature"]
-    terminal_menu = TerminalMenu(topics, title="Choose a topic for your song lyrics:")
+    terminal_menu = TerminalMenu(topics, title="\nChoose a topic for your song lyrics:")
     chosen_index = terminal_menu.show()
 
     chosen_topic = topics[chosen_index]
@@ -110,7 +110,7 @@ def start_game():
         if exit_choice_index == 1:
             return start_game()
         else:
-            slow_print("Okay, exiting the game. Goodbye!\n")
+            slow_print("\nOkay, exiting the game. Goodbye!\n")
             slow_print("To restart the game hit the 'Run' option on top of the screen.\n")
             sys.exit()
 
@@ -154,6 +154,7 @@ def generate_song(chosen_topic, words):
     """
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
+    time.sleep(0.5)
 
     # Progess bar for lyric generation
     pbar = tqdm (total=100, position=0, leave=False)
@@ -168,62 +169,25 @@ def generate_song(chosen_topic, words):
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
-    slow_print("Here are your song lyrics: \n")
+    slow_print("Here are your song lyrics:\n")
     slow_print(song_lyrics, typing_speed)
 
 
-def choose_action_after_lyrics():
+def ask_for_next_action():
     """
-    This function displays a menu with options 
-    to choose another topic or quit.
-    It returns the user's choice.
+    This function asks the user for the next action after generating lyrics.
     """
-    options = ["Continue and choose another topic", "Exit the game"]
+    options = ["Choose another topic", "Exit the game"]
     terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
     chosen_index = terminal_menu.show()
-    
+
     if chosen_index == 0:
-        use_previous = use_previous_entries()
-        if use_previous:
-            # Continue with previous entries
-            return "choose_topic"
-        else:
-            return "continue"
+        return "choose_topic"  # Choose a new topic
     elif chosen_index == 1:
-        slow_print("Exiting the game. Goodbye!\n")
-        sys.exit()
-
-    return "quit"
-
-
-def use_previous_entries():
-    """
-    This function asks the user if they want to 
-    use previous entries or add new input answers.
-    It returns a boolean value: 
-    True for using previous entries, False for adding new input answers.
-    """
-    while True:
-        slow_print("\nDo you want to use previous answers or add new answers?")
-        options = ["Use previous answers", "Add new answers"]
-        terminal_menu = TerminalMenu(options, title="\nChoose below:")
-        chosen_index = terminal_menu.show()
-
-        if chosen_index == 0:
-            return True
-        elif chosen_index == 1:
-            return False
-        
-
-def handle_next_action(next_action):
-    if next_action == "choose_topic":
-        main()  # Restart the game with a new topic
-    elif next_action == "quit":
-        slow_print("Exiting the game. Goodbye!\n")
+        slow_print("\nExiting the game. Goodbye!\n")
         sys.exit()
     else:
-        # Continue with the current topic
-        pass
+        return "quit"
 
 
 def main():
@@ -242,20 +206,26 @@ def main():
     # Choose a topic
     chosen_topic = choose_topic()
 
-    # Start the game
-    start_game()
+    while True:
+        # Start the game
+        start_game()
 
-    # Get user input for lyrics
-    words = get_user_input()
+        # Get user input for lyrics
+        words = get_user_input()
 
-    # Generate and print lyrics
-    generate_song(chosen_topic, words)
+        # Generate and print lyrics
+        generate_song(chosen_topic, words)
 
-    # Ask the user for the next action
-    next_action = choose_action_after_lyrics()
-    
-    # Handle the next action
-    handle_next_action(next_action)
+        # Ask the user for the next action
+        options = ["Choose another topic", "Exit the game"]
+        terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
+        chosen_index = terminal_menu.show()
+        
+        if chosen_index == 0:
+            chosen_topic = choose_topic()  # Choose a new topic
+        elif chosen_index == 1:
+            slow_print("\nExiting the game. Goodbye!\n")
+            sys.exit()
 
 if __name__ == "__main__":
     main()
