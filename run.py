@@ -65,20 +65,15 @@ def choose_topic():
             slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
 
 
-def create_song_lyrics(lyrics_template, words):
-    """
-    This function generates song lyrics by replacing placeholders
-    in the given lyrics template with specific words.
-    It uses the format() method of the string to replace the placeholders
-    with the values from the words dictionary.
-    """
-    return lyrics_template.format(**words)
-
-
 # Load the chosen lyric template from the file
-template_filename = f"{chosen_topic}_lyrics_template.txt"
-with open(template_filename, "r") as file:
-    lyrics_template = file.read()
+def load_lyric_template(chosen_topic):
+    """
+    This function loads the song lyric template file
+    for the chosen topic.
+    """
+    template_filename = f"{chosen_topic}_lyrics_template.txt"
+    with open(template_filename, "r") as file:
+        return file.read()
 
 
 # Prompt to start game
