@@ -23,7 +23,7 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     options = ["Slow", "Medium", "Fast"]
-    terminal_menu = TerminalMenu(options, title="Before generating your lyrics, please let me know how quickly I should type out the lyrics for you.")
+    terminal_menu = TerminalMenu(options, title="\nReady! Let me know how quickly I should print out the lyrics for you.\n")
     chosen_index = terminal_menu.show()
 
     typing_speeds = [90, 180, 270]  # Corresponding typing speeds for "Slow", "Medium", "Fast"
@@ -130,9 +130,6 @@ def generate_song(chosen_topic, words):
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
 
-    # Choose typing speed with a menu
-    typing_speed = choose_typing_speed()
-
     # Progess bar for lyric generation
     pbar = tqdm (total=100, position=0, leave=False)
     for i in range(10):
@@ -141,9 +138,12 @@ def generate_song(chosen_topic, words):
         pbar.update(10)
     pbar.close()
 
+    # Choose typing speed with a menu
+    typing_speed = choose_typing_speed()
+
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
-    slow_print("\nReady! Here are your song lyrics: \n")
+    slow_print("\nHere are your song lyrics: \n")
     slow_print(song_lyrics, typing_speed)
 
 
