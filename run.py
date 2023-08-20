@@ -279,30 +279,30 @@ def handle_next_action(song_lyrics, chosen_topic):
             sys.exit()
 
 
+def save_lyrics_to_file(song_lyrics, file_path):
+    """
+    This function allows you to save the generated lyrics to a local file.
+    """
+    try:
+        with open(file_path, "w") as file:
+            file.write(song_lyrics)
+        slow_print(f"\nLyrics saved to {file_path}\n")
+    except Exception as e:
+        slow_print(f"Error: {str(e)}")
+        
+
 def save_lyrics(song_lyrics):
     """
-    This function allows the user to save the generated lyrics to a file.
+    This function prompts the user to choose a file location and then
+    saves the generated lyrics to that file.
     """
-    win= Tk()
-    win.geometry("750x250")
-    
-    ## Define the save_file function
-    def save_file():
-        file_path = asksaveasfile(defaultextension=".txt", filetypes=[("Text Files", "*.txt")])
-        if file_path:
-            try:
-                with open(file_path.name, "w") as file:
-                    file.write(song_lyrics)
-                slow_print(f"\nLyrics saved to {file_path.name}\n")
-                slow_print("Close the window to continue.\n")
-            except Exception as e:
-                slow_print(f"Error: {str(e)}")
-    
-    # Create a button for saving the lyrics
-    btn = Button(win, text="Save", command=save_file)
-    btn.pack(pady=10)
-    
-    win.mainloop()
+    slow_print("\nPlease specify the file path where you want to save the lyrics.")
+    file_path = input("File path (e.g., /path/to/lyrics.txt): ").strip()
+
+    if not file_path:
+        slow_print("File path cannot be empty. Lyrics were not saved.\n")
+    else:
+        save_lyrics_to_file(song_lyrics, file_path)
 
 
 def main():
