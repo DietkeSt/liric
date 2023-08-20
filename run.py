@@ -44,8 +44,8 @@ def get_valid_input(prompt):
     It ensures that the input is not empty and not a number.
     """
     while True:
-        user_input = input(prompt)
-        if user_input.strip() and not user_input.isdigit():
+        user_input = input(prompt).strip() 
+        if user_input and not user_input.isdigit():
             return user_input
         else:
             slow_print("Invalid input. Please enter valid text.\n")
@@ -84,17 +84,15 @@ with open(template_filename, "r") as file:
 
 
 # Prompt to start game
-slow_print("Ready to get started? Type in 'yes' to continue:\n")
-startGame = input()
-
-
-# Validate the user's input
-if startGame.lower() == "yes":
-    slow_print("\nOkay, let's go!\n")
-    time.sleep(0.5)
-else:
-    slow_print("Invalid input. Please type 'yes' to start the game.\n")
-    exit()
+while True:
+    slow_print("Ready to get started? Type in 'yes' to continue:\n")
+    startGame = input()
+    if startGame.lower() == "yes":
+        slow_print("\nOkay, let's go!\n")
+        time.sleep(0.5)
+        break
+    else:
+        slow_print("Invalid input. Please type 'yes' to start the game.\n")
 
 
 # Question intro text
