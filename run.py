@@ -256,7 +256,8 @@ def handle_next_action(song_lyrics, chosen_topic):
         next_action = ask_for_next_action(song_lyrics)
 
         if next_action == "choose_topic":
-            return chosen_topic, song_lyrics  # Return both chosen_topic and song_lyrics
+            chosen_topic = choose_topic()
+            return chosen_topic, song_lyrics
 
         elif next_action == "save_lyrics":
             while True:
@@ -271,8 +272,9 @@ def handle_next_action(song_lyrics, chosen_topic):
                     slow_print("\nExiting the game. Goodbye!\n")
                     sys.exit()
                 elif exit_choice_index == 1:
-                    return chosen_topic, song_lyrics  # Return both chosen_topic and song_lyrics
-
+                    chosen_topic = choose_topic()
+                    return chosen_topic, song_lyrics
+                
         elif next_action == "quit":
             sys.exit()
 
