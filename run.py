@@ -23,7 +23,7 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     options = ["Slow", "Medium", "Fast"]
-    terminal_menu = TerminalMenu(options, title="\nReady! Let me know how quickly I should print out the lyrics for you.\n")
+    terminal_menu = TerminalMenu(options, title="\nReady! Let me know how quickly I should print out the lyrics for you.")
     chosen_index = terminal_menu.show()
 
     typing_speeds = [90, 180, 270]  # Corresponding typing speeds for "Slow", "Medium", "Fast"
@@ -33,7 +33,7 @@ def choose_typing_speed():
     return chosen_typing_speed
 
 
-def get_valid_input(prompt, max_length=55):
+def get_valid_input(prompt, max_length=25):
     """
     This function gets valid text input from the user.
     It ensures that the input meets specified criteria
@@ -43,13 +43,15 @@ def get_valid_input(prompt, max_length=55):
         user_input = input(prompt).strip()
 
         if not user_input:
-            slow_print("You did not type anything, please enter your answer below\n")
+            slow_print("You did not type any letter, please enter your answer below.\n")
         elif not any(char.isalpha() for char in user_input):
-            slow_print("Please enter at least one letter in your answer\n")
+            slow_print("Please enter at least one letter in your answer.\n")
         elif len(user_input) < 2:
-            slow_print("Please enter a word with at least 2 characters\n")
+            slow_print("Please enter a word with at least 2 characters.\n")
         elif len(user_input) > max_length:
             slow_print(f"Please enter a shorter answer. The max length is {max_length} characters.\n")
+        elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
+            slow_print("Please do not just type standalone special characters.")
         else:
             return user_input
 
