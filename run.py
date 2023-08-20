@@ -12,12 +12,12 @@ def continue_cls():
     This function is used to clear the screen
     of the console.
     """
-    menu = TerminalMenu(["Yes", "No"], title="Continue?")
+    menu = TerminalMenu(["Yes", "No"], title="Ready to continue?\n")
     continue_choice = menu.show()
     if continue_choice == 0:
         os.system('cls' if os.name == 'nt' else 'clear')
     else:
-        slow_print("\nExiting the game. Goodbye!\n")
+        slow_print("Exiting the game. Goodbye!\n")
         sys.exit()
 
 def cls():
@@ -52,8 +52,8 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]  # Corresponding typing speeds for "Slow", "Medium", "Fast", "Fast as Lightning"
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    slow_print(f"You've chosen typing speed: {options[chosen_index]}.\n")
-    time.sleep(1)
+    slow_print(f"You've chosen typing speed: {options[chosen_index]}.")
+    time.sleep(0.5)
     cls()
     return chosen_typing_speed
 
@@ -95,6 +95,7 @@ def choose_topic():
     capitalized_topics = [topic.capitalize() for topic in topics] 
     terminal_menu = TerminalMenu(capitalized_topics, title="Choose a topic for your song lyrics:\n")
     chosen_index = terminal_menu.show()
+    time.sleep(0.5)
     cls()
     time.sleep(0.5)
 
@@ -129,6 +130,7 @@ def start_game():
     options = ["Yes", "No"]
     terminal_menu = TerminalMenu(options, title="Ready to continue?\n")
     chosen_index = terminal_menu.show()
+    time.sleep(0.5)
     cls()
     time.sleep(0.5)
 
@@ -136,13 +138,15 @@ def start_game():
         slow_print("Okay, let's create some lyrics!\n")
         time.sleep(0.5)
         slow_print("I need more info from you to generate your song lyrics.\n")
+        slow_print("When entering your data, please keep the following in mind:\n")
+        time.sleep(0.5)
         slow_print(
-               "When entering your data, please keep the following in mind:\n"
                "1. You have to enter at least 1 letter.\n"
                "2. The word can contain between 2-25 characters.\n"
                "3. You are not allowed to enter nothing, or just a space.\n"
                "4. Special characters are only allowed, if they belong to the word.\n"
                "5. Words like 'C3PO' are allowed.\n")
+        time.sleep(0.5)
         continue_cls()
         return True
     else:
@@ -190,6 +194,7 @@ def generate_song(chosen_topic, words):
     """
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
+    time.sleep(0.5)
     cls()
     time.sleep(0.5)
 
@@ -208,28 +213,47 @@ def generate_song(chosen_topic, words):
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
+    time.sleep(0.5)
     cls()
-    time.sleep(1)
     slow_print("Here are your song lyrics:\n")
     slow_print(song_lyrics, typing_speed)
 
+    return song_lyrics
 
-def ask_for_next_action():
+
+def ask_for_next_action(song_lyrics):
     """
     This function asks the user for the next action after generating lyrics.
     """
-    options = ["Choose another topic", "Exit the game"]
+    options = ["Choose another topic", "Save Lyrics", "Exit the game"]
     terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
     chosen_index = terminal_menu.show()
+    time.sleep(0.5)
     cls()
 
     if chosen_index == 0:
         return "choose_topic"  # Choose a new topic
     elif chosen_index == 1:
+        save_lyrics(song_lyrics)
+        return "save_lyrics"
+    elif chosen_index == 2:
         slow_print("\nExiting the game. Goodbye!\n")
         sys.exit()
     else:
         return "quit"
+    
+
+def save_lyrics(song_lyrics):
+    """
+    This function allows the user to save the generated lyrics to a file.
+    """
+    filename = input("Enter a filename to save the lyrics (e.g., my_lyrics.txt): ").strip()
+    try:
+        with open(filename, "w") as file:
+            file.write(song_lyrics)
+        slow_print(f"Lyrics saved to {filename}")
+    except Exception as e:
+        slow_print(f"Error: {str(e)}")
 
 
 def main():
@@ -255,10 +279,10 @@ def main():
         words = get_user_input(chosen_topic)
 
         # Generate and print lyrics
-        generate_song(chosen_topic, words)
+        song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        next_action = ask_for_next_action()
+        next_action = ask_for_next_action(song_lyrics)
 
         if next_action == "choose_topic":
             chosen_topic = choose_topic()
