@@ -51,7 +51,7 @@ def choose_topic():
     This function gives the user a topic chooser 
     option using a terminal menu.
     """
-    topics = ["beach", "love", "nature"]
+    topics = ["Beach", "Love", "Nature"]
     terminal_menu = TerminalMenu(topics, title="Choose a topic for your song lyrics:")
     chosen_index = terminal_menu.show()
 
@@ -83,7 +83,7 @@ def start_game():
     """
     This function starts the game using a terminal menu.
     """
-    options = ["yes", "no"]
+    options = ["Yes", "No"]
     terminal_menu = TerminalMenu(options, title="Ready to get started?")
     chosen_index = terminal_menu.show()
 
