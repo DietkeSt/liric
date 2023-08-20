@@ -23,11 +23,11 @@ def choose_typing_speed():
     This function allows the user to choose 
     the typing speed with a terminal menu.
     """
-    options = ["Slow", "Medium", "Fast"]
+    options = ["Slow", "Medium", "Fast", "Fast as Lightning"]
     terminal_menu = TerminalMenu(options, title="\nReady! Let me know how quickly I should print out the lyrics for you.")
     chosen_index = terminal_menu.show()
 
-    typing_speeds = [90, 180, 270]  # Corresponding typing speeds for "Slow", "Medium", "Fast"
+    typing_speeds = [90, 180, 270, 900]  # Corresponding typing speeds for "Slow", "Medium", "Fast", "Fast as Lightning"
     chosen_typing_speed = typing_speeds[chosen_index]
 
     slow_print(f"\nYou've chosen typing speed: {options[chosen_index]}.\n")
@@ -52,7 +52,7 @@ def get_valid_input(prompt, max_length=25):
         elif len(user_input) > max_length:
             slow_print(f"Please enter a shorter answer. The max length is {max_length} characters.\n")
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
-            slow_print("Please do not just type standalone special characters.")
+            slow_print("Please do not just type standalone special characters. Special characters within words are allowed, e.g. ', -, ñ.\n")
         else:
             return user_input
 
@@ -122,7 +122,13 @@ def get_user_input():
     """
     slow_print(
         "I need some more info from you to generate your song lyrics.\n"
-        "Please type in your answers...\n")
+        "\nBut there are some rules:\n"
+        "1. You have to enter at least 1 letter.\n"
+        "2. The word can contain between 2-25 characters.\n"
+        "3. You are not allowed to enter nothing, or just a space.\n"
+        "4. Special characters are only allowed, if they belong to the word.\n"
+        "5. Words like 'C3PO' are allowed.\n"
+        "\nPlease type in your answers below.\n")
     time.sleep(0.5)
 
     words = {
