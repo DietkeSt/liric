@@ -52,7 +52,7 @@ def get_valid_input(prompt, max_length=25):
         elif len(user_input) > max_length:
             slow_print(f"Please enter a shorter answer. The max length is {max_length} characters.\n")
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
-            slow_print("Please do not just type standalone special characters. Special characters within words are allowed, e.g. ', -, ñ.\n")
+            slow_print("Please do not use standalone special characters. Special characters within words are allowed, e.g. ', -, ñ.\n")
         else:
             return user_input
         
@@ -128,7 +128,7 @@ def start_game():
             sys.exit()
 
 
-def get_user_input():
+def get_user_input(chosen_topic):
     """
     Function to ask user for input. 
     Defining the keywords for the lyric placeholders.
@@ -217,7 +217,7 @@ def main():
 
     while True:
         # Get user input for lyrics
-        words = get_user_input()
+        words = get_user_input(chosen_topic)
 
         # Generate and print lyrics
         generate_song(chosen_topic, words)
