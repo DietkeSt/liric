@@ -77,15 +77,16 @@ def load_lyric_template(chosen_topic):
 
 
 # Prompt to start game
-while True:
-    slow_print("Ready to get started? Type in 'yes' to continue:\n")
-    startGame = input()
-    if startGame.lower() == "yes":
-        slow_print("\nOkay, let's go!\n")
-        time.sleep(0.5)
-        break
-    else:
-        slow_print("Invalid input. Please type 'yes' to start the game.\n")
+def start_game():
+    while True:
+        slow_print("Ready to get started? Type in 'yes' to continue:\n")
+        startGame = input()
+        if startGame.lower() == "yes":
+            slow_print("\nOkay, let's go!\n")
+            time.sleep(0.5)
+            return
+        else:
+            slow_print("Invalid input. Please type 'yes' to start the game.\n")
 
 
 # Question intro text
