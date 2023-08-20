@@ -17,7 +17,7 @@ def slow_print(t, typing_speed=90):
     print()
 
 
-def choose_typing_speed_with_menu():
+def choose_typing_speed():
     """
     This function allows the user to choose 
     the typing speed with a terminal menu.
@@ -127,7 +127,11 @@ def generate_song(chosen_topic, words):
     It also shows a progress bar to indicate the process
     of song lyric creation for the user.
     """
+    # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
+
+    # Choose typing speed with a menu
+    typing_speed = choose_typing_speed()
 
     # Progess bar for lyric generation
     pbar = tqdm (total=100, position=0, leave=False)
@@ -140,7 +144,7 @@ def generate_song(chosen_topic, words):
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
     slow_print("\nReady! Here are your song lyrics: \n")
-    slow_print_lyrics(song_lyrics)
+    print(song_lyrics, typing_speed)
 
 
 def main():
