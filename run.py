@@ -60,14 +60,6 @@ def get_valid_input(prompt, max_length=25):
 def welcome_message():
     slow_print("\nWelcome to Liric!")
     slow_print("A game that allows you to create your own song lyrics.\n")
-    slow_print("Some rules...\n"
-               "When entering your data, please keep the following in mind:\n"
-               "1. You have to enter at least 1 letter.\n"
-               "2. The word can contain between 2-25 characters.\n"
-               "3. You are not allowed to enter nothing, or just a space.\n"
-               "4. Special characters are only allowed, if they belong to the word.\n"
-               "5. Words like 'C3PO' are allowed.\n"
-    )
 
 
 def choose_topic():
@@ -114,6 +106,14 @@ def start_game():
     if chosen_index == 0:
         slow_print("Okay, let's start the game!\n")
         time.sleep(0.5)
+        slow_print("I need some more info from you to generate your song lyrics.\n")
+        slow_print(
+               "When entering your data, please keep the following in mind:\n"
+               "1. You have to enter at least 1 letter.\n"
+               "2. The word can contain between 2-25 characters.\n"
+               "3. You are not allowed to enter nothing, or just a space.\n"
+               "4. Special characters are only allowed, if they belong to the word.\n"
+               "5. Words like 'C3PO' are allowed.\n")
         return True
     else:
         exit_options = ["Yes, exit the game", "No, start the game"]
@@ -133,9 +133,7 @@ def get_user_input():
     Function to ask user for input. 
     Defining the keywords for the lyric placeholders.
     """
-    slow_print(
-        "I need some more info from you to generate your song lyrics.\n"
-        "\nPlease type in your answers below.\n")
+    slow_print(f"\nPlease type in your answers for the {chosen_topic} topic below.\n")
     time.sleep(0.5)
 
     words = {
@@ -163,7 +161,7 @@ def generate_song(chosen_topic, words):
     lyrics_template = load_lyric_template(chosen_topic)
     time.sleep(0.5)
 
-    slow_print("\nThanks for your answers! Generating your lyrics now...")
+    slow_print("\nThanks for your answers! Generating your lyrics now...\n")
     time.sleep(0.5)
 
     # Progess bar for lyric generation
@@ -214,10 +212,10 @@ def main():
     # Choose a topic
     chosen_topic = choose_topic()
 
-    while True:
-        # Start the game
-        start_game()
+    # Start the game
+    start_game()
 
+    while True:
         # Get user input for lyrics
         words = get_user_input()
 
