@@ -122,12 +122,6 @@ def get_user_input():
     """
     slow_print(
         "I need some more info from you to generate your song lyrics.\n"
-        "\nBut there are some rules:\n"
-        "1. You have to enter at least 1 letter.\n"
-        "2. The word can contain between 2-25 characters.\n"
-        "3. You are not allowed to enter nothing, or just a space.\n"
-        "4. Special characters are only allowed, if they belong to the word.\n"
-        "5. Words like 'C3PO' are allowed.\n"
         "\nPlease type in your answers below.\n")
     time.sleep(0.5)
 
@@ -156,11 +150,13 @@ def generate_song(chosen_topic, words):
     lyrics_template = load_lyric_template(chosen_topic)
     time.sleep(0.5)
 
+    slow_print("Thanks for your answers! Generating your lyrics now...")
+    time.sleep(0.5)
+
     # Progess bar for lyric generation
     pbar = tqdm (total=100, position=0, leave=False)
     for i in range(10):
         time.sleep(0.3)
-        pbar.set_description("Generating lyrics...".format(i))
         pbar.update(10)
     pbar.close()
 
@@ -202,6 +198,14 @@ def main():
     # Welcome message for the game
     slow_print("\nWelcome to Liric!")
     slow_print("A game that allows you to create your own song lyrics.\n")
+    slow_print("Some rules...\n"
+               "When entering your data, please keep the following in mind:\n"
+               "1. You have to enter at least 1 letter.\n"
+               "2. The word can contain between 2-25 characters.\n"
+               "3. You are not allowed to enter nothing, or just a space.\n"
+               "4. Special characters are only allowed, if they belong to the word.\n"
+               "5. Words like 'C3PO' are allowed.\n"
+    )
 
     # Choose a topic
     chosen_topic = choose_topic()
@@ -217,15 +221,12 @@ def main():
         generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        options = ["Choose another topic", "Exit the game"]
-        terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
-        chosen_index = terminal_menu.show()
-        
-        if chosen_index == 0:
-            chosen_topic = choose_topic()  # Choose a new topic
-        elif chosen_index == 1:
-            slow_print("\nExiting the game. Goodbye!\n")
-            sys.exit()
+        next_action = ask_for_next_action()
+
+        if next_action == "choose_topic":
+            chosen_topic = choose_topic()
+        elif next_action == "quit":
+            break  
 
 if __name__ == "__main__":
     main()
