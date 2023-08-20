@@ -78,6 +78,10 @@ def load_lyric_template(chosen_topic):
 
 # Prompt to start game
 def start_game():
+    """
+    This function asks the user for a 'yes' input
+    in order to start with the next function for the game.
+    """
     while True:
         slow_print("Ready to get started? Type in 'yes' to continue:\n")
         startGame = input()
