@@ -84,7 +84,7 @@ def start_game():
     This function starts the game using a terminal menu.
     """
     options = ["Yes", "No"]
-    terminal_menu = TerminalMenu(options, title="\nReady to get started?")
+    terminal_menu = TerminalMenu(options, title="Ready to get started?")
     chosen_index = terminal_menu.show()
 
     if chosen_index == 0:
@@ -93,7 +93,7 @@ def start_game():
         return True
     else:
         exit_options = ["Yes, exit the game", "No, start the game"]
-        exit_menu = TerminalMenu(exit_options, title="\nAre you sure you want to exit the game?")
+        exit_menu = TerminalMenu(exit_options, title="Are you sure you want to exit the game?")
         exit_choice_index = exit_menu.show()
 
         if exit_choice_index == 1:
