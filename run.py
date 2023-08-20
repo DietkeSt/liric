@@ -118,24 +118,26 @@ def get_user_input():
     return words
 
 
-# Read lyrics template from file
-with open(f"{chosen_topic}_lyrics_template.txt", "r") as file:
-    lyrics_template = file.read()
+def generate_song(chosen_topic, words):
+    """
+    This function creates and prints the song lyrics.
+    It also shows a progress bar to indicate the process
+    of song lyric creation for the user.
+    """
+    lyrics_template = load_lyric_template(chosen_topic)
 
+    # Progess bar for lyric generation
+    pbar = tqdm (total=100, position=0, leave=False)
+    for i in range(10):
+        time.sleep(0.3)
+        pbar.set_description("Generating lyrics...".format(i))
+        pbar.update(10)
+    pbar.close()
 
-# Progess bar for lyric generation
-pbar = tqdm (total=100, position=0, leave=False)
-for i in range(10):
-    time.sleep(0.3)
-    pbar.set_description("Generating lyrics...".format(i))
-    pbar.update(10)
-pbar.close()
-
-
-# Create and print song lyrics
-song_lyrics = create_song_lyrics(lyrics_template, words)
-slow_print("\nReady! Here are your song lyrics: \n")
-slow_print_lyrics(song_lyrics)
+    # Create and print song lyrics
+    song_lyrics = create_song_lyrics(lyrics_template, words)
+    slow_print("\nReady! Here are your song lyrics: \n")
+    slow_print_lyrics(song_lyrics)
 
 
 main()
