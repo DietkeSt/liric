@@ -29,7 +29,7 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270]  # Corresponding typing speeds for "Slow", "Medium", "Fast"
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    slow_print(f"You've chosen typing speed: {options[chosen_index]}.\n")
+    slow_print(f"\nYou've chosen typing speed: {options[chosen_index]}.\n")
     return chosen_typing_speed
 
 
@@ -84,16 +84,16 @@ def start_game():
     This function starts the game using a terminal menu.
     """
     options = ["Yes", "No"]
-    terminal_menu = TerminalMenu(options, title="Ready to get started?")
+    terminal_menu = TerminalMenu(options, title="\nReady to get started?")
     chosen_index = terminal_menu.show()
 
     if chosen_index == 0:
-        slow_print("\nOkay, let's start the game!\n")
+        slow_print("Okay, let's start the game!\n")
         time.sleep(0.5)
         return True
     else:
         exit_options = ["Yes, exit the game", "No, start the game"]
-        exit_menu = TerminalMenu(exit_options, title="Are you sure you want to exit the game?")
+        exit_menu = TerminalMenu(exit_options, title="\nAre you sure you want to exit the game?")
         exit_choice_index = exit_menu.show()
 
         if exit_choice_index == 1:
@@ -151,7 +151,7 @@ def generate_song(chosen_topic, words):
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
-    slow_print("\nHere are your song lyrics: \n")
+    slow_print("Here are your song lyrics: \n")
     slow_print(song_lyrics, typing_speed)
 
 
@@ -165,7 +165,7 @@ def main():
     """
 
     # Welcome message for the game
-    slow_print("Welcome to Liric!")
+    slow_print("\nWelcome to Liric!")
     slow_print("A game that allows you to create your own song lyrics.\n")
 
     # Choose a topic
