@@ -33,17 +33,25 @@ def choose_typing_speed():
     return chosen_typing_speed
 
 
-def get_valid_input(prompt):
+def get_valid_input(prompt, max_length=55):
     """
     This function gets valid text input from the user.
-    It ensures that the input is not empty and not a number.
+    It ensures that the input meets specified criteria
+    and provides custom error messages.
     """
     while True:
-        user_input = input(prompt).strip() 
-        if user_input and not user_input.isdigit():
-            return user_input
+        user_input = input(prompt).strip()
+
+        if not user_input:
+            slow_print("You did not type anything, please enter your answer below\n")
+        elif not any(char.isalpha() for char in user_input):
+            slow_print("Please enter at least one letter in your answer\n")
+        elif len(user_input) < 2:
+            slow_print("Please enter a word with at least 2 characters\n")
+        elif len(user_input) > max_length:
+            slow_print(f"Please enter a shorter answer. The max length is {max_length} characters.\n")
         else:
-            slow_print("Invalid input. Please enter valid text.\n")
+            return user_input
 
 
 def choose_topic():
