@@ -93,26 +93,29 @@ def start_game():
             slow_print("Invalid input. Please type 'yes' to start the game.\n")
 
 
-# Question intro text
-slow_print(
-    "I need some more info from you to generate your song lyrics.\n"
-    "Please type in your answers...\n")
-time.sleep(0.5)
+def get_user_input():
+    """
+    Function to ask user for input. 
+    Defining the keywords for the lyric placeholders.
+    """
+    slow_print(
+        "I need some more info from you to generate your song lyrics.\n"
+        "Please type in your answers...\n")
+    time.sleep(0.5)
 
-
-# Define keywords for user input questions
-words = {
-    "place1": get_valid_input("Your favourite place with a beach: \n"),
-    "partner_name": get_valid_input("Your partner's (or crush’s) name: \n"),
-    "pet_name": get_valid_input("Your pet’s name: \n"),
-    "place2": get_valid_input("Your favourite place with a mountain view: \n"),
-    "day_activity": get_valid_input("Your favourite daytime outdoor activity: \n"),
-    "flying_animal": get_valid_input("Your favourite animal that can fly: \n"),
-    "beautiful_place": get_valid_input("The most beautiful place you ever visited: \n"),
-    "night_activity": get_valid_input("Your favourite nighttime outdoor activity: \n"),
-    "swimming_animal": get_valid_input("Your favourite animal that can swim: \n"),
-    "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: \n"),
-}
+    words = {
+        "place1": get_valid_input("Your favourite place with a beach: \n"),
+        "partner_name": get_valid_input("Your partner's (or crush’s) name: \n"),
+        "pet_name": get_valid_input("Your pet’s name: \n"),
+        "place2": get_valid_input("Your favourite place with a mountain view: \n"),
+        "day_activity": get_valid_input("Your favourite daytime outdoor activity: \n"),
+        "flying_animal": get_valid_input("Your favourite animal that can fly: \n"),
+        "beautiful_place": get_valid_input("The most beautiful place you ever visited: \n"),
+        "night_activity": get_valid_input("Your favourite nighttime outdoor activity: \n"),
+        "swimming_animal": get_valid_input("Your favourite animal that can swim: \n"),
+        "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: \n"),
+    }
+    return words
 
 
 # Read lyrics template from file
