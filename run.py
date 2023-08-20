@@ -47,11 +47,11 @@ def choose_typing_speed():
     This function allows the user to choose 
     the typing speed with a terminal menu.
     """
-    options = ["Slow", "Medium", "Fast", "Fast as Lightning"]
+    options = ["Slow", "Medium", "Fast", "Lightning Speed"]
     terminal_menu = TerminalMenu(options, title="Ready! Let me know how quickly I should print out the lyrics for you.\n")
     chosen_index = terminal_menu.show()
 
-    typing_speeds = [90, 180, 270, 900]  # Corresponding typing speeds for "Slow", "Medium", "Fast", "Fast as Lightning"
+    typing_speeds = [90, 180, 270, 900]  # Corresponding typing speeds for "Slow", "Medium", "Fast", "Lightning Speed"
     chosen_typing_speed = typing_speeds[chosen_index]
 
     slow_print(f"You've chosen typing speed: {options[chosen_index]}.")
@@ -228,7 +228,7 @@ def ask_for_next_action(song_lyrics):
     """
     time.sleep(0.5)
     options = ["Choose another topic", "Save Lyrics", "Exit the game"]
-    terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
+    terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?\n")
     chosen_index = terminal_menu.show()
     time.sleep(0.5)
     cls()
@@ -259,7 +259,8 @@ def save_lyrics(song_lyrics):
             try:
                 with open(file_path.name, "w") as file:
                     file.write(song_lyrics)
-                slow_print(f"Lyrics saved to {file_path.name}")
+                slow_print(f"\nLyrics saved to {file_path.name}\n")
+                slow_print("Close the window to continue.\n")
             except Exception as e:
                 slow_print(f"Error: {str(e)}")
     
@@ -300,8 +301,24 @@ def main():
 
         if next_action == "choose_topic":
             chosen_topic = choose_topic()
+            break  # Go back to choosing a topic
+        elif next_action == "save_lyrics":
+             while True:
+                # Ask if the user wants to quit or choose another topic
+                exit_options = ["Exit the game", "Choose another topic"]
+                exit_menu = TerminalMenu(exit_options, title="What do you want to do now?")
+                exit_choice_index = exit_menu.show()
+                time.sleep(0.5)
+                cls()
+
+                if exit_choice_index == 0:
+                    slow_print("\nExiting the game. Goodbye!\n")
+                    sys.exit()
+                elif exit_choice_index == 1:
+                    chosen_topic = choose_topic()
+                    break  # Go back to choosing another topic
         elif next_action == "quit":
-            break  
+            break  # Quit the game
 
 if __name__ == "__main__":
     main()
