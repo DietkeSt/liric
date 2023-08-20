@@ -60,7 +60,7 @@ def choose_topic():
         if len(matching_topics) == 1:
             chosen_topic = matching_topics[0]
             slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
-            break
+            return chosen_topic
         else:
             slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
 
