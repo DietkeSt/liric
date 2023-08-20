@@ -252,18 +252,29 @@ def handle_next_action(song_lyrics, chosen_topic):
     after downloading the lyric file.
     """
     while True:
-        # Ask if the user wants to quit or choose another topic
-        exit_options = ["Exit the game", "Choose another topic"]
-        exit_menu = TerminalMenu(exit_options, title="What do you want to do now?\n")
-        exit_choice_index = exit_menu.show()
-        time.sleep(0.5)
-        cls()
+        # Ask the user for the next action
+        next_action = ask_for_next_action(song_lyrics)
 
-        if exit_choice_index == 0:
-            slow_print("\nExiting the game. Goodbye!\n")
+        if next_action == "choose_topic":
+            return chosen_topic, song_lyrics  # Return both chosen_topic and song_lyrics
+
+        elif next_action == "save_lyrics":
+            while True:
+                # Ask if the user wants to quit or choose another topic
+                exit_options = ["Exit the game", "Choose another topic"]
+                exit_menu = TerminalMenu(exit_options, title="What do you want to do now?")
+                exit_choice_index = exit_menu.show()
+                time.sleep(0.5)
+                cls()
+
+                if exit_choice_index == 0:
+                    slow_print("\nExiting the game. Goodbye!\n")
+                    sys.exit()
+                elif exit_choice_index == 1:
+                    return chosen_topic, song_lyrics  # Return both chosen_topic and song_lyrics
+
+        elif next_action == "quit":
             sys.exit()
-        elif exit_choice_index == 1:
-            return chosen_topic, song_lyrics 
 
 
 def save_lyrics(song_lyrics):
@@ -318,28 +329,7 @@ def main():
         song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        next_action = ask_for_next_action(song_lyrics)
-
-        if next_action == "choose_topic":
-            chosen_topic = choose_topic()
-            break  # Go back to choosing a topic
-        elif next_action == "save_lyrics":
-             while True:
-                # Ask if the user wants to quit or choose another topic
-                exit_options = ["Exit the game", "Choose another topic"]
-                exit_menu = TerminalMenu(exit_options, title="What do you want to do now?")
-                exit_choice_index = exit_menu.show()
-                time.sleep(0.5)
-                cls()
-
-                if exit_choice_index == 0:
-                    slow_print("\nExiting the game. Goodbye!\n")
-                    sys.exit()
-                elif exit_choice_index == 1:
-                    chosen_topic = choose_topic()
-                    break  # Go back to choosing another topic
-        elif next_action == "quit":
-            break  # Quit the game
+        chosen_topic, song_lyrics = handle_next_action(song_lyrics, chosen_topic)
 
 if __name__ == "__main__":
     main()
