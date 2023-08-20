@@ -92,13 +92,14 @@ def choose_topic():
     option using a terminal menu.
     """
     topics = ["beach", "love", "nature"]
-    terminal_menu = TerminalMenu(topics.capitalize(), title="Choose a topic for your song lyrics:\n")
+    capitalized_topics = [topic.capitalize() for topic in topics] 
+    terminal_menu = TerminalMenu(capitalized_topics, title="Choose a topic for your song lyrics:\n")
     chosen_index = terminal_menu.show()
     cls()
     time.sleep(0.5)
 
     chosen_topic = topics[chosen_index]
-    slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
+    slow_print(f"You've chosen the topic: {capitalized_topics[chosen_index]}.\n")
     return chosen_topic
 
 
