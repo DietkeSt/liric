@@ -44,26 +44,17 @@ def get_valid_input(prompt):
 
 def choose_topic():
     """
-    This function gives the user a topic chooser option.
+    This function gives the user a topic chooser 
+    option using a terminal menu.
     """
-    slow_print("Please choose a topic for your song lyrics:\n")
     topics = ["beach", "love", "nature"]
-    for topic in topics:
-        print(f"{topic.capitalize()}")
+    terminal_menu = TerminalMenu(topics, title="Choose a topic for your song lyrics:")
+    chosen_index = terminal_menu.show()
 
+    chosen_topic = topics[chosen_index]
+    slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
+    return chosen_topic
 
-    while True:
-        topic_letter = get_valid_input("\nEnter the first letter of the topic you want: \n")
-
-        # Validate the user's topic choice
-        matching_topics = [topic for topic in topics if topic.startswith(topic_letter.lower())]
-
-        if len(matching_topics) == 1:
-            chosen_topic = matching_topics[0]
-            slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
-            return chosen_topic
-        else:
-            slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
 
 
 def load_lyric_template(chosen_topic):
@@ -86,18 +77,19 @@ def create_song_lyrics(lyrics_template, words):
 
 def start_game():
     """
-    This function asks the user for a 'yes' input
-    in order to start with the next function for the game.
+    This function starts the game using a terminal menu.
     """
-    while True:
-        slow_print("Ready to get started? Type in 'yes' to continue:\n")
-        startGame = input()
-        if startGame.lower() == "yes":
-            slow_print("\nOkay, let's go!\n")
-            time.sleep(0.5)
-            return
-        else:
-            slow_print("Invalid input. Please type 'yes' to start the game.\n")
+    options = ["yes", "no"]
+    terminal_menu = TerminalMenu(options, title="Ready to get started?")
+    chosen_index = terminal_menu.show()
+
+    if chosen_index == 0:
+        slow_print("\nOkay, let's start the game!\n")
+        time.sleep(0.5)
+        return True
+    else:
+        slow_print("Exiting the game. Goodbye!\n")
+        sys.exit()
 
 
 def get_user_input():
