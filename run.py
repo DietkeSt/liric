@@ -238,5 +238,8 @@ def main():
     # Generate and print lyrics
     generate_song(chosen_topic, words)
 
+    # Ask the user for the next action
+    choose_action_after_lyrics()
+
 if __name__ == "__main__":
     main()
