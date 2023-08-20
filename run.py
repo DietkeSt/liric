@@ -17,16 +17,20 @@ def slow_print(t, typing_speed=90):
     print()
 
 
-def slow_print_lyrics(t, typing_speed=180):
+def choose_typing_speed_with_menu():
     """
-    This function is used to display the lyric text faster
-    by adjusting the typing_speed.
+    This function allows the user to choose 
+    the typing speed with a terminal menu.
     """
-    for char in t:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(random.random() * 5.0 / typing_speed)
-    print()
+    options = ["Slow", "Medium", "Fast"]
+    terminal_menu = TerminalMenu(options, title="Choose Typing Speed")
+    chosen_index = terminal_menu.show()
+
+    typing_speeds = [90, 180, 270]  # Corresponding typing speeds for "Slow", "Medium", "Fast"
+    chosen_typing_speed = typing_speeds[chosen_index]
+
+    slow_print(f"You've chosen typing speed: {options[chosen_index]}.\n")
+    return chosen_typing_speed
 
 
 def get_valid_input(prompt):
