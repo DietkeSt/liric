@@ -28,16 +28,6 @@ def slow_print_lyrics(t, typing_speed=180):
     print()
 
 
-def create_song_lyrics(lyrics_template, words):
-    """
-    This function generates song lyrics by replacing placeholders
-    in the given lyrics template with specific words.
-    It uses the format() method of the string to replace the placeholders
-    with the values from the words dictionary.
-    """
-    return lyrics_template.format(**words)
-
-
 def get_valid_input(prompt):
     """
     This function gets valid text input from the user.
@@ -51,30 +41,38 @@ def get_valid_input(prompt):
             slow_print("Invalid input. Please enter valid text.\n")
 
 
-# Welcome message for the game
-slow_print("Welcome to Liric!")
-slow_print("A game that allows you to create your own song lyrics.\n")
+def choose_topic():
+    """
+    This function gives the user a topic chooser option.
+    """
+    slow_print("Please choose a topic for your song lyrics:\n")
+    topics = ["beach", "love", "nature"]
+    for topic in topics:
+        print(f"{topic.capitalize()}")
 
 
-# Prompt to choose a topic
-slow_print("Please choose a topic for your song lyrics:\n")
-topics = ["beach", "love", "nature"]
-for topic in topics:
-    print(f"{topic.capitalize()}")
+    while True:
+        topic_letter = get_valid_input("\nEnter the first letter of the topic you want: \n")
+
+        # Validate the user's topic choice
+        matching_topics = [topic for topic in topics if topic.startswith(topic_letter.lower())]
+
+        if len(matching_topics) == 1:
+            chosen_topic = matching_topics[0]
+            slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
+            break
+        else:
+            slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
 
 
-while True:
-    topic_letter = get_valid_input("\nEnter the first letter of the topic you want: \n")
-
-    # Validate the user's topic choice
-    matching_topics = [topic for topic in topics if topic.startswith(topic_letter.lower())]
-
-    if len(matching_topics) == 1:
-        chosen_topic = matching_topics[0]
-        slow_print(f"You've chosen the topic: {chosen_topic.capitalize()}.\n")
-        break
-    else:
-        slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
+def create_song_lyrics(lyrics_template, words):
+    """
+    This function generates song lyrics by replacing placeholders
+    in the given lyrics template with specific words.
+    It uses the format() method of the string to replace the placeholders
+    with the values from the words dictionary.
+    """
+    return lyrics_template.format(**words)
 
 
 # Load the chosen lyric template from the file
@@ -135,3 +133,10 @@ pbar.close()
 song_lyrics = create_song_lyrics(lyrics_template, words)
 slow_print("\nReady! Here are your song lyrics: \n")
 slow_print_lyrics(song_lyrics)
+
+
+main()
+
+# Welcome message for the game
+slow_print("Welcome to Liric!")
+slow_print("A game that allows you to create your own song lyrics.\n")
