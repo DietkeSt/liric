@@ -1,1 +1,2 @@
 tqdm==4.66.1
+simple_term_menu==1.2
