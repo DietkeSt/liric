@@ -65,7 +65,6 @@ def choose_topic():
             slow_print("Invalid input. Please choose a valid topic based on the first letter.\n")
 
 
-# Load the chosen lyric template from the file
 def load_lyric_template(chosen_topic):
     """
     This function loads the song lyric template file
@@ -76,7 +75,6 @@ def load_lyric_template(chosen_topic):
         return file.read()
 
 
-# Prompt to start game
 def start_game():
     """
     This function asks the user for a 'yes' input
@@ -140,8 +138,30 @@ def generate_song(chosen_topic, words):
     slow_print_lyrics(song_lyrics)
 
 
-main()
+def main():
+    """
+    This main function displays a welcome message,
+    starts the topic chooser,
+    starts the game,
+    starts the questions for the keywords,
+    and generates and prints the lyrics.
+    """
 
-# Welcome message for the game
-slow_print("Welcome to Liric!")
-slow_print("A game that allows you to create your own song lyrics.\n")
+    # Welcome message for the game
+    slow_print("Welcome to Liric!")
+    slow_print("A game that allows you to create your own song lyrics.\n")
+
+    # Choose a topic
+    chosen_topic = choose_topic()
+
+    # Start the game
+    start_game()
+
+    # Get user input for lyrics
+    words = get_user_input()
+
+    # Generate and print lyrics
+    generate_song(chosen_topic, words)
+
+if __name__ == "__main__":
+    main()
