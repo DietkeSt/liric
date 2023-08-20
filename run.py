@@ -187,6 +187,8 @@ def choose_action_after_lyrics():
         if use_previous:
             # Continue with previous entries
             return "choose_topic"
+        else:
+            return "continue"
     elif chosen_index == 1:
         slow_print("Exiting the game. Goodbye!\n")
         sys.exit()
@@ -211,6 +213,17 @@ def use_previous_entries():
             return True
         elif chosen_index == 1:
             return False
+        
+
+def handle_next_action(next_action):
+    if next_action == "choose_topic":
+        main()  # Restart the game with a new topic
+    elif next_action == "quit":
+        slow_print("Exiting the game. Goodbye!\n")
+        sys.exit()
+    else:
+        # Continue with the current topic
+        pass
 
 
 def main():
@@ -239,7 +252,10 @@ def main():
     generate_song(chosen_topic, words)
 
     # Ask the user for the next action
-    choose_action_after_lyrics()
+    next_action = choose_action_after_lyrics()
+    
+    # Handle the next action
+    handle_next_action(next_action)
 
 if __name__ == "__main__":
     main()
