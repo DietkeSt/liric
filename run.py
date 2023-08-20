@@ -172,6 +172,47 @@ def generate_song(chosen_topic, words):
     slow_print(song_lyrics, typing_speed)
 
 
+def choose_action_after_lyrics():
+    """
+    This function displays a menu with options 
+    to choose another topic or quit.
+    It returns the user's choice.
+    """
+    options = ["Continue and choose another topic", "Exit the game"]
+    terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
+    chosen_index = terminal_menu.show()
+    
+    if chosen_index == 0:
+        use_previous = use_previous_entries()
+        if use_previous:
+            # Continue with previous entries
+            return "choose_topic"
+    elif chosen_index == 1:
+        slow_print("Exiting the game. Goodbye!\n")
+        sys.exit()
+
+    return "quit"
+
+
+def use_previous_entries():
+    """
+    This function asks the user if they want to 
+    use previous entries or add new input answers.
+    It returns a boolean value: 
+    True for using previous entries, False for adding new input answers.
+    """
+    while True:
+        slow_print("\nDo you want to use previous answers or add new answers?")
+        options = ["Use previous answers", "Add new answers"]
+        terminal_menu = TerminalMenu(options, title="\nChoose below:")
+        chosen_index = terminal_menu.show()
+
+        if chosen_index == 0:
+            return True
+        elif chosen_index == 1:
+            return False
+
+
 def main():
     """
     This main function displays a welcome message,
