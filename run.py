@@ -224,7 +224,8 @@ def generate_song(chosen_topic, words):
 
 def ask_for_next_action(song_lyrics):
     """
-    This function asks the user for the next action after generating lyrics.
+    This function asks the user for the 
+    next action after generating lyrics.
     """
     time.sleep(0.5)
     options = ["Choose another topic", "Save Lyrics", "Exit the game"]
@@ -246,10 +247,14 @@ def ask_for_next_action(song_lyrics):
     
 
 def handle_next_action(song_lyrics, chosen_topic):
+    """
+    This function ask the user for the next action
+    after downloading the lyric file.
+    """
     while True:
         # Ask if the user wants to quit or choose another topic
         exit_options = ["Exit the game", "Choose another topic"]
-        exit_menu = TerminalMenu(exit_options, title="What do you want to do now?")
+        exit_menu = TerminalMenu(exit_options, title="What do you want to do now?\n")
         exit_choice_index = exit_menu.show()
         time.sleep(0.5)
         cls()
@@ -258,7 +263,7 @@ def handle_next_action(song_lyrics, chosen_topic):
             slow_print("\nExiting the game. Goodbye!\n")
             sys.exit()
         elif exit_choice_index == 1:
-            return chosen_topic 
+            return chosen_topic, song_lyrics 
 
 
 def save_lyrics(song_lyrics):
