@@ -73,6 +73,14 @@ def load_lyric_template(chosen_topic):
     template_filename = f"{chosen_topic}_lyrics_template.txt"
     with open(template_filename, "r") as file:
         return file.read()
+    
+
+def create_song_lyrics(lyrics_template, words):
+    """
+    This function creates the lyrics from the chosen
+    lyrics template.
+    """
+    return lyrics_template.format(**words)
 
 
 def start_game():
