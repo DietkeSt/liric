@@ -262,7 +262,7 @@ def handle_next_action(song_lyrics, chosen_topic):
         elif next_action == "save_lyrics":
             while True:
                 # Ask if the user wants to quit or choose another topic
-                exit_options = ["Exit the game", "Choose another topic"]
+                exit_options = ["Exit the game", "Choose another topic", "Save lyrics"]
                 exit_menu = TerminalMenu(exit_options, title="What do you want to do now?")
                 exit_choice_index = exit_menu.show()
                 time.sleep(0.5)
@@ -274,6 +274,9 @@ def handle_next_action(song_lyrics, chosen_topic):
                 elif exit_choice_index == 1:
                     chosen_topic = choose_topic()
                     return chosen_topic, song_lyrics
+                elif exit_choice_index == 2:
+                    save_lyrics(song_lyrics)
+                    return "save_lyrics"
                 
         elif next_action == "quit":
             sys.exit()
@@ -289,7 +292,7 @@ def save_lyrics_to_file(song_lyrics, file_path):
         slow_print(f"\nLyrics saved to {file_path}\n")
     except Exception as e:
         slow_print(f"Error: {str(e)}")
-        
+
 
 def save_lyrics(song_lyrics):
     """
