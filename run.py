@@ -5,8 +5,8 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 import re
 import os
-import tkinter as tk
-from tkinter import filedialog
+from tkinter import *
+from tkinter.filedialog import asksaveasfile
 
 
 def continue_cls():
@@ -184,7 +184,6 @@ def get_user_input(chosen_topic):
         "swimming_animal": get_valid_input("Your favourite animal that can swim: \n"),
         "last_vacation_spot": get_valid_input("Your last vacation spot by the sea: \n"),
     }
-    time.sleep(0.5)
     return words
 
 
@@ -201,7 +200,7 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
 
     slow_print("Thanks for your answers! Generating your lyrics now...\n")
-    time.sleep(0.5)
+    time.sleep(0.3)
 
     # Progess bar for lyric generation
     pbar = tqdm (total=100, position=0, leave=False)
@@ -227,6 +226,7 @@ def ask_for_next_action(song_lyrics):
     """
     This function asks the user for the next action after generating lyrics.
     """
+    time.sleep(0.5)
     options = ["Choose another topic", "Save Lyrics", "Exit the game"]
     terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
     chosen_index = terminal_menu.show()
@@ -249,13 +249,25 @@ def save_lyrics(song_lyrics):
     """
     This function allows the user to save the generated lyrics to a file.
     """
-    filename = input("Enter a filename to save the lyrics (e.g., my_lyrics.txt): ").strip()
-    try:
-        with open(filename, "w") as file:
-            file.write(song_lyrics)
-        slow_print(f"Lyrics saved to {filename}")
-    except Exception as e:
-        slow_print(f"Error: {str(e)}")
+    win= Tk()
+    win.geometry("750x250")
+    
+    ## Define the save_file function
+    def save_file():
+        file_path = asksaveasfile(defaultextension=".txt", filetypes=[("Text Files", "*.txt")])
+        if file_path:
+            try:
+                with open(file_path.name, "w") as file:
+                    file.write(song_lyrics)
+                slow_print(f"Lyrics saved to {file_path.name}")
+            except Exception as e:
+                slow_print(f"Error: {str(e)}")
+    
+    # Create a button for saving the lyrics
+    btn = Button(win, text="Save", command=save_file)
+    btn.pack(pady=10)
+    
+    win.mainloop()
 
 
 def main():
