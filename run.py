@@ -92,8 +92,16 @@ def start_game():
         time.sleep(0.5)
         return True
     else:
-        slow_print("Exiting the game. Goodbye!\n")
-        sys.exit()
+        exit_options = ["Yes, exit the game", "No, start the game"]
+        exit_menu = TerminalMenu(exit_options, title="Are you sure you want to exit the game?")
+        exit_choice_index = exit_menu.show()
+
+        if exit_choice_index == 1:
+            return start_game()
+        else:
+            slow_print("Okay, exiting the game. Goodbye!\n")
+            slow_print("To restart the game hit the 'Run' option on top of the screen.\n")
+            sys.exit()
 
 
 def get_user_input():
