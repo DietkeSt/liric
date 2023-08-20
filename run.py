@@ -2,6 +2,7 @@ import sys
 import time
 import random
 from tqdm import tqdm
+from simple_term_menu import TerminalMenu
 
 
 def slow_print(t, typing_speed=90):
