@@ -5,8 +5,6 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 import re
 import os
-from tkinter import *
-from tkinter.filedialog import asksaveasfile
 
 
 def continue_cls():

@@ -1,5 +1,2 @@
 tqdm==4.66.1
 simple_term_menu==1.2
-tk==0.1.0
-requests==2.23.0
-Pillow >= 7
