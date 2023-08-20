@@ -7,6 +7,27 @@ import re
 import os
 
 
+def continue_cls():
+    """
+    This function is used to clear the screen
+    of the console.
+    """
+    menu = TerminalMenu(["Yes", "No"], title="\nContinue?")
+    continue_choice = menu.show()
+    if continue_choice == 0:
+        os.system('cls' if os.name == 'nt' else 'clear')
+    else:
+        slow_print("\nExiting the game. Goodbye!\n")
+        sys.exit()
+
+def cls():
+    """
+    This function is used to clear the screen
+    of the console.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def slow_print(t, typing_speed=90):
     """
     This function simulates a human typing effect by introducing
@@ -32,6 +53,8 @@ def choose_typing_speed():
     chosen_typing_speed = typing_speeds[chosen_index]
 
     slow_print(f"\nYou've chosen typing speed: {options[chosen_index]}.\n")
+    cls()
+    time.sleep(1.5)
     return chosen_typing_speed
 
 
@@ -71,6 +94,8 @@ def choose_topic():
     topics = ["Beach", "Love", "Nature"]
     terminal_menu = TerminalMenu(topics, title="\nChoose a topic for your song lyrics:")
     chosen_index = terminal_menu.show()
+    cls()
+    time.sleep(0.5)
 
     chosen_topic = topics[chosen_index]
     slow_print(f"\nYou've chosen the topic: {chosen_topic.capitalize()}.\n")
@@ -103,6 +128,8 @@ def start_game():
     options = ["Yes", "No"]
     terminal_menu = TerminalMenu(options, title="Ready to get started?")
     chosen_index = terminal_menu.show()
+    cls()
+    time.sleep(0.5)
 
     if chosen_index == 0:
         slow_print("Okay, let's start the game!\n")
@@ -115,6 +142,7 @@ def start_game():
                "3. You are not allowed to enter nothing, or just a space.\n"
                "4. Special characters are only allowed, if they belong to the word.\n"
                "5. Words like 'C3PO' are allowed.\n")
+        continue_cls()
         return True
     else:
         exit_options = ["Yes, exit the game", "No, start the game"]
@@ -160,6 +188,7 @@ def generate_song(chosen_topic, words):
     """
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
+    cls()
     time.sleep(0.5)
 
     slow_print("\nThanks for your answers! Generating your lyrics now...\n")
@@ -174,6 +203,8 @@ def generate_song(chosen_topic, words):
 
     # Choose typing speed with a menu
     typing_speed = choose_typing_speed()
+    cls()
+    time.sleep(0.5)
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
@@ -188,6 +219,7 @@ def ask_for_next_action():
     options = ["Choose another topic", "Exit the game"]
     terminal_menu = TerminalMenu(options, title="\nWhat do you want to do now?")
     chosen_index = terminal_menu.show()
+    cls()
 
     if chosen_index == 0:
         return "choose_topic"  # Choose a new topic
