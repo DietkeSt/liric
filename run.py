@@ -35,7 +35,7 @@ def continue_cls():
     of the console.
     """
     options = ["Yes", "No"]
-    menu_title = "Ready to continue?\n"
+    menu_title = "\nReady to continue?\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -98,11 +98,11 @@ def choose_typing_speed():
     This function allows the user to choose
     the typing speed with a terminal menu.
     """
+    cls()
+    slow_print("Ready!".center(80))
+    time.sleep(0.5)
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
-    menu_title = textwrap.dedent(f"""
-    Ready!\n
-    How quickly should I print out the lyrics for you.\n
-    """.center(80))
+    menu_title = "\n Choose a printing speed:\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -196,7 +196,7 @@ def choose_topic():
         ]
     capitalized_topics = [topic.capitalize() for topic in topics]
 
-    menu_title = "Choose a topic for your song lyrics:\n".center(80)
+    menu_title = "\nChoose a topic for your song lyrics:\n"
     terminal_menu = TerminalMenu(
         capitalized_topics,
         title=menu_title,
@@ -243,45 +243,32 @@ def start_game():
     """
     This function starts the game using a terminal menu.
     """
-    options = ["Yes", "No"]
-    menu_title = "Ready to continue?\n"
-    terminal_menu = TerminalMenu(
-        options,
-        title=menu_title,
-        **menu_style
-    )
-
-    chosen_index = terminal_menu.show()
+    continue_cls()
     time.sleep(0.5)
-    cls()
-    time.sleep(0.5)
-
-    if chosen_index == 0:
-        slow_print(
-            "Okay, I will ask for some info from you to create your lyrics.\n"
-        )
-        time.sleep(0.5)
-        slow_print(
-            "When entering your data, please keep the following in mind:\n"
-        )
-        
-        time.sleep(0.5)
-        slow_print(
-        Fore.CYAN + Style.BRIGHT +
-        """\
-        1. You have to enter at least 1 letter.\n
-        2. The word can contain between 2-25 characters.\n
-        3. You are not allowed to enter nothing, or just a space.\n
-        4. Standalone special characters are not allowed.\n
-        5. Words like 'C3PO' are allowed.\n
-        """
+    slow_print(
+        Fore.CYAN +
+        "Great! I will ask for some info to create your lyrics.\n".center(80)
         + Style.RESET_ALL
-        )
-        time.sleep(0.5)
-        continue_cls()
-        return True
-    else:
-        exit_cls()
+    )
+    time.sleep(0.5)
+    slow_print(
+        "When entering your data, please keep the following in mind:\n"
+    )
+    time.sleep(0.5)
+    slow_print(
+    Fore.CYAN + Style.BRIGHT +
+    """\
+    1. You have to enter at least 1 letter.\n
+    2. The word can contain between 2-25 characters.\n
+    3. You are not allowed to enter nothing, or just a space.\n
+    4. Standalone special characters are not allowed.\n
+    5. Words like 'C3PO' are allowed.\n
+    """
+    + Style.RESET_ALL
+    )
+    time.sleep(0.5)
+    continue_cls()
+    return True
 
 
 def get_user_input(chosen_topic):
@@ -293,10 +280,10 @@ def get_user_input(chosen_topic):
     slow_print(
         textwrap.dedent(
         f"""
-        Please type your answers below.
-        Remember your topic: {topic_color}{chosen_topic}{Style.RESET_ALL}.
+        Please type your answers below.\n
+        Remember your topic is {topic_color}{chosen_topic}{Style.RESET_ALL}.
         \n
-        """)
+        """.center(80))
         )
     time.sleep(0.5)
 
@@ -328,7 +315,7 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
 
     slow_print(
-        "Thanks for your answers! Generating your lyrics now...\n"
+        "Thanks! Generating your lyrics now...\n".center(80)
         )
     time.sleep(0.3)
 
@@ -349,11 +336,11 @@ def generate_song(chosen_topic, words):
 
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    slow_print(textwrap.dedent(f"""
-        Here are your {topic_color}{chosen_topic}{Style.RESET_ALL} song lyrics:
-        \n
-        """)
-        )
+    slow_print(
+        Fore.CYAN +
+        "Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:"
+        + Style.RESET_ALL_ALL
+    )
     slow_print(song_lyrics, typing_speed)
 
     return song_lyrics
