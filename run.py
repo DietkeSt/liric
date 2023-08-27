@@ -15,7 +15,7 @@ def continue_cls():
     menu = TerminalMenu(["Yes", "No"], title="Ready to continue?\n")
     continue_choice = menu.show()
     if continue_choice == 0:
-        os.system('cls' if os.name == 'nt' else 'clear')
+        cls()
     else:
         slow_print("Exiting the game. Goodbye!\n")
         sys.exit()
@@ -332,7 +332,7 @@ def main():
         song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        chosen_topic, song_lyrics = handle_next_action(song_lyrics, chosen_topic)
+        chosen_topic, song_lyrics = handle_next_action(chosen_topic, song_lyrics)
 
 if __name__ == "__main__":
     main()
