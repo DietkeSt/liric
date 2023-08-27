@@ -8,10 +8,18 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, Back, init
 
-"""
-This function inititalizes Colorama to work on Windows
-"""
+# Initialize Colorama for Windows
 init()
+
+
+# Global menu styles
+menu_style = {
+    "menu_cursor": "❯ ",
+    "menu_cursor_style": ("fg_cyan", "bold"),
+    "menu_highlight_style": ("fg_cyan", "bold"),
+    "cycle_cursor": True,
+    "clear_screen": True,
+}
 
 
 #Dictionary to map topic colors
@@ -38,9 +46,14 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
+    
+    menu_title = "Are you sure you want to exit the game?\n".center(80)
     exit_menu = TerminalMenu(
-        exit_options, title="Are you sure you want to exit the game?\n"
-        )
+        exit_options,
+        title=menu_title,
+        **menu_style
+    )
+
     exit_choice_index = exit_menu.show()
 
     if exit_choice_index == 1:
@@ -85,10 +98,14 @@ def choose_typing_speed():
     options = [
         "Slow", "Medium", "Fast", "Lightning Speed"
         ]
+    
+    menu_title = "Ready! How quickly should I print out the lyrics for you.\n".center(80)
     terminal_menu = TerminalMenu(
         options, 
-        title="Ready! How quickly should I print out the lyrics for you.\n"
-        )
+        title=menu_title,
+        **menu_style
+    )
+
     chosen_index = terminal_menu.show()
 
     typing_speeds = [90, 180, 270, 900]
@@ -174,9 +191,13 @@ def choose_topic():
         ]
     capitalized_topics = [topic.capitalize() for topic in topics]
 
+    menu_title = "Choose a topic for your song lyrics:\n".center(80)
     terminal_menu = TerminalMenu(
-        capitalized_topics, title="Choose a topic for your song lyrics:\n"
-        )
+        capitalized_topics, 
+        title=menu_title,
+        **menu_style
+    )
+
     chosen_index = terminal_menu.show()
     time.sleep(0.5)
     cls()
@@ -215,7 +236,14 @@ def start_game():
     options = [
         "Yes", "No"
         ]
-    terminal_menu = TerminalMenu(options, title="Ready to continue?\n")
+    
+    menu_title = "Ready to continue?\n".center(80)
+    terminal_menu = TerminalMenu(
+        options, 
+        title=menu_title,
+        **menu_style
+    )
+
     chosen_index = terminal_menu.show()
     time.sleep(0.5)
     cls()
@@ -332,10 +360,14 @@ def ask_for_next_action(song_lyrics):
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
         ]
+    
+    menu_title = "\nWhat do you want to do now?\n".center(80)
     terminal_menu = TerminalMenu(
         options, 
-        title="\nWhat do you want to do now?\n"
-        )
+        title=menu_title,
+        **menu_style
+    )
+
     chosen_index = terminal_menu.show()
     time.sleep(0.5)
     cls()
