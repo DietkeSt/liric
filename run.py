@@ -254,7 +254,7 @@ def get_user_input(chosen_topic):
     topic_color = topic_colors.get(chosen_topic, Fore.RESET) 
 
     slow_print(
-        f"Please type in your answers for the {topic_color}{chosen_topic} " + Style.RESET_ALL + "topic below.\n"
+        f"Please type in your answers for the {topic_color}{chosen_topic}{Style.RESET_ALL} topic below.\n"
         )
     time.sleep(0.5)
 
@@ -304,8 +304,11 @@ def generate_song(chosen_topic, words):
     song_lyrics = create_song_lyrics(lyrics_template, words)
     time.sleep(0.5)
     cls()
+
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET) 
+
     slow_print(
-        "Here are your song lyrics:\n"
+        f"Here are your {topic_color}{chosen_topic}{Style.RESET_ALL} song lyrics:\n"
         )
     slow_print(song_lyrics, typing_speed)
 
