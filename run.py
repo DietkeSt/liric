@@ -92,10 +92,10 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
-    menu_title = f"""
+    menu_title = textwrap.dedent(f"""
     Ready!\n
     How quickly should I print out the lyrics for you.\n
-    """.center(80)
+    """.center(80))
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -107,9 +107,9 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    chosen_option_txt = f"""
-    You've chosen typing speed: {options[chosen_index]}\n
-    """.center(80)
+    chosen_option_txt = textwrap.dedent(
+    f"You've chosen typing speed: {options[chosen_index]}\n"
+    )
 
     slow_print(chosen_option_txt)
     time.sleep(0.5)
@@ -204,10 +204,11 @@ def choose_topic():
     chosen_topic = topics[chosen_index]
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    chosen_topic_txt = f"""
-    You've chosen the topic: 
-    {topic_color}{capitalized_topics[chosen_index]}{Style.RESET_ALL}\n
-    """.center(80)
+    chosen_topic_txt = textwrap.dedent(
+    "You've chosen the topic:"
+    f" {topic_color}{capitalized_topics[chosen_index]}\n"
+    f"{Style.RESET_ALL}"
+    ).center(80)
 
     slow_print(chosen_topic_txt)
     return chosen_topic
@@ -236,7 +237,7 @@ def start_game():
     This function starts the game using a terminal menu.
     """
     options = ["Yes", "No"]
-    menu_title = "Ready to continue?\n".center(80)
+    menu_title = "Ready to continue?\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -283,10 +284,12 @@ def get_user_input(chosen_topic):
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     slow_print(
+        textwrap.dedent(
         f"""
-        Please type in your answers for the
-        {topic_color}{chosen_topic}{Style.RESET_ALL} topic below.\n
-        """
+        Please type your answers below.
+        Remember your topic: {topic_color}{chosen_topic}{Style.RESET_ALL}.
+        \n
+        """)
         )
     time.sleep(0.5)
 
@@ -339,11 +342,10 @@ def generate_song(chosen_topic, words):
 
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    slow_print(
-        f"""
-        Here are your {topic_color}{chosen_topic}{Style.RESET_ALL}
-        song lyrics:\n
-        """
+    slow_print(textwrap.dedent(f"""
+        Here are your {topic_color}{chosen_topic}{Style.RESET_ALL} song lyrics:
+        \n
+        """)
         )
     slow_print(song_lyrics, typing_speed)
 
