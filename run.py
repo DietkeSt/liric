@@ -48,7 +48,7 @@ def exit_cls():
     else:
         slow_print(
             textwrap.dedent(
-            """
+            """\
             Okay, exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
             """
