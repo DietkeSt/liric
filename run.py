@@ -34,8 +34,15 @@ def continue_cls():
     This function is used to clear the screen
     of the console.
     """
-    menu = TerminalMenu(["Yes", "No"], title="Ready to continue?\n")
-    continue_choice = menu.show()
+    options = ["Yes", "No"]
+    menu_title = "Ready to continue?\n"
+    terminal_menu = TerminalMenu(
+        options,
+        title=menu_title,
+        **menu_style
+    )
+
+    continue_choice = terminal_menu.show()
     if continue_choice == 0:
         cls()
     else:
@@ -251,24 +258,24 @@ def start_game():
 
     if chosen_index == 0:
         slow_print(
-            "Okay, let's create some lyrics!\n"
+            "Okay, I will ask for some info from you to create your lyrics.\n"
         )
         time.sleep(0.5)
         slow_print(
-            textwrap.dedent("""
-            I need more info from you to generate your song lyrics.\n
-            When entering your data, please keep the following in mind:\n
-            """)
+            "When entering your data, please keep the following in mind:\n"
         )
+        
         time.sleep(0.5)
         slow_print(
-            textwrap.dedent("""\
-            1. You have to enter at least 1 letter.\n
-            2. The word can contain between 2-25 characters.\n
-            3. You are not allowed to enter nothing, or just a space.\n
-            4. Standalone special characters are not allowed.\n
-            5. Words like 'C3PO' are allowed.\n
-            """)
+        Fore.CYAN + Style.BRIGHT +
+        """\
+        1. You have to enter at least 1 letter.\n
+        2. The word can contain between 2-25 characters.\n
+        3. You are not allowed to enter nothing, or just a space.\n
+        4. Standalone special characters are not allowed.\n
+        5. Words like 'C3PO' are allowed.\n
+        """
+        + Style.RESET_ALL
         )
         time.sleep(0.5)
         continue_cls()
