@@ -5,7 +5,7 @@ import re
 import os
 from tqdm import tqdm
 from simple_term_menu import TerminalMenu
-from colorama import Fore, Style, init
+from colorama import Fore, Style, Back, init
 
 """
 This function inititalizes Colorama to work on Windows
@@ -108,13 +108,38 @@ def get_valid_input(prompt, max_length=25):
             return user_input
         
 
-def welcome_message():
+def print_title(title, text_color, background_color=None, style=None):
+    # ANSI escape codes for text colors
+    color_start = f"{Fore}{text_color}"
+    
+    if background_color:
+        color_start += f",{Back}{background_color}"
+    
+    if style:
+        color_start += f",{Style}{style}"
+    
+    color_start += "m"
+
+    # ANSI escape code to reset color and style
+    color_reset = f"{Style.RESET_ALL}"
+
+    # Print the colorful title
+    print(f"{color_start}{title}{color_reset}")        
+
+def welcome_message(print_colorful_title, message):
+    title = "TEST TITLE"
     slow_print(
         """
         Welcome to Liric!\n
         A game that allows you to create your own song lyrics.\n
         """
     )
+
+    # Print the colorful title
+    print_colorful_title(title, text_color="YELLOW", background_color="BLUE", style="BRIGHT")
+
+    # Print the welcome message gradually
+    slow_print(message)
 
 
 def choose_topic():
