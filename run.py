@@ -126,17 +126,15 @@ def print_title(title, text_color, background_color=None, style=None):
     # Print the colorful title
     print(f"{color_start}{title}{color_reset}")        
 
-def welcome_message(print_colorful_title, message):
+def welcome_message():
     title = "TEST TITLE"
-    slow_print(
-        """
+    message = """
         Welcome to Liric!\n
         A game that allows you to create your own song lyrics.\n
         """
-    )
 
     # Print the colorful title
-    print_colorful_title(title, text_color="YELLOW", background_color="BLUE", style="BRIGHT")
+    print_title(title, text_color="YELLOW", background_color="BLUE", style="BRIGHT")
 
     # Print the welcome message gradually
     slow_print(message)
