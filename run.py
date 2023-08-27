@@ -118,12 +118,13 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    chosen_option_text = {options[chosen_index]}
+    chosen_option_text = options[chosen_index]
     cls()
-    slow_print(f"""
-    You have chosen typing speed:
-    {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}{Style.RESET_ALL}
-    """
+    slow_print(textwrap.dedent(
+        f"""
+        You have chosen typing speed:
+        {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}{Style.RESET_ALL}
+        """)
     )
     time.sleep(0.5)
     cls()
