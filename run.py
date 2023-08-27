@@ -21,7 +21,7 @@ menu_style = {
 }
 
 
-#Dictionary to map topic colors
+# Dictionary to map topic colors
 topic_colors = {
     "beach": Fore.YELLOW + Style.BRIGHT,
     "love": Fore.MAGENTA + Style.BRIGHT,
@@ -45,7 +45,6 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
-    
     menu_title = "Are you sure you want to exit the game?\n".center(80)
     exit_menu = TerminalMenu(
         exit_options,
@@ -59,12 +58,10 @@ def exit_cls():
         cls()
     else:
         slow_print(
-            textwrap.dedent(
-            """\
+            textwrap.dedent("""
             Okay, exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
-            """
-            )
+            """)
         )
         sys.exit()
 
@@ -91,16 +88,16 @@ def slow_print(text, typing_speed=90):
 
 def choose_typing_speed():
     """
-    This function allows the user to choose 
+    This function allows the user to choose
     the typing speed with a terminal menu.
     """
-    options = [
-        "Slow", "Medium", "Fast", "Lightning Speed"
-        ]
-    
-    menu_title = "Ready! How quickly should I print out the lyrics for you.\n".center(80)
+    options = ["Slow", "Medium", "Fast", "Lightning Speed"]
+    menu_title = f"""
+    Ready!\n
+    How quickly should I print out the lyrics for you.\n
+    """.center(80)
     terminal_menu = TerminalMenu(
-        options, 
+        options,
         title=menu_title,
         **menu_style
     )
@@ -110,8 +107,10 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    chosen_option_txt = f"You've chosen typing speed: {options[chosen_index]}\n".center(80)
-    
+    chosen_option_txt = f"""
+    You've chosen typing speed: {options[chosen_index]}\n
+    """.center(80)
+
     slow_print(chosen_option_txt)
     time.sleep(0.5)
     cls()
@@ -129,36 +128,36 @@ def get_valid_input(prompt, max_length=25):
 
         if not user_input:
             slow_print(
-                Fore.RED + Style.BRIGHT + 
+                Fore.RED + Style.BRIGHT +
                 "You did not type anything, please enter your answer below.\n"
                 + Style.RESET_ALL
                 )
         elif not any(char.isalpha() for char in user_input):
             slow_print(
-                Fore.RED + Style.BRIGHT + 
+                Fore.RED + Style.BRIGHT +
                 "Please enter at least one letter in your answer.\n"
                 + Style.RESET_ALL
                 )
         elif len(user_input) < 2:
             slow_print(
-                Fore.RED + Style.BRIGHT + 
+                Fore.RED + Style.BRIGHT +
                 "Please enter a word with at least 2 characters.\n"
                 + Style.RESET_ALL
                 )
         elif len(user_input) > max_length:
             slow_print(
-                Fore.RED + Style.BRIGHT + 
-                f"Please enter a shorter answer. The max length is {max_length} characters.\n"
+                Fore.RED + Style.BRIGHT +
+                "Text too long. Max. characters: {max_length}\n"
                 + Style.RESET_ALL
                 )
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
             slow_print(
-                Fore.RED + Style.BRIGHT + 
-                "Please only use special characters within words, e.g. ', -, ñ.\n"
+                Fore.RED + Style.BRIGHT +
+                "Only use special characters within words, e.g. ', -, ñ.\n"
                 + Style.RESET_ALL
                 )
         else:
-            return user_input       
+            return user_input
 
 
 def welcome_message():
@@ -173,7 +172,7 @@ def welcome_message():
 
     print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
     time.sleep(0.75)
-    text = "Welcome to the lyric game that allows you to create your own song lyrics.\n"
+    text = "Welcome to the song lyric MadLibs Game!\n"
     centered_text = text.center(80)
     slow_print(centered_text)
     time.sleep(0.5)
@@ -181,7 +180,7 @@ def welcome_message():
 
 def choose_topic():
     """
-    This function gives the user a topic chooser 
+    This function gives the user a topic chooser
     option using a terminal menu.
     """
 
@@ -192,7 +191,7 @@ def choose_topic():
 
     menu_title = "Choose a topic for your song lyrics:\n".center(80)
     terminal_menu = TerminalMenu(
-        capitalized_topics, 
+        capitalized_topics,
         title=menu_title,
         **menu_style
     )
@@ -205,7 +204,10 @@ def choose_topic():
     chosen_topic = topics[chosen_index]
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    chosen_topic_txt = f"You've chosen the topic: {topic_color}{capitalized_topics[chosen_index]}{Style.RESET_ALL}\n".center(80)
+    chosen_topic_txt = f"""
+    You've chosen the topic: 
+    {topic_color}{capitalized_topics[chosen_index]}{Style.RESET_ALL}\n
+    """.center(80)
 
     slow_print(chosen_topic_txt)
     return chosen_topic
@@ -219,7 +221,7 @@ def load_lyric_template(chosen_topic):
     template_filename = f"{chosen_topic}_lyrics_template.txt"
     with open(template_filename, "r") as file:
         return file.read()
-    
+
 
 def create_song_lyrics(lyrics_template, words):
     """
@@ -233,13 +235,10 @@ def start_game():
     """
     This function starts the game using a terminal menu.
     """
-    options = [
-        "Yes", "No"
-        ]
-    
+    options = ["Yes", "No"]
     menu_title = "Ready to continue?\n".center(80)
     terminal_menu = TerminalMenu(
-        options, 
+        options,
         title=menu_title,
         **menu_style
     )
@@ -251,28 +250,24 @@ def start_game():
 
     if chosen_index == 0:
         slow_print(
-        "Okay, let's create some lyrics!\n"
+            "Okay, let's create some lyrics!\n"
         )
         time.sleep(0.5)
         slow_print(
-            textwrap.dedent(
-            """
+            textwrap.dedent("""
             I need more info from you to generate your song lyrics.\n
             When entering your data, please keep the following in mind:\n
-            """
-            )
+            """)
         )
         time.sleep(0.5)
         slow_print(
-            textwrap.dedent(
-            """\
+            textwrap.dedent("""\
             1. You have to enter at least 1 letter.\n
             2. The word can contain between 2-25 characters.\n
             3. You are not allowed to enter nothing, or just a space.\n
             4. Standalone special characters are not allowed.\n
             5. Words like 'C3PO' are allowed.\n
-            """
-            )
+            """)
         )
         time.sleep(0.5)
         continue_cls()
@@ -283,14 +278,15 @@ def start_game():
 
 def get_user_input(chosen_topic):
     """
-    Function to ask user for input. 
+    Function to ask user for input.
     Defining the keywords for the lyric placeholders.
     """
-
-    topic_color = topic_colors.get(chosen_topic, Fore.RESET) 
-
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     slow_print(
-        f"Please type in your answers for the {topic_color}{chosen_topic}{Style.RESET_ALL} topic below.\n"
+        f"""
+        Please type in your answers for the
+        {topic_color}{chosen_topic}{Style.RESET_ALL} topic below.\n
+        """
         )
     time.sleep(0.5)
 
@@ -327,7 +323,7 @@ def generate_song(chosen_topic, words):
     time.sleep(0.3)
 
     # Progess bar for lyric generation
-    pbar = tqdm (total=100, position=0, leave=False)
+    pbar = tqdm(total=100, position=0, leave=False)
     for i in range(10):
         time.sleep(0.3)
         pbar.update(10)
@@ -341,10 +337,13 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
     cls()
 
-    topic_color = topic_colors.get(chosen_topic, Fore.RESET) 
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
     slow_print(
-        f"Here are your {topic_color}{chosen_topic}{Style.RESET_ALL} song lyrics:\n"
+        f"""
+        Here are your {topic_color}{chosen_topic}{Style.RESET_ALL}
+        song lyrics:\n
+        """
         )
     slow_print(song_lyrics, typing_speed)
 
@@ -353,17 +352,16 @@ def generate_song(chosen_topic, words):
 
 def ask_for_next_action(song_lyrics):
     """
-    This function asks the user for the 
+    This function asks the user for the
     next action after generating lyrics.
     """
     time.sleep(0.5)
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
         ]
-    
     menu_title = "\nWhat do you want to do now?\n".center(80)
     terminal_menu = TerminalMenu(
-        options, 
+        options,
         title=menu_title,
         **menu_style
     )
@@ -381,7 +379,7 @@ def ask_for_next_action(song_lyrics):
         exit_cls()
     else:
         return "quit"
-    
+
 
 def handle_next_action(song_lyrics, chosen_topic):
     """
@@ -403,7 +401,7 @@ def handle_next_action(song_lyrics, chosen_topic):
                     "Exit the game", "Choose another topic", "Save lyrics"
                     ]
                 exit_menu = TerminalMenu(
-                    exit_options, 
+                    exit_options,
                     title="What do you want to do now?"
                     )
                 exit_choice_index = exit_menu.show()
@@ -418,7 +416,7 @@ def handle_next_action(song_lyrics, chosen_topic):
                 elif exit_choice_index == 2:
                     save_lyrics(song_lyrics)
                     return "save_lyrics"
-                
+
         elif next_action == "quit":
             sys.exit()
 
@@ -482,7 +480,10 @@ def main():
         song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        chosen_topic, song_lyrics = handle_next_action(chosen_topic, song_lyrics)
+        chosen_topic, song_lyrics = handle_next_action(
+            chosen_topic, song_lyrics
+            )
+
 
 if __name__ == "__main__":
     main()
