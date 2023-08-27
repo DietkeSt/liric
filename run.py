@@ -148,11 +148,19 @@ def get_valid_input(prompt, max_length=25):
 def welcome_message():
     title = "♫ ♩ LIRIC ♪ ♬\n"
     centered_title = title.center(80)
+
+    for _ in range(5):  # Blink the title 5 times
+        print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
+        time.sleep(0.3)
+        cls()
+        time.sleep(0.2)
+
     print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
-    
+    time.sleep(0.75)
     text = "Welcome to the lyric game that allows you to create your own song lyrics.\n"
     centered_text = text.center(80)
     slow_print(centered_text)
+    time.sleep(0.5)
 
 
 def choose_topic():
@@ -371,10 +379,7 @@ def handle_next_action(song_lyrics, chosen_topic):
                 cls()
 
                 if exit_choice_index == 0:
-                    slow_print(
-                        "\nExiting the game. Goodbye!\n"
-                        )
-                    sys.exit()
+                    exit_cls()
                 elif exit_choice_index == 1:
                     chosen_topic = choose_topic()
                     return chosen_topic, song_lyrics
