@@ -52,7 +52,7 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
-    menu_title = "Are you sure you want to exit the game?\n".center(80)
+    menu_title = "Are you sure you want to exit the game?\n"
     exit_menu = TerminalMenu(
         exit_options,
         title=menu_title,
@@ -65,9 +65,9 @@ def exit_cls():
         cls()
     else:
         slow_print(
-            "Okay, exiting the game. Goodbye!\n".center(80)
+            "Okay, exiting the game. Goodbye!\n"
         )
-        run_text = "Hit 'Run Program' to restart.".center(80)
+        run_text = "Hit 'Run Program' to restart."
         slow_print(
             Fore.CYAN + Style.BRIGHT + run_text + Style.RESET_ALL
         )
@@ -184,7 +184,7 @@ def welcome_message():
 
     print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
     time.sleep(0.75)
-    text = "Welcome to the song lyric MadLibs Game!\n"
+    text = "Welcome to the song lyric MadLibs game!\n"
     centered_text = text.center(80)
     slow_print(centered_text)
     time.sleep(0.5)
@@ -250,14 +250,11 @@ def start_game():
     """
     continue_cls()
     time.sleep(0.5)
-    slow_print(
-        "Great, let's get started.".center(80)
-    )
-    time.sleep(1)
-    cls()
-
-    slow_print(
-        "I will ask you for some data shortly...\n".center(80)
+    slow_print(textwrap.dedent(
+        """
+        Great, let's get started.\n
+        I will ask you for some data shortly...\n
+        """)
     )
     time.sleep(1)
     cls()
@@ -289,12 +286,13 @@ def get_user_input(chosen_topic):
     Defining the keywords for the lyric placeholders.
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    topic_txt = f"""
-    Remember, your topic is: {topic_color}{chosen_topic}{Style.RESET_ALL}
-    """.center(80)
+    capitalized_topics = chosen_topic.capitalize()
+    topic_txt = textwrap.dedent(f"""
+    Remember, your topic is: {topic_color}{capitalized_topics}{Style.RESET_ALL}
+    """).center(80)
 
     slow_print(
-        "I will ask you for the needed info now...\n".center(80)
+        "\nI will ask you for the needed info now...\n"
     )
     time.sleep(0.5)
     cls()
@@ -351,9 +349,9 @@ def generate_song(chosen_topic, words):
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    lyrics_title_txt = f"""
+    lyrics_title_txt = textwrap.dedent(f"""
     Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
-    """.center(80)
+    """)
     time.sleep(0.5)
     cls()
     slow_print(lyrics_title_txt)
@@ -368,10 +366,14 @@ def ask_for_next_action(song_lyrics):
     next action after generating lyrics.
     """
     time.sleep(0.5)
+    print(textwrap.dedent("""
+          ___________________________________________________________________\n
+          """.center(80))
+    )
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
         ]
-    menu_title = "\nWhat do you want to do now?\n".center(80)
+    menu_title = "\nWhat do you want to do now?\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
