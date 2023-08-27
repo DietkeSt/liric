@@ -126,43 +126,35 @@ def get_valid_input(prompt, max_length=25):
             return user_input       
 
 
-def print_title(
-        title, text_color, background_color=None, style=None, font_size=None
-        ):
-    # ANSI escape codes for text colors
-    text_color_code = getattr(Fore, text_color, "")
-    
-    # ANSI escape codes for background colors
-    background_color_code = getattr(Back, background_color, "")
-    
-    # ANSI escape codes for styles
-    style_code = getattr(Style, style, "")
-
-    # ANSI escape code for font size
-    font_size_code = f"\033[{font_size}m" if font_size else ""
-
-    # ANSI escape code to reset color and style
-    color_reset = f"{Style.RESET_ALL}"
-
-    # Print the colorful title
-    colored_title = f"{font_size_code}{text_color_code}{background_color_code}{style_code}{title}{color_reset}"
-    print(colored_title)   
-
-
 def welcome_message():
-    title = "♫ ♩ LIRIC ♪ ♬"
-    message = textwrap.dedent(
+    print(Fore.CYAN + Style.BRIGHT + "♫ ♩ LIRIC ♪ ♬")
+    slow_print(Style.RESET_ALL +
+        textwrap.dedent(
         """
         Welcome to the lyric game that allows you to create your own song lyrics.\n
         """
+        )
     )
 
-    print_title(
-        title, text_color="MAGENTA", background_color="CYAN", style="BRIGHT", font_size= 20
+    #FOR TESTING PURPOSED - PLEASE REMOVE
+    exit_options = ["Yes, exit the game", "No, continue the game"]
+    exit_menu = TerminalMenu(
+        exit_options, title="Are you sure you want to exit the game?\n"
         )
+    exit_choice_index = exit_menu.show()
 
-    # Print the welcome message gradually
-    slow_print(message)
+    if exit_choice_index == 1:
+        cls()
+    else:
+        slow_print(
+            textwrap.dedent(
+            """
+            Okay, exiting the game. Goodbye!\n
+            To restart the game hit the 'Run' option on top of the screen.\n
+            """
+            )
+        )
+        sys.exit()
 
 
 def choose_topic():
