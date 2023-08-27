@@ -52,7 +52,7 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
-    menu_title = "\nAre you sure you want to exit the game?\n"
+    menu_title = "Are you sure you want to exit the game?\n"
     exit_menu = TerminalMenu(
         exit_options,
         title=menu_title,
@@ -64,11 +64,12 @@ def exit_cls():
     if exit_choice_index == 1:
         cls()
     else:
-        slow_print(
+        slow_print(textwrap.dedent(
             f"""
             Okay, exiting the game. Goodbye!\n
             Hit {Fore.CYAN}{Style.BRIGHT}'Run'{Style.RESET_ALL} to restart.
             """
+            )
         )
         sys.exit()
 
@@ -99,13 +100,14 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     cls()
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         {Fore.CYAN}{Style.BRIGHT}
         Ready!\n
         {Style.RESET_ALL}
         """
         )
+    )
     time.sleep(0.5)
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
     menu_title = "\nChoose a printing speed:\n"
@@ -122,11 +124,12 @@ def choose_typing_speed():
 
     chosen_option_text = options[chosen_index]
     cls()
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         You have chosen: {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}
         {Style.RESET_ALL}
         """
+        )
     )
     time.sleep(0.5)
     cls()
@@ -143,45 +146,50 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
         user_input = input(prompt).strip()
 
         if not user_input:
-            slow_print(
+            slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
                 You did not type anything, please enter your answer below.\n
                 {Style.RESET_ALL}
                 """
                 )
+            )
         elif not any(char.isalpha() for char in user_input):
-            slow_print(
+            slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
                 "Please enter at least one letter in your answer.\n"
                 {Style.RESET_ALL}
                 """
                 )
+            )
         elif len(user_input) < 2:
-            slow_print(
+            slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
                 "Please enter a word with at least 2 characters.\n"
                 {Style.RESET_ALL}
                 """
                 )
+            )
         elif len(user_input) > max_length:
-            slow_print(
+            slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
                 "Text too long. Max. characters: {max_length}\n"
                 +{Style.RESET_ALL}
                 """
                 )
+            )
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
-            slow_print(
+            slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
                 "Only use special characters within words, e.g. ', -, ñ.\n"
                 {Style.RESET_ALL}
                 """
                 )
+            )
         else:
             return input_color + user_input + Style.RESET_ALL
 
@@ -189,29 +197,32 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
 def welcome_message():
 
     for _ in range(5):  # Blink the title 5 times
-        print(
+        print(textwrap.dedent(
             f"""
-            {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬\n
+            {Fore.CYAN}{Style.BRIGHT}   ♫ ♩ LIRIC ♪ ♬\n
             {Style.RESET_ALL}
             """
             )
+        )
         time.sleep(0.3)
         cls()
         time.sleep(0.2)
 
-    print(
+    print(textwrap.dedent(
         f"""
-        {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬\n
+        {Fore.CYAN}{Style.BRIGHT}   ♫ ♩ LIRIC ♪ ♬\n
         {Style.RESET_ALL}
         """
         )
+    )
     time.sleep(0.5)
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         Welcome to the song lyric MadLibs game!\n
         """
         )
+    )
     time.sleep(0.5)
 
 
@@ -241,13 +252,13 @@ def choose_topic():
     chosen_topic = topics[chosen_index]
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
-        You've chosen the topic:
-        {topic_color}{capitalized_topics[chosen_index]}\n
+        Your topic: {topic_color}{capitalized_topics[chosen_index]}
         {Style.RESET_ALL}
         """
         )
+    )
     return chosen_topic
 
 
@@ -275,23 +286,25 @@ def start_game():
     """
     continue_cls()
     time.sleep(0.5)
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         Great, let's get started.\n
         I will ask you for some data shortly...\n
         """
+        )
     )
     time.sleep(1)
     cls()
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         Please keep these rules in mind:\n
         """
+        )
     )
     time.sleep(0.5)
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         {Fore.CYAN}{Style.BRIGHT}
         1. You have to enter at least 1 letter.\n
@@ -301,6 +314,7 @@ def start_game():
         5. Words like 'C3PO' are allowed.\n
         {Style.RESET_ALL}
         """
+        )
     )
     time.sleep(0.5)
     continue_cls()
@@ -325,20 +339,22 @@ def get_user_input(chosen_topic):
             )
 
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         I will ask you for the needed info now...\n
         """
+        )
     )
     time.sleep(1)
     cls()
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         Remember, your topic is: {topic_color}{capitalized_topics}
         {Style.RESET_ALL}
         """
         )
+    )
     time.sleep(0.5)
 
     words = {
@@ -368,17 +384,19 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         {Fore.CYAN}{Style.BRIGHT}
         Thanks!\n
         {Style.RESET_ALL}
         """
         )
-    slow_print(
+    )
+    slow_print(textwrap.dedent(
         f"""
         Generating your lyrics now...\n
         """)
+    )
     time.sleep(0.3)
 
     # Progess bar for lyric generation
@@ -398,11 +416,12 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
     cls()
 
-    slow_print(
+    slow_print(textwrap.dedent(
         f"""
         Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
         """
         )
+    )
     time.sleep(0.5)
 
     slow_print(song_lyrics, typing_speed)
@@ -415,11 +434,12 @@ def ask_for_next_action(song_lyrics):
     next action after generating lyrics.
     """
     time.sleep(0.5)
-    print(
+    print(textwrap.dedent(
         f"""
         ___________________________________________________________________\n
         """
         )
+    )
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
         ]
@@ -493,11 +513,12 @@ def save_lyrics_to_file(song_lyrics, file_path):
     try:
         with open(file_path, "w") as file:
             file.write(song_lyrics)
-        slow_print(
+        slow_print(textwrap.dedent(
             f"""
             \nLyrics saved to {file_path}\n
             """
             )
+        )
     except Exception as e:
         slow_print(f"Error: {str(e)}")
 
