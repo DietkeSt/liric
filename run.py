@@ -35,7 +35,7 @@ def continue_cls():
     of the console.
     """
     options = ["Yes", "No"]
-    menu_title = "\nReady to continue?\n"
+    menu_title = "Ready to continue?\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -52,7 +52,7 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
-    menu_title = "Are you sure you want to exit the game?\n"
+    menu_title = "\nAre you sure you want to exit the game?\n"
     exit_menu = TerminalMenu(
         exit_options,
         title=menu_title,
@@ -103,7 +103,7 @@ def choose_typing_speed():
     slow_print(textwrap.dedent(
         f"""
         {Fore.CYAN}{Style.BRIGHT}
-        Ready!\n
+        Ready!
         {Style.RESET_ALL}
         """
         )
@@ -199,10 +199,9 @@ def welcome_message():
     for _ in range(5):  # Blink the title 5 times
         print(textwrap.dedent(
             f"""
-            {Fore.CYAN}{Style.BRIGHT}   ♫ ♩ LIRIC ♪ ♬\n
-            {Style.RESET_ALL}
+            {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬{Style.RESET_ALL}
             """
-            )
+            ).center(80)
         )
         time.sleep(0.3)
         cls()
@@ -210,10 +209,9 @@ def welcome_message():
 
     print(textwrap.dedent(
         f"""
-        {Fore.CYAN}{Style.BRIGHT}   ♫ ♩ LIRIC ♪ ♬\n
-        {Style.RESET_ALL}
+        {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬{Style.RESET_ALL}
         """
-        )
+        ).center(80)
     )
     time.sleep(0.5)
 
@@ -289,7 +287,7 @@ def start_game():
     slow_print(textwrap.dedent(
         f"""
         Great, let's get started.\n
-        I will ask you for some data shortly...\n
+        I will ask you for some data shortly...
         """
         )
     )
@@ -298,7 +296,7 @@ def start_game():
 
     slow_print(textwrap.dedent(
         f"""
-        Please keep these rules in mind:\n
+        Please keep these rules in mind:
         """
         )
     )
@@ -341,7 +339,7 @@ def get_user_input(chosen_topic):
 
     slow_print(textwrap.dedent(
         f"""
-        I will ask you for the needed info now...\n
+        I will ask you for the needed info now...
         """
         )
     )
@@ -387,7 +385,7 @@ def generate_song(chosen_topic, words):
     slow_print(textwrap.dedent(
         f"""
         {Fore.CYAN}{Style.BRIGHT}
-        Thanks!\n
+        Thanks!
         {Style.RESET_ALL}
         """
         )
