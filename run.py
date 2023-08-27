@@ -146,11 +146,14 @@ def start_game():
         slow_print("When entering your data, please keep the following in mind:\n")
         time.sleep(0.5)
         slow_print(
-               "1. You have to enter at least 1 letter.\n"
-               "2. The word can contain between 2-25 characters.\n"
-               "3. You are not allowed to enter nothing, or just a space.\n"
-               "4. Special characters are only allowed, if they belong to the word.\n"
-               "5. Words like 'C3PO' are allowed.\n")
+            f"""
+            1. You have to enter at least 1 letter.\n
+            2. The word can contain between 2-25 characters.\n
+            3. You are not allowed to enter nothing, or just a space.\n
+            4. Special characters are only allowed, if they belong to the word.\n
+            5. Words like 'C3PO' are allowed.\n
+            """
+        )
         time.sleep(0.5)
         continue_cls()
         return True
