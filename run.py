@@ -68,7 +68,12 @@ def get_valid_input(prompt, max_length=25):
         user_input = input(prompt).strip()
 
         if not user_input:
-            slow_print("You did not type any letter, please enter your answer below.\n")
+            slow_print(
+                f"""
+                You did not type any letter, 
+                please enter your answer below.\n
+                """
+                )
         elif not any(char.isalpha() for char in user_input):
             slow_print("Please enter at least one letter in your answer.\n")
         elif len(user_input) < 2:
