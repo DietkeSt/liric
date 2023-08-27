@@ -131,7 +131,7 @@ def choose_typing_speed():
     return chosen_typing_speed
 
 
-def get_valid_input(prompt, max_length=25):
+def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
     """
     This function gets valid text input from the user.
     It ensures that the input meets specified criteria
@@ -171,7 +171,7 @@ def get_valid_input(prompt, max_length=25):
                 + Style.RESET_ALL
                 )
         else:
-            return user_input
+            return input_color + user_input + Style.RESET_ALL
 
 
 def welcome_message():
