@@ -291,9 +291,10 @@ def get_user_input(chosen_topic):
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     capitalized_topics = chosen_topic.capitalize()
-    topic_txt = textwrap.dedent(f"""
-    Remember, your topic is: {topic_color}{capitalized_topics}{Style.RESET_ALL}
-    """)
+    topic_txt = textwrap.dedent(
+    "Remember, your topic is: "
+    f"{topic_color}{capitalized_topics}{Style.RESET_ALL}"
+    )
 
     slow_print(
         "\nI will ask you for the needed info now...\n"
@@ -352,12 +353,12 @@ def generate_song(chosen_topic, words):
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    lyrics_title_txt = textwrap.dedent(f"""
-    Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
-    """)
+    lyrics_title_txt = textwrap.dedent(
+    f"Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n"
+    )
     time.sleep(0.5)
     cls()
-    slow_print(lyrics_title_txt)
+    slow_print(lyrics_title_txt.center(80))
     time.sleep(0.5)
     slow_print(song_lyrics, typing_speed)
     return song_lyrics
@@ -370,8 +371,8 @@ def ask_for_next_action(song_lyrics):
     """
     time.sleep(0.5)
     print(textwrap.dedent("""
-          ___________________________________________________________________\n
-          """.center(80))
+        ___________________________________________________________________\n
+        """.center(80))
     )
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
