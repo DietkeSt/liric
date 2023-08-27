@@ -18,7 +18,7 @@ def continue_cls():
         cls()
     else:
         slow_print(
-            f"""
+            """
             Exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
             """
@@ -105,7 +105,7 @@ def get_valid_input(prompt, max_length=25):
 
 def welcome_message():
     slow_print(
-        f"""
+        """
         Welcome to Liric!\n
         A game that allows you to create your own song lyrics.\n
         """
@@ -173,14 +173,14 @@ def start_game():
             )
         time.sleep(0.5)
         slow_print(
-            f"""
+            """
             I need more info from you to generate your song lyrics.\n
             "When entering your data, please keep the following in mind:\n
             """
         )
         time.sleep(0.5)
         slow_print(
-            f"""
+            """
             1. You have to enter at least 1 letter.\n
             2. The word can contain between 2-25 characters.\n
             3. You are not allowed to enter nothing, or just a space.\n
@@ -202,7 +202,7 @@ def start_game():
             return start_game()
         else:
             slow_print(
-                f"""
+                """
                 Okay, exiting the game. Goodbye!\n
                 To restart the game hit the 'Run' option on top of the screen.\n
                 """
@@ -298,7 +298,7 @@ def ask_for_next_action(song_lyrics):
         return "save_lyrics"
     elif chosen_index == 2:
         slow_print(
-            f"""
+            """
             Exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
             """
