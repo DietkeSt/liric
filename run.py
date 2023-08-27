@@ -327,7 +327,6 @@ def get_user_input(chosen_topic):
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     capitalized_topics = chosen_topic.capitalize()
 
-
     def get_colored_input(prompt):
         """
         This function gets user input with a specific color prompt.
@@ -335,7 +334,6 @@ def get_user_input(chosen_topic):
         return get_valid_input(
             Fore.CYAN + Style.BRIGHT + prompt + Style.RESET_ALL
             )
-
 
     slow_print(textwrap.dedent(
         f"""
