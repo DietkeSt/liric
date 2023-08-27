@@ -65,11 +65,10 @@ def exit_cls():
         cls()
     else:
         slow_print(
-            "\nOkay, exiting the game. Goodbye!\n"
-        )
-        run_text = "Hit 'Run Program' to restart.\n"
-        slow_print(
-            Fore.CYAN + Style.BRIGHT + run_text + Style.RESET_ALL
+            f"""
+            Okay, exiting the game. Goodbye!\n
+            Hit {Fore.CYAN}{Style.BRIGHT}'Run'{Style.RESET_ALL} to restart.
+            """
         )
         sys.exit()
 
@@ -100,9 +99,12 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     cls()
-    print(Fore.CYAN + Style.BRIGHT +
-        "Ready!\n".center(80)
-        + Style.RESET_ALL
+    slow_print(
+        f"""
+        {Fore.CYAN}{Style.BRIGHT}
+        Ready!\n
+        {Style.RESET_ALL}
+        """
         )
     time.sleep(0.5)
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
@@ -120,11 +122,11 @@ def choose_typing_speed():
 
     chosen_option_text = options[chosen_index]
     cls()
-    slow_print(textwrap.dedent(
+    slow_print(
         f"""
-        You have chosen typing speed:
-        {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}{Style.RESET_ALL}
-        """)
+        You have chosen: {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}
+        {Style.RESET_ALL}
+        """
     )
     time.sleep(0.5)
     cls()
@@ -142,56 +144,74 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
 
         if not user_input:
             slow_print(
-                Fore.RED + Style.BRIGHT +
-                "You did not type anything, please enter your answer below.\n"
-                + Style.RESET_ALL
+                f"""
+                {Fore.RED}{Style.BRIGHT}
+                You did not type anything, please enter your answer below.\n
+                {Style.RESET_ALL}
+                """
                 )
         elif not any(char.isalpha() for char in user_input):
             slow_print(
-                Fore.RED + Style.BRIGHT +
+                f"""
+                {Fore.RED}{Style.BRIGHT}
                 "Please enter at least one letter in your answer.\n"
-                + Style.RESET_ALL
+                {Style.RESET_ALL}
+                """
                 )
         elif len(user_input) < 2:
             slow_print(
-                Fore.RED + Style.BRIGHT +
+                f"""
+                {Fore.RED}{Style.BRIGHT}
                 "Please enter a word with at least 2 characters.\n"
-                + Style.RESET_ALL
+                {Style.RESET_ALL}
+                """
                 )
         elif len(user_input) > max_length:
             slow_print(
-                Fore.RED + Style.BRIGHT +
+                f"""
+                {Fore.RED}{Style.BRIGHT}
                 "Text too long. Max. characters: {max_length}\n"
-                + Style.RESET_ALL
+                +{Style.RESET_ALL}
+                """
                 )
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
             slow_print(
-                Fore.RED + Style.BRIGHT +
+                f"""
+                {Fore.RED}{Style.BRIGHT}
                 "Only use special characters within words, e.g. ', -, ñ.\n"
-                + Style.RESET_ALL
+                {Style.RESET_ALL}
+                """
                 )
         else:
             return input_color + user_input + Style.RESET_ALL
 
 
 def welcome_message():
-    title = "♫ ♩ LIRIC ♪ ♬\n"
-    centered_title = title.center(80)
-    centered_title = centered_title.replace("\n", "\n ")
 
     for _ in range(5):  # Blink the title 5 times
         print(
-            "\n" + Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL
+            f"""
+            {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬\n
+            {Style.RESET_ALL}
+            """
             )
         time.sleep(0.3)
         cls()
         time.sleep(0.2)
 
-    print("\n" + Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
-    time.sleep(0.75)
-    text = "Welcome to the song lyric MadLibs game!\n"
-    centered_text = text.center(80)
-    slow_print(centered_text)
+    print(
+        f"""
+        {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬\n
+        {Style.RESET_ALL}
+        """
+        )
+    time.sleep(0.5)
+
+    slow_print(
+        f"""
+        Welcome to the song lyric MadLibs game!\n
+        """
+        )
     time.sleep(0.5)
 
 
@@ -221,13 +241,13 @@ def choose_topic():
     chosen_topic = topics[chosen_index]
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
 
-    chosen_topic_txt = textwrap.dedent(
-    "You've chosen the topic:"
-    f" {topic_color}{capitalized_topics[chosen_index]}\n"
-    f"{Style.RESET_ALL}"
-    ).center(80)
-
-    slow_print("\n" + chosen_topic_txt)
+    slow_print(
+        f"""
+        You've chosen the topic:
+        {topic_color}{capitalized_topics[chosen_index]}\n
+        {Style.RESET_ALL}
+        """
+        )
     return chosen_topic
 
 
@@ -255,30 +275,32 @@ def start_game():
     """
     continue_cls()
     time.sleep(0.5)
-    slow_print(textwrap.dedent(
-        """
+    slow_print(
+        f"""
         Great, let's get started.\n
         I will ask you for some data shortly...\n
-        """)
+        """
     )
     time.sleep(1)
     cls()
 
     slow_print(
-        "\nPlease keep these rules in mind:\n"
+        f"""
+        Please keep these rules in mind:\n
+        """
     )
     time.sleep(0.5)
 
     slow_print(
-    Fore.CYAN + Style.BRIGHT +
-    """\
-    1. You have to enter at least 1 letter.\n
-    2. The word can contain between 2-25 characters.\n
-    3. You are not allowed to enter nothing, or just a space.\n
-    4. Standalone special characters are not allowed.\n
-    5. Words like 'C3PO' are allowed.\n
-    """
-    + Style.RESET_ALL
+        f"""
+        {Fore.CYAN}{Style.BRIGHT}
+        1. You have to enter at least 1 letter.\n
+        2. The word can contain between 2-25 characters.\n
+        3. You are not allowed to enter nothing, or just a space.\n
+        4. Standalone special characters are not allowed.\n
+        5. Words like 'C3PO' are allowed.\n
+        {Style.RESET_ALL}
+        """
     )
     time.sleep(0.5)
     continue_cls()
@@ -292,10 +314,6 @@ def get_user_input(chosen_topic):
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     capitalized_topics = chosen_topic.capitalize()
-    topic_txt = textwrap.dedent(
-    "Remember, your topic is: "
-    f"{topic_color}{capitalized_topics}{Style.RESET_ALL}"
-    )
 
 
     def get_colored_input(prompt):
@@ -305,15 +323,22 @@ def get_user_input(chosen_topic):
         return get_valid_input(
             Fore.CYAN + Style.BRIGHT + prompt + Style.RESET_ALL
             )
-    
+
 
     slow_print(
-        "\nI will ask you for the needed info now...\n"
+        f"""
+        I will ask you for the needed info now...\n
+        """
     )
     time.sleep(1)
     cls()
 
-    slow_print(topic_txt.center(80))
+    slow_print(
+        f"""
+        Remember, your topic is: {topic_color}{capitalized_topics}
+        {Style.RESET_ALL}
+        """
+        )
     time.sleep(0.5)
 
     words = {
@@ -343,11 +368,17 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
-    print(Fore.CYAN + Style.BRIGHT +
-        "Thanks!\n".center(80)
-        + Style.RESET_ALL
+    slow_print(
+        f"""
+        {Fore.CYAN}{Style.BRIGHT}
+        Thanks!\n
+        {Style.RESET_ALL}
+        """
         )
-    slow_print("Generating your lyrics now...\n")
+    slow_print(
+        f"""
+        Generating your lyrics now...\n
+        """)
     time.sleep(0.3)
 
     # Progess bar for lyric generation
@@ -364,13 +395,16 @@ def generate_song(chosen_topic, words):
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    lyrics_title_txt = textwrap.dedent(
-    f"Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n"
-    )
     time.sleep(0.5)
     cls()
-    slow_print(lyrics_title_txt.center(80))
+
+    slow_print(
+        f"""
+        Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
+        """
+        )
     time.sleep(0.5)
+
     slow_print(song_lyrics, typing_speed)
     return song_lyrics
 
@@ -381,10 +415,11 @@ def ask_for_next_action(song_lyrics):
     next action after generating lyrics.
     """
     time.sleep(0.5)
-    print(textwrap.dedent("""
+    print(
+        f"""
         ___________________________________________________________________\n
-        """.center(80))
-    )
+        """
+        )
     options = [
         "Choose another topic", "Save Lyrics", "Exit the game"
         ]
@@ -459,7 +494,9 @@ def save_lyrics_to_file(song_lyrics, file_path):
         with open(file_path, "w") as file:
             file.write(song_lyrics)
         slow_print(
-            f"\nLyrics saved to {file_path}\n"
+            f"""
+            \nLyrics saved to {file_path}\n
+            """
             )
     except Exception as e:
         slow_print(f"Error: {str(e)}")
