@@ -52,7 +52,7 @@ def continue_cls():
 def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
-    menu_title = "Are you sure you want to exit the game?\n"
+    menu_title = "\nAre you sure you want to exit the game?\n"
     exit_menu = TerminalMenu(
         exit_options,
         title=menu_title,
@@ -65,9 +65,9 @@ def exit_cls():
         cls()
     else:
         slow_print(
-            "Okay, exiting the game. Goodbye!\n"
+            "\nOkay, exiting the game. Goodbye!\n"
         )
-        run_text = "Hit 'Run Program' to restart."
+        run_text = "Hit 'Run Program' to restart.\n"
         slow_print(
             Fore.CYAN + Style.BRIGHT + run_text + Style.RESET_ALL
         )
@@ -100,8 +100,7 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     cls()
-    print(
-        Fore.CYAN + Style.BRIGHT +
+    print(Fore.CYAN + Style.BRIGHT +
         "Ready!\n".center(80)
         + Style.RESET_ALL
         )
@@ -119,11 +118,13 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    chosen_option_txt = textwrap.dedent(
-    f"\nYou've chosen typing speed: {options[chosen_index]}\n"
+    chosen_option_text = {options[chosen_index]}
+    cls()
+    slow_print(f"""
+    You have chosen typing speed:
+    {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}{Style.RESET_ALL}
+    """
     )
-
-    slow_print(chosen_option_txt)
     time.sleep(0.5)
     cls()
     return chosen_typing_speed
@@ -175,14 +176,17 @@ def get_valid_input(prompt, max_length=25):
 def welcome_message():
     title = "♫ ♩ LIRIC ♪ ♬\n"
     centered_title = title.center(80)
+    centered_title = centered_title.replace("\n", "\n ")
 
     for _ in range(5):  # Blink the title 5 times
-        print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
+        print(
+            "\n" + Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL
+            )
         time.sleep(0.3)
         cls()
         time.sleep(0.2)
 
-    print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
+    print("\n" + Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
     time.sleep(0.75)
     text = "Welcome to the song lyric MadLibs game!\n"
     centered_text = text.center(80)
@@ -222,7 +226,7 @@ def choose_topic():
     f"{Style.RESET_ALL}"
     ).center(80)
 
-    slow_print(chosen_topic_txt)
+    slow_print("\n" + chosen_topic_txt)
     return chosen_topic
 
 
@@ -260,7 +264,7 @@ def start_game():
     cls()
 
     slow_print(
-        "Please keep these rules in mind:\n"
+        "\nPlease keep these rules in mind:\n"
     )
     time.sleep(0.5)
 
@@ -289,28 +293,28 @@ def get_user_input(chosen_topic):
     capitalized_topics = chosen_topic.capitalize()
     topic_txt = textwrap.dedent(f"""
     Remember, your topic is: {topic_color}{capitalized_topics}{Style.RESET_ALL}
-    """).center(80)
+    """)
 
     slow_print(
         "\nI will ask you for the needed info now...\n"
     )
-    time.sleep(0.5)
+    time.sleep(1)
     cls()
 
-    slow_print(topic_txt)
+    slow_print(topic_txt.center(80))
     time.sleep(0.5)
 
     words = {
-        "place1": get_valid_input("Name a place with a beach: \n"),
-        "partner_name": get_valid_input("Your partner's name: \n"),
-        "pet_name": get_valid_input("Your pet's name: \n"),
-        "place2": get_valid_input("Name a place with mountains: \n"),
-        "day_activity": get_valid_input("Name a daytime activity: \n"),
-        "flying_animal": get_valid_input("Name a flying animal: \n"),
-        "beautiful_place": get_valid_input("Name a beautiful place: \n"),
-        "night_activity": get_valid_input("Name a nighttime activity: \n"),
-        "swimming_animal": get_valid_input("Name a swimming animal: \n"),
-        "last_vacation_spot": get_valid_input("Name a place by the sea: \n"),
+        "place1": get_valid_input("\nName a place with a beach: "),
+        "partner_name": get_valid_input("\nYour partner's name: "),
+        "pet_name": get_valid_input("\nYour pet's name: "),
+        "place2": get_valid_input("\nName a place with mountains: "),
+        "day_activity": get_valid_input("\nName a daytime activity: "),
+        "flying_animal": get_valid_input("\nName a flying animal: "),
+        "beautiful_place": get_valid_input("\nName a beautiful place: "),
+        "night_activity": get_valid_input("\nName a nighttime activity: "),
+        "swimming_animal": get_valid_input("\nName a swimming animal: "),
+        "last_vacation_spot": get_valid_input("\nName a place by the sea: "),
     }
     return words
 
@@ -327,8 +331,7 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
-    print(
-        Fore.CYAN + Style.BRIGHT +
+    print(Fore.CYAN + Style.BRIGHT +
         "Thanks!\n".center(80)
         + Style.RESET_ALL
         )
