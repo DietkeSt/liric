@@ -28,12 +28,12 @@ def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def slow_print(t, typing_speed=90):
+def slow_print(text, typing_speed=90):
     """
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
     """
-    for char in t:
+    for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(random.random() * 5.0 / typing_speed)
