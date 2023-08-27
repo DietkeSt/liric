@@ -1,10 +1,10 @@
 import sys
 import time
 import random
-from tqdm import tqdm
-from simple_term_menu import TerminalMenu
 import re
 import os
+from tqdm import tqdm
+from simple_term_menu import TerminalMenu
 
 
 def continue_cls():
