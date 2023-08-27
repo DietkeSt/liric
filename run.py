@@ -13,6 +13,15 @@ This function inititalizes Colorama to work on Windows
 """
 init()
 
+
+#Dictionary to map topic colors
+topic_colors = {
+    "beach": Fore.YELLOW + Style.BRIGHT,
+    "love": Fore.MAGENTA + Style.BRIGHT,
+    "nature": Fore.GREEN + Style.BRIGHT,
+    }
+
+
 def continue_cls():
     """
     This function is used to clear the screen
@@ -145,29 +154,18 @@ def welcome_message():
     centered_text = text.center(80)
     slow_print(centered_text)
 
-    #FOR TESTING PURPOSED - PLEASE REMOVE
-    exit_options = ["Yes, exit the game", "No, continue the game"]
-    exit_menu = TerminalMenu(
-        exit_options, title="Are you sure you want to exit the game?\n"
-        )
-    exit_choice_index = exit_menu.show()
-
-    if exit_choice_index == 1:
-        cls()
-    else:
-        slow_print("Exiting")
-        sys.exit()
-
 
 def choose_topic():
     """
     This function gives the user a topic chooser 
     option using a terminal menu.
     """
+
     topics = [
         "beach", "love", "nature"
         ]
-    capitalized_topics = [topic.capitalize() for topic in topics] 
+    capitalized_topics = [topic.capitalize() for topic in topics]
+
     terminal_menu = TerminalMenu(
         capitalized_topics, title="Choose a topic for your song lyrics:\n"
         )
@@ -177,8 +175,9 @@ def choose_topic():
     time.sleep(0.5)
 
     chosen_topic = topics[chosen_index]
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     slow_print(
-        f"You've chosen the topic: {capitalized_topics[chosen_index]}.\n"
+        f"You've chosen the topic: {topic_color}{capitalized_topics[chosen_index]}.\n" + Style.RESET_ALL
         )
     return chosen_topic
 
@@ -251,8 +250,11 @@ def get_user_input(chosen_topic):
     Function to ask user for input. 
     Defining the keywords for the lyric placeholders.
     """
+
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET) 
+
     slow_print(
-        f"Please type in your answers for the {chosen_topic} topic below.\n"
+        f"Please type in your answers for the {topic_color}{chosen_topic} " + Style.RESET_ALL + "topic below.\n"
         )
     time.sleep(0.5)
 
