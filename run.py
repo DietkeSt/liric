@@ -5,6 +5,7 @@ import re
 import os
 from tqdm import tqdm
 from simple_term_menu import TerminalMenu
+from colorama import Fore, Style, init
 
 
 def continue_cls():
