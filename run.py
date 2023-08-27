@@ -297,6 +297,16 @@ def get_user_input(chosen_topic):
     f"{topic_color}{capitalized_topics}{Style.RESET_ALL}"
     )
 
+
+    def get_colored_input(prompt):
+        """
+        This function gets user input with a specific color prompt.
+        """
+        return get_valid_input(
+            Fore.CYAN + Style.BRIGHT + prompt + Style.RESET_ALL
+            )
+    
+
     slow_print(
         "\nI will ask you for the needed info now...\n"
     )
@@ -307,36 +317,16 @@ def get_user_input(chosen_topic):
     time.sleep(0.5)
 
     words = {
-        "place1": get_valid_input(
-        Fore.CYAN + "\nName a place with a beach: " + Style.RESET_ALL
-        ),
-        "partner_name": get_valid_input(
-        Fore.CYAN + "\nYour partner's name: " + Style.RESET_ALL
-        ),
-        "pet_name": get_valid_input(
-        Fore.CYAN + "\nYour pet's name: " + Style.RESET_ALL
-        ),
-        "place2": get_valid_input(
-        Fore.CYAN + "\nName a place with mountains: " + Style.RESET_ALL
-        ),
-        "day_activity": get_valid_input(
-        Fore.CYAN + "\nName a daytime activity: " + Style.RESET_ALL
-        ),
-        "flying_animal": get_valid_input(
-        Fore.CYAN + "\nName a flying animal: " + Style.RESET_ALL
-        ),
-        "beautiful_place": get_valid_input(
-        Fore.CYAN + "\nName a beautiful place: " + Style.RESET_ALL
-        ),
-        "night_activity": get_valid_input(
-        Fore.CYAN + "\nName a nighttime activity: " + Style.RESET_ALL
-        ),
-        "swimming_animal": get_valid_input(
-        Fore.CYAN + "\nName a swimming animal: " + Style.RESET_ALL
-        ),
-        "last_vacation_spot": get_valid_input(
-        Fore.CYAN + "\nName a place by the sea: " + Style.RESET_ALL
-        ),
+        "place1": get_colored_input("\nName a place with a beach: "),
+        "partner_name": get_colored_input("\nYour partner's name: "),
+        "pet_name": get_colored_input("\nYour pet's name: "),
+        "place2": get_colored_input("\nName a place with mountains: "),
+        "day_activity": get_colored_input("\nName a daytime activity: "),
+        "flying_animal": get_colored_input("\nName a flying animal: "),
+        "beautiful_place": get_colored_input("\nName a beautiful place: "),
+        "night_activity": get_colored_input("\nName a nighttime activity: "),
+        "swimming_animal": get_colored_input("\nName a swimming animal: "),
+        "last_vacation_spot": get_colored_input("\nName a place by the sea: "),
     }
     return words
 
