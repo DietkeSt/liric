@@ -18,7 +18,6 @@ menu_style = {
     "menu_cursor_style": ("fg_cyan", "bold"),
     "menu_highlight_style": ("fg_cyan", "bold"),
     "cycle_cursor": True,
-    "clear_screen": True,
 }
 
 
@@ -111,9 +110,9 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
 
-    slow_print(
-        f"You've chosen typing speed: {options[chosen_index]}."
-        )
+    chosen_option_txt = f"You've chosen typing speed: {options[chosen_index]}\n".center(80)
+    
+    slow_print(chosen_option_txt)
     time.sleep(0.5)
     cls()
     return chosen_typing_speed
@@ -205,9 +204,10 @@ def choose_topic():
 
     chosen_topic = topics[chosen_index]
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    slow_print(
-        f"You've chosen the topic: {topic_color}{capitalized_topics[chosen_index]}.\n" + Style.RESET_ALL
-        )
+
+    chosen_topic_txt = f"You've chosen the topic: {topic_color}{capitalized_topics[chosen_index]}{Style.RESET_ALL}\n".center(80)
+
+    slow_print(chosen_topic_txt)
     return chosen_topic
 
 
