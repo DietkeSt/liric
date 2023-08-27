@@ -7,6 +7,10 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, init
 
+"""
+This function inititalizes Colorama to work on Windows
+"""
+init()
 
 def continue_cls():
     """
