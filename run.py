@@ -437,7 +437,7 @@ def ask_for_next_action(song_lyrics):
         )
     )
     options = [
-        "Choose another topic", "Save Lyrics", "Exit the game"
+        "Choose another topic", "Print lyrics again", "Exit the game"
         ]
     menu_title = "\nWhat do you want to do now?\n"
     terminal_menu = TerminalMenu(
@@ -454,7 +454,7 @@ def ask_for_next_action(song_lyrics):
         return "choose_topic"
     elif chosen_index == 1:
         save_lyrics(song_lyrics)
-        return "save_lyrics"
+        return "print_lyrics"
     elif chosen_index == 2:
         exit_cls()
     else:
@@ -563,9 +563,13 @@ def main():
         song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        chosen_topic, song_lyrics = handle_next_action(
-            chosen_topic, song_lyrics
-            )
+        next_action = ask_for_next_action(song_lyrics)
+
+        if next_action == "choose_topic":
+            break
+        elif next_action == "print_lyrics":
+            # Continue to print the lyrics and offer speed selection
+            continue
 
 
 if __name__ == "__main__":
