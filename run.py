@@ -165,8 +165,12 @@ def start_game():
         if exit_choice_index == 1:
             return start_game()
         else:
-            slow_print("\nOkay, exiting the game. Goodbye!\n")
-            slow_print("To restart the game hit the 'Run' option on top of the screen.\n")
+            slow_print(
+                f"""
+                Okay, exiting the game. Goodbye!\n
+                To restart the game hit the 'Run' option on top of the screen.\n
+                """
+            )
             sys.exit()
 
 
@@ -246,7 +250,12 @@ def ask_for_next_action(song_lyrics):
         save_lyrics(song_lyrics)
         return "save_lyrics"
     elif chosen_index == 2:
-        slow_print("\nExiting the game. Goodbye!\n")
+        slow_print(
+            f"""
+            Exiting the game. Goodbye!\n
+            To restart the game hit the 'Run' option on top of the screen.\n
+            """
+        )
         sys.exit()
     else:
         return "quit"
