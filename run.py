@@ -104,37 +104,46 @@ def get_valid_input(prompt, max_length=25):
 
         if not user_input:
             slow_print(
+                Fore.RED + Style.BRIGHT + 
                 "You did not type anything, please enter your answer below.\n"
+                + Style.RESET_ALL
                 )
         elif not any(char.isalpha() for char in user_input):
             slow_print(
+                Fore.RED + Style.BRIGHT + 
                 "Please enter at least one letter in your answer.\n"
+                + Style.RESET_ALL
                 )
         elif len(user_input) < 2:
             slow_print(
+                Fore.RED + Style.BRIGHT + 
                 "Please enter a word with at least 2 characters.\n"
+                + Style.RESET_ALL
                 )
         elif len(user_input) > max_length:
             slow_print(
+                Fore.RED + Style.BRIGHT + 
                 f"Please enter a shorter answer. The max length is {max_length} characters.\n"
+                + Style.RESET_ALL
                 )
         elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
             slow_print(
-                "Please do not use standalone special characters. Special characters within words are allowed, e.g. ', -, ñ.\n"
+                Fore.RED + Style.BRIGHT + 
+                "Please only use special characters within words, e.g. ', -, ñ.\n"
+                + Style.RESET_ALL
                 )
         else:
             return user_input       
 
 
 def welcome_message():
-    print(Fore.CYAN + Style.BRIGHT + "♫ ♩ LIRIC ♪ ♬")
-    slow_print(Style.RESET_ALL +
-        textwrap.dedent(
-        """
-        Welcome to the lyric game that allows you to create your own song lyrics.\n
-        """
-        )
-    )
+    title = "♫ ♩ LIRIC ♪ ♬\n"
+    centered_title = title.center(80)
+    print(Fore.CYAN + Style.BRIGHT + centered_title + Style.RESET_ALL)
+    
+    text = "Welcome to the lyric game that allows you to create your own song lyrics.\n"
+    centered_text = text.center(80)
+    slow_print(centered_text)
 
     #FOR TESTING PURPOSED - PLEASE REMOVE
     exit_options = ["Yes, exit the game", "No, continue the game"]
@@ -146,14 +155,7 @@ def welcome_message():
     if exit_choice_index == 1:
         cls()
     else:
-        slow_print(
-            textwrap.dedent(
-            """
-            Okay, exiting the game. Goodbye!\n
-            To restart the game hit the 'Run' option on top of the screen.\n
-            """
-            )
-        )
+        slow_print("Exiting")
         sys.exit()
 
 
@@ -228,7 +230,7 @@ def start_game():
         time.sleep(0.5)
         slow_print(
             textwrap.dedent(
-            """
+            """\
             1. You have to enter at least 1 letter.\n
             2. The word can contain between 2-25 characters.\n
             3. You are not allowed to enter nothing, or just a space.\n
