@@ -65,10 +65,11 @@ def exit_cls():
         cls()
     else:
         slow_print(
-            textwrap.dedent("""
-            Okay, exiting the game. Goodbye!\n
-            To restart the game hit the 'Run' option on top of the screen.\n
-            """)
+            "Okay, exiting the game. Goodbye!\n".center(80)
+        )
+        run_text = "Hit 'Run Program' to restart.".center(80)
+        slow_print(
+            Fore.CYAN + Style.BRIGHT + run_text + Style.RESET_ALL
         )
         sys.exit()
 
@@ -99,10 +100,14 @@ def choose_typing_speed():
     the typing speed with a terminal menu.
     """
     cls()
-    slow_print("Ready!".center(80))
+    print(
+        Fore.CYAN + Style.BRIGHT +
+        "Ready!\n".center(80)
+        + Style.RESET_ALL
+        )
     time.sleep(0.5)
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
-    menu_title = "\n Choose a printing speed:\n"
+    menu_title = "\nChoose a printing speed:\n"
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -115,7 +120,7 @@ def choose_typing_speed():
     chosen_typing_speed = typing_speeds[chosen_index]
 
     chosen_option_txt = textwrap.dedent(
-    f"You've chosen typing speed: {options[chosen_index]}\n"
+    f"\nYou've chosen typing speed: {options[chosen_index]}\n"
     )
 
     slow_print(chosen_option_txt)
@@ -246,15 +251,25 @@ def start_game():
     continue_cls()
     time.sleep(0.5)
     slow_print(
-        Fore.CYAN +
-        "Great! I will ask for some info to create your lyrics.\n".center(80)
-        + Style.RESET_ALL
+        Fore.CYAN + Style.BRIGHT +
+        "Great! "
+        + Style.RESET_ALL +
+        "Let's get started."
     )
-    time.sleep(0.5)
+    time.sleep(1)
+    cls()
+
     slow_print(
-        "When entering your data, please keep the following in mind:\n"
+        "I will ask you for some data shortly...\n"
+    )
+    time.sleep(1)
+    cls()
+
+    slow_print(
+        "Please keep these rules in mind:\n"
     )
     time.sleep(0.5)
+
     slow_print(
     Fore.CYAN + Style.BRIGHT +
     """\
@@ -276,14 +291,14 @@ def get_user_input(chosen_topic):
     Function to ask user for input.
     Defining the keywords for the lyric placeholders.
     """
-    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     slow_print(
-        textwrap.dedent(
-        f"""
-        Please type your answers below.\n
-        Remember your topic is {topic_color}{chosen_topic}{Style.RESET_ALL}.
-        \n
-        """.center(80))
+        "Please type your answers below...\n".center(80)
+    )
+    time.sleep(0.5)
+    cls()
+
+    slow_print(
+        "Remember, it's about {topic_color}{chosen_topic}{Style.RESET_ALL}.\n".center(80)
         )
     time.sleep(0.5)
 
@@ -314,9 +329,12 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
-    slow_print(
-        "Thanks! Generating your lyrics now...\n".center(80)
+    print(
+        Fore.CYAN + Style.BRIGHT +
+        "Thanks!\n".center(80)
+        + Style.RESET_ALL
         )
+    slow_print("Generating your lyrics now...\n")
     time.sleep(0.3)
 
     # Progess bar for lyric generation
@@ -333,16 +351,10 @@ def generate_song(chosen_topic, words):
     song_lyrics = create_song_lyrics(lyrics_template, words)
     time.sleep(0.5)
     cls()
-
-    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-
     slow_print(
-        Fore.CYAN +
-        "Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:"
-        + Style.RESET_ALL_ALL
+    "Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n"
     )
     slow_print(song_lyrics, typing_speed)
-
     return song_lyrics
 
 
