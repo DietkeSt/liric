@@ -251,16 +251,13 @@ def start_game():
     continue_cls()
     time.sleep(0.5)
     slow_print(
-        Fore.CYAN + Style.BRIGHT +
-        "Great! "
-        + Style.RESET_ALL +
-        "Let's get started."
+        "Great, let's get started.".center(80)
     )
     time.sleep(1)
     cls()
 
     slow_print(
-        "I will ask you for some data shortly...\n"
+        "I will ask you for some data shortly...\n".center(80)
     )
     time.sleep(1)
     cls()
@@ -291,15 +288,18 @@ def get_user_input(chosen_topic):
     Function to ask user for input.
     Defining the keywords for the lyric placeholders.
     """
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+    topic_txt = f"""
+    Remember, your topic is: {topic_color}{chosen_topic}{Style.RESET_ALL}
+    """.center(80)
+
     slow_print(
-        "Please type your answers below...\n".center(80)
+        "I will ask you for the needed info now...\n".center(80)
     )
     time.sleep(0.5)
     cls()
 
-    slow_print(
-        "Remember, it's about {topic_color}{chosen_topic}{Style.RESET_ALL}.\n".center(80)
-        )
+    slow_print(topic_txt)
     time.sleep(0.5)
 
     words = {
@@ -343,17 +343,21 @@ def generate_song(chosen_topic, words):
         time.sleep(0.3)
         pbar.update(10)
     pbar.close()
+    time.sleep(0.5)
 
     # Choose typing speed with a menu
     typing_speed = choose_typing_speed()
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+    lyrics_title_txt = f"""
+    Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
+    """.center(80)
     time.sleep(0.5)
     cls()
-    slow_print(
-    "Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n"
-    )
+    slow_print(lyrics_title_txt)
+    time.sleep(0.5)
     slow_print(song_lyrics, typing_speed)
     return song_lyrics
 
