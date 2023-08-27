@@ -3,6 +3,7 @@ import time
 import random
 import re
 import os
+import textwrap
 from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, Back, init
@@ -22,12 +23,15 @@ def continue_cls():
     if continue_choice == 0:
         cls()
     else:
+        cls()
         slow_print(
+            textwrap.dedent(
             """
             Exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
             """
             )
+        )
         sys.exit()
 
 def cls():
@@ -128,10 +132,12 @@ def print_title(title, text_color, background_color=None, style=None):
 
 def welcome_message():
     title = "TEST TITLE"
-    message = """
+    message = textwrap.dedent(
+        """
         Welcome to Liric!\n
         A game that allows you to create your own song lyrics.\n
         """
+    )
 
     # Print the colorful title
     print_title(title, text_color="YELLOW", background_color="BLUE", style="BRIGHT")
@@ -197,24 +203,28 @@ def start_game():
 
     if chosen_index == 0:
         slow_print(
-            "Okay, let's create some lyrics!\n"
-            )
-        time.sleep(0.5)
-        slow_print(
-            """
-            I need more info from you to generate your song lyrics.\n
-            "When entering your data, please keep the following in mind:\n
-            """
+        "Okay, let's create some lyrics!\n"
         )
         time.sleep(0.5)
         slow_print(
+            textwrap.dedent(
+            """
+            I need more info from you to generate your song lyrics.\n
+            When entering your data, please keep the following in mind:\n
+            """
+            )
+        )
+        time.sleep(0.5)
+        slow_print(
+            textwrap.dedent(
             """
             1. You have to enter at least 1 letter.\n
             2. The word can contain between 2-25 characters.\n
             3. You are not allowed to enter nothing, or just a space.\n
-            4. Special characters are only allowed, if they belong to the word.\n
+            4. Standalone special characters are not allowed.\n
             5. Words like 'C3PO' are allowed.\n
             """
+            )
         )
         time.sleep(0.5)
         continue_cls()
@@ -222,7 +232,7 @@ def start_game():
     else:
         exit_options = ["Yes, exit the game", "No, start the game"]
         exit_menu = TerminalMenu(
-            exit_options, title="Are you sure you want to exit the game?"
+            exit_options, title="Are you sure you want to exit the game?\n"
             )
         exit_choice_index = exit_menu.show()
 
@@ -230,10 +240,12 @@ def start_game():
             return start_game()
         else:
             slow_print(
+                textwrap.dedent(
                 """
                 Okay, exiting the game. Goodbye!\n
                 To restart the game hit the 'Run' option on top of the screen.\n
                 """
+                )
             )
             sys.exit()
 
@@ -326,10 +338,12 @@ def ask_for_next_action(song_lyrics):
         return "save_lyrics"
     elif chosen_index == 2:
         slow_print(
+            textwrap.dedent(
             """
             Exiting the game. Goodbye!\n
             To restart the game hit the 'Run' option on top of the screen.\n
             """
+            )
         )
         sys.exit()
     else:
