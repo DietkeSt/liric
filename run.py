@@ -201,30 +201,42 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
 
 def welcome_message():
 
-    for _ in range(5):  # Blink the title 5 times
-        print(textwrap.dedent(
-            f"""
-            {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬{Style.RESET_ALL}
-            """
-            ).center(80)
-        )
+    title_txt = textwrap.dedent("""
+    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+    ♩                                                             ♫
+    ♪                           LIRIC                             ♩
+    ♬                                                             ♪
+    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+    """)
+
+    title_a = textwrap.dedent("""
+    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+    ♩                                                             ♫
+    ♪                                                             ♩
+    ♬                                                             ♪
+    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+    """)
+    slow_print(Fore.CYAN + Style.BRIGHT + title_txt)
+
+    for _ in range(3):  # Loading animation loop
+        cls()
+        print(Fore.CYAN + Style.BRIGHT + title_a)
         time.sleep(0.3)
         cls()
-        time.sleep(0.2)
+        print(Fore.CYAN + Style.BRIGHT + title_txt)
+        time.sleep(0.3)
+        cls()
+        print(Fore.CYAN + Style.BRIGHT + title_a)
+        time.sleep(0.3)
+        cls()
+        print(Fore.CYAN + Style.BRIGHT + title_txt)
+        time.sleep(0.3)
+        
+    time.sleep(1)
 
-    print(textwrap.dedent(
-        f"""
-        {Fore.CYAN}{Style.BRIGHT}♫ ♩ LIRIC ♪ ♬{Style.RESET_ALL}
-        """
-        ).center(80)
-    )
-    time.sleep(0.5)
-
-    slow_print(textwrap.dedent(
-        f"""
-        Welcome to the song lyric MadLibs game!\n
-        """
-        )
+    slow_print( 
+        Style.RESET_ALL +
+        "Welcome to the song lyric MadLibs game!\n".center(63)
     )
     time.sleep(0.5)
 
