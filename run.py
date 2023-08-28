@@ -99,6 +99,18 @@ def slow_print(text, typing_speed=90):
     print()
 
 
+def add_spaces_to_text(text, num_spaces=3):
+    """
+    This function adds spaces to text.
+    It splits the text into lines and then adds
+    the spaces and recombines the line afterwards.
+    """
+    lines = text.split('\n')
+    indented_lines = [f"{' ' * num_spaces}{line}" for line in lines]
+    indented_text = '\n'.join(indented_lines)
+    return indented_text
+
+
 def choose_typing_speed():
     """
     This function allows the user to choose
