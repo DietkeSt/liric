@@ -34,13 +34,21 @@ topic_colors = {
     }
 
 
+def cls():
+    """
+    This function is used to clear the screen
+    of the console.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def continue_cls():
     """
     This function is used to clear the screen
     of the console.
     """
     options = ["Yes", "No"]
-    menu_title = add_spaces_to_text("Ready to continue?\n")
+    menu_title = add_spaces_to_text("\nReady to continue?\n")
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -68,27 +76,43 @@ def exit_cls():
 
     exit_choice_index = exit_menu.show()
 
-    colored_word = Fore.CYAN + Style.BRIGHT + 'Run' + Style.RESET_ALL
-    exit_text = textwrap.dedent(
-        f"""
-        Okay, exiting the game. Goodbye!\n
-        Hit {colored_word} to restart.
+    exit_txt = textwrap.dedent(add_spaces_to_text(
         """
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        ♪                                                             ♫
+        ♬                    Okay, exiting game.                      ♪
+        ♩                                                             ♫
+        ♪                Hit 'Run Program' to restart!                ♩
+        ♬                                                             ♪
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        """
+        )
+    )
+
+    exit_blank = textwrap.dedent(add_spaces_to_text(
+        """
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        ♪                                                             ♫
+        ♬                                                             ♪
+        ♩                                                             ♫
+        ♪                                                             ♩
+        ♬                                                             ♪
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        """
+        )
     )
 
     if exit_choice_index == 1:
         cls()
     else:
-        slow_print(exit_text)
+        for _ in range(6):
+            cls()
+            print(Fore.CYAN + Style.BRIGHT + exit_blank)
+            time.sleep(0.3)
+            cls()
+            print(Fore.CYAN + Style.BRIGHT + exit_txt)
+            time.sleep(0.3)
         sys.exit()
-
-
-def cls():
-    """
-    This function is used to clear the screen
-    of the console.
-    """
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def slow_print(text, typing_speed=90, num_spaces=2, add_blank_line=True):
@@ -99,9 +123,12 @@ def slow_print(text, typing_speed=90, num_spaces=2, add_blank_line=True):
     formatted_text = add_spaces_to_text(text, num_spaces, add_blank_line)
 
     for char in formatted_text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(random.random() * 5.0 / typing_speed)
+        if char == ' ':
+            sys.stdout.write(char)
+        else:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep(random.random() * 5.0 / typing_speed)
     print()
 
 
@@ -224,7 +251,6 @@ def welcome_message():
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
     
     cls()
-
     for _ in range(6):  # Title animation loop
         cls()
         print(Fore.CYAN + Style.BRIGHT + title_blank)
@@ -294,8 +320,7 @@ def start_game():
     This function gives intro text + rules
     and starts the game using a terminal menu.
     """
-    start_text = "Great, let's get started.\n"
-    info_text = "I will ask you for some info shortly..."
+    start_text = "Great, I will ask you for some info shortly..."
     rules_text = "Please keep these rules in mind:"
 
     rules_list = Fore.CYAN + Style.BRIGHT + textwrap.dedent(
@@ -311,7 +336,7 @@ def start_game():
     continue_cls()
     time.sleep(0.5)
 
-    slow_print(start_text + info_text)
+    slow_print(start_text)
     time.sleep(1)
     cls()
 
