@@ -148,7 +148,7 @@ def choose_typing_speed():
     ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL + "\n"
     cls()
     slow_print(ready_text)
-    
+
     time.sleep(0.5)
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
     menu_title = add_spaces_to_text("Choose a printing speed:\n")
@@ -189,7 +189,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
                 "You did not type anything, please enter your answer below.\n"
                 )
             )
-            
+
         elif not any(char.isalpha() for char in user_input):
             slow_print(err_color(
                 "Please enter at least one letter in your answer.\n"
@@ -237,7 +237,7 @@ def welcome_message():
         """.center(80)
 
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
-    
+
     cls()
     for _ in range(6):  # Title animation loop
         cls()
@@ -246,7 +246,7 @@ def welcome_message():
         cls()
         print(Fore.CYAN + Style.BRIGHT + title_txt)
         time.sleep(0.3)
-        
+
     time.sleep(1)
 
     slow_print(text.center(80))
@@ -258,7 +258,6 @@ def choose_topic():
     This function gives the user a topic chooser
     option using a terminal menu.
     """
-
     topics = ["beach", "love", "nature"]
     capitalized_topics = [topic.capitalize() for topic in topics]
 
@@ -275,7 +274,7 @@ def choose_topic():
     time.sleep(0.5)
 
     chosen_topic = topics[chosen_index]
-    capitalized_topic = chosen_topic.capitalize() 
+    capitalized_topic = chosen_topic.capitalize()
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     topic_word = topic_color + capitalized_topic + Style.RESET_ALL
 
@@ -320,7 +319,7 @@ def start_game():
         5. Words like 'C3PO' are allowed.
         """
         ) + Style.RESET_ALL
-    
+
     continue_cls()
     time.sleep(0.5)
 
@@ -363,34 +362,34 @@ def get_user_input(chosen_topic):
 
     words = {
         "place1": get_colored_input(add_spaces_to_text(
-        "Name a place with a beach: ")
+            "Name a place with a beach: ")
         ),
         "partner_name": get_colored_input(add_spaces_to_text(
-        "Your partner's name: ")
+            "Your partner's name: ")
         ),
         "pet_name": get_colored_input(add_spaces_to_text(
-        "Your pet's name: ")
+            "Your pet's name: ")
         ),
         "place2": get_colored_input(add_spaces_to_text(
-        "Name a place with mountains: ")
+            "Name a place with mountains: ")
         ),
         "day_activity": get_colored_input(add_spaces_to_text(
-        "Name a daytime activity: ")
+            "Name a daytime activity: ")
         ),
         "flying_animal": get_colored_input(add_spaces_to_text(
-        "Name a flying animal: ")
+            "Name a flying animal: ")
         ),
         "beautiful_place": get_colored_input(add_spaces_to_text(
-        "Name a beautiful place: ")
+            "Name a beautiful place: ")
         ),
         "night_activity": get_colored_input(add_spaces_to_text(
-        "Name a nighttime activity: ")
+            "Name a nighttime activity: ")
         ),
         "swimming_animal": get_colored_input(add_spaces_to_text(
-        "Name a swimming animal: ")
+            "Name a swimming animal: ")
         ),
         "last_vacation_spot": get_colored_input(add_spaces_to_text(
-        "Name a place by the sea: ")
+            "Name a place by the sea: ")
         ),
     }
     return words
@@ -438,7 +437,7 @@ def generate_song(chosen_topic, words):
     time.sleep(1)
 
     slow_print(song_lyrics, typing_speed)
-    game_state["generated_lyrics"] = song_lyrics 
+    game_state["generated_lyrics"] = song_lyrics
     return song_lyrics
 
 
@@ -508,7 +507,7 @@ def print_generated_lyrics(chosen_topic, generated_lyrics):
     topic_text = "Your lyrics for topic: " + topic_word
 
     cls()
-    
+
     for _ in range(2):  # Loading animation loop
         print(add_spaces_to_text(
             "Reloading."
@@ -516,14 +515,14 @@ def print_generated_lyrics(chosen_topic, generated_lyrics):
         )
         time.sleep(0.3)
         cls()
-        
+
         print(add_spaces_to_text(
             "Reloading.."
             )
         )
         time.sleep(0.3)
         cls()
-        
+
         print(add_spaces_to_text(
             "Reloading..."
             )
@@ -552,7 +551,6 @@ def main():
     starts the questions for the keywords,
     and generates and prints the lyrics.
     """
-
     # Welcome message for the game
     welcome_message()
 
@@ -572,7 +570,9 @@ def main():
         song_lyrics = generate_song(game_state["chosen_topic"], words)
 
         # Ask the user for the next action
-        chosen_topic, song_lyrics = handle_next_action(song_lyrics, game_state["chosen_topic"])
+        chosen_topic, song_lyrics = handle_next_action(
+            song_lyrics, game_state["chosen_topic"]
+            )
 
 
 if __name__ == "__main__":
