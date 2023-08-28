@@ -8,11 +8,10 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, Back, init
 from lyric_templates import (
-    beach_lyrics_template, 
+    beach_lyrics_template,
     love_lyrics_template,
     nature_lyrics_template
 )
-
 
 
 # Initialize Colorama for Windows
