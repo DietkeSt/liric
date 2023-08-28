@@ -196,7 +196,11 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
 
 
 def welcome_message():
-
+    """
+    This function is the introductory text
+    when starting the game.
+    It starts with the title animation and text.
+    """
     title_txt = textwrap.dedent("""
     ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
     ♩                                                             ♫
