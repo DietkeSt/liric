@@ -76,8 +76,7 @@ def exit_cls():
 
     exit_choice_index = exit_menu.show()
 
-    exit_txt = textwrap.dedent(add_spaces_to_text(
-        """
+    exit_txt = """
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
         ♪                                                             ♫
         ♬                    Okay, exiting game.                      ♪
@@ -85,12 +84,9 @@ def exit_cls():
         ♪                Hit 'Run Program' to restart!                ♩
         ♬                                                             ♪
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-        """
-        )
-    )
+        """.center(80)
 
-    exit_blank = textwrap.dedent(add_spaces_to_text(
-        """
+    exit_blank = """
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
         ♪                                                             ♫
         ♬                                                             ♪
@@ -98,9 +94,7 @@ def exit_cls():
         ♪                                                             ♩
         ♬                                                             ♪
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-        """
-        )
-    )
+        """.center(80)
 
     if exit_choice_index == 1:
         cls()
@@ -226,27 +220,21 @@ def welcome_message():
     when starting the game.
     It starts with the title animation and text.
     """
-    title_txt = textwrap.dedent(add_spaces_to_text(
-        """
+    title_txt = """
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
         ♩                                                             ♫
         ♪                           LIRIC                             ♩
         ♬                                                             ♪
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-        """
-        )
-    )
+        """.center(80)
 
-    title_blank = textwrap.dedent(add_spaces_to_text(
-        """
+    title_blank = """
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
         ♩                                                             ♫
         ♪                                                             ♩
         ♬                                                             ♪
         ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-        """
-        )
-    )
+        """.center(80)
 
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
     
@@ -261,7 +249,7 @@ def welcome_message():
         
     time.sleep(1)
 
-    slow_print(text.center(63))
+    slow_print(text.center(80))
     time.sleep(0.5)
 
 
