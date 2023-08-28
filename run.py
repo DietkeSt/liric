@@ -8,14 +8,17 @@ from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, Back, init
 
+
 # Initialize Colorama for Windows
 init()
+
 
 # Global variables to store game state
 game_state = {
     "chosen_topic": None,
     "generated_lyrics": None,
 }
+
 
 # Global menu styles
 menu_style = {
@@ -461,6 +464,7 @@ def ask_for_next_action():
     )
 
     chosen_index = terminal_menu.show()
+    print()
     time.sleep(0.5)
     cls()
 
