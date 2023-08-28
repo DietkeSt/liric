@@ -11,6 +11,11 @@ from colorama import Fore, Style, Back, init
 # Initialize Colorama for Windows
 init()
 
+# Global variables to store game state
+game_state = {
+    "chosen_topic": None,
+    "generated_lyrics": None,
+}
 
 # Global menu styles
 menu_style = {
@@ -158,7 +163,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                "Please enter at least one letter in your answer.\n"
+                Please enter at least one letter in your answer.\n
                 {Style.RESET_ALL}
                 """
                 )
@@ -167,7 +172,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                "Please enter a word with at least 2 characters.\n"
+                Please enter a word with at least 2 characters.\n
                 {Style.RESET_ALL}
                 """
                 )
@@ -176,7 +181,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                "Text too long. Max. characters: {max_length}\n"
+                Text too long. Max. characters: {max_length}\n
                 +{Style.RESET_ALL}
                 """
                 )
@@ -185,7 +190,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                "Only use special characters within words, e.g. ', -, ñ.\n"
+                Only use special characters within words, e.g. ', -, ñ.\n
                 {Style.RESET_ALL}
                 """
                 )
@@ -252,11 +257,12 @@ def choose_topic():
 
     slow_print(textwrap.dedent(
         f"""
-        Your topic: {topic_color}{capitalized_topics[chosen_index]}
+        You chose the topic: {topic_color}{capitalized_topics[chosen_index]}
         {Style.RESET_ALL}
         """
         )
     )
+    game_state["chosen_topic"] = chosen_topic
     return chosen_topic
 
 
@@ -325,7 +331,6 @@ def get_user_input(chosen_topic):
     Defining the keywords for the lyric placeholders.
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
-    capitalized_topics = chosen_topic.capitalize()
 
     def get_colored_input(prompt):
         """
@@ -346,7 +351,7 @@ def get_user_input(chosen_topic):
 
     slow_print(textwrap.dedent(
         f"""
-        Remember, your topic is: {topic_color}{capitalized_topics}
+        Remember, your topic is: {topic_color}{chosen_topic.capitalize()}
         {Style.RESET_ALL}
         """
         )
@@ -414,13 +419,14 @@ def generate_song(chosen_topic, words):
 
     slow_print(textwrap.dedent(
         f"""
-        Your {topic_color}{chosen_topic}{Style.RESET_ALL} themed song lyrics:\n
+        Your chosen topic was: {topic_color}{chosen_topic}{Style.RESET_ALL}\n
         """
         )
     )
-    time.sleep(0.5)
+    time.sleep(1)
 
     slow_print(song_lyrics, typing_speed)
+    game_state["generated_lyrics"] = song_lyrics 
     return song_lyrics
 
 
@@ -475,49 +481,33 @@ def handle_next_action(song_lyrics, chosen_topic):
 
         elif next_action == "print_lyrics":
             # Continue to print the lyrics and offer speed selection
-            song_lyrics = generate_song(
-                chosen_topic, get_user_input(chosen_topic)
-                )
-            continue
+            chosen_topic = game_state["chosen_topic"]
+            generated_lyrics = game_state["generated_lyrics"]
+            print_generated_lyrics(chosen_topic, generated_lyrics)
 
         elif next_action == "quit":
             sys.exit()
 
 
-def save_lyrics_to_file(song_lyrics, file_path):
+def print_generated_lyrics(chosen_topic, generated_lyrics):
     """
-    This function allows you to save
-    the generated lyrics to a local file.
+    Print the generated lyrics and allow the user to choose
+    the typing speed.
     """
-    try:
-        with open(file_path, "w") as file:
-            file.write(song_lyrics)
-        slow_print(textwrap.dedent(
-            f"""
-            \nLyrics saved to {file_path}\n
-            """
-            )
-        )
-    except Exception as e:
-        slow_print(f"Error: {str(e)}")
+    cls()
+    slow_print(textwrap.dedent(
+        f"""
+        The generated lyrics are for the following topic:
+        {topic_colors[chosen_topic]}{chosen_topic.capitalize()}
+        {Style.RESET_ALL}
+        """
+    )
+    )
+    time.sleep(0.5)
 
-
-def save_lyrics(song_lyrics):
-    """
-    This function prompts the user to choose a file location and then
-    saves the generated lyrics to that file.
-    """
-    slow_print(
-        "\nPlease specify the file path where you want to save the lyrics."
-        )
-    file_path = input("File path (e.g., /path/to/lyrics.txt): ").strip()
-
-    if not file_path:
-        slow_print(
-            "File path cannot be empty. Lyrics were not saved.\n"
-            )
-    else:
-        save_lyrics_to_file(song_lyrics, file_path)
+    typing_speed = choose_typing_speed()
+    cls()
+    slow_print(generated_lyrics, typing_speed)
 
 
 def main():
@@ -532,23 +522,23 @@ def main():
     # Welcome message for the game
     welcome_message()
 
-    # Choose a topic
-    chosen_topic = choose_topic()
-
-    # Start the game
-    start_game()
-
     while True:
+        if not game_state["chosen_topic"]:
+            # Choose a topic if not chosen yet
+            chosen_topic = choose_topic()
+            game_state["chosen_topic"] = chosen_topic
+
+        # Start the game
+        start_game()
+
         # Get user input for lyrics
-        words = get_user_input(chosen_topic)
+        words = get_user_input(game_state["chosen_topic"])
 
         # Generate and print lyrics
-        song_lyrics = generate_song(chosen_topic, words)
+        song_lyrics = generate_song(game_state["chosen_topic"], words)
 
         # Ask the user for the next action
-        chosen_topic, song_lyrics = handle_next_action(
-            chosen_topic, song_lyrics
-            )
+        chosen_topic, song_lyrics = handle_next_action(song_lyrics, game_state["chosen_topic"])
 
 
 if __name__ == "__main__":
