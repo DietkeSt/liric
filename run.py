@@ -293,7 +293,7 @@ def start_game():
     slow_print(textwrap.dedent(
         f"""
         Great, let's get started.\n
-        I will ask you for some data shortly...
+        I will ask you for some info shortly...
         """
         )
     )
@@ -395,7 +395,7 @@ def generate_song(chosen_topic, words):
     )
     slow_print(textwrap.dedent(
         f"""
-        Generating your lyrics now...\n
+        Generating your lyrics...\n
         """)
     )
     time.sleep(0.3)
@@ -419,7 +419,8 @@ def generate_song(chosen_topic, words):
 
     slow_print(textwrap.dedent(
         f"""
-        Your chosen topic was: {topic_color}{chosen_topic}{Style.RESET_ALL}\n
+        Your lyrics for the topic: {topic_color}{chosen_topic.capitalize()}
+        {Style.RESET_ALL}
         """
         )
     )
@@ -494,19 +495,35 @@ def print_generated_lyrics(chosen_topic, generated_lyrics):
     Print the generated lyrics and allow the user to choose
     the typing speed.
     """
+    topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+
     cls()
-    slow_print(textwrap.dedent(
-        f"""
-        The generated lyrics are for the following topic:
-        {topic_colors[chosen_topic]}{chosen_topic.capitalize()}
-        {Style.RESET_ALL}
-        """
-    )
-    )
-    time.sleep(0.5)
+    
+    for _ in range(2):  # Loading animation loop
+        print("\nReloading.")
+        time.sleep(0.3)
+        cls()
+        
+        print("\nReloading..")
+        time.sleep(0.3)
+        cls()
+        
+        print("\nReloading...")
+        time.sleep(0.3)
+        cls()
+
+    print("\nReloading...")
+    time.sleep(1)
 
     typing_speed = choose_typing_speed()
     cls()
+    slow_print(textwrap.dedent(
+        f"""
+        Your lyrics for topic: {topic_color}{chosen_topic.capitalize()}
+        {Style.RESET_ALL}
+        """
+        )
+    )
     slow_print(generated_lyrics, typing_speed)
 
 
