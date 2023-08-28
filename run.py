@@ -40,7 +40,7 @@ def continue_cls():
     of the console.
     """
     options = ["Yes", "No"]
-    menu_title = "Ready to continue?\n"
+    menu_title = add_spaces_to_text("Ready to continue?\n")
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -56,7 +56,7 @@ def continue_cls():
 
 def exit_cls():
     cls()
-    exit_options = [" Yes, exit the game", " No, continue the game"]
+    exit_options = ["Yes, exit the game", "No, continue the game"]
     menu_title = add_spaces_to_text(
         "Are you sure you want to exit the game?\n"
         )
@@ -69,8 +69,8 @@ def exit_cls():
     exit_choice_index = exit_menu.show()
 
     exit_text = "Okay, exiting the game. Goodbye!\n"
-    run_text = "Hit " + colored_word + " to restart."
     colored_word = Fore.CYAN + Style.BRIGHT + 'Run' + Style.RESET_ALL
+    run_text = "Hit " + colored_word + " to restart."
 
     if exit_choice_index == 1:
         cls()
@@ -125,7 +125,7 @@ def choose_typing_speed():
     slow_print(ready_text)
     
     time.sleep(0.5)
-    options = [" Slow", " Medium", " Fast", " Lightning Speed"]
+    options = ["Slow", "Medium", "Fast", "Lightning Speed"]
     menu_title = add_spaces_to_text("Choose a printing speed:\n")
     terminal_menu = TerminalMenu(
         options,
@@ -212,17 +212,15 @@ def welcome_message():
     """)
 
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
-    def style_print(message):
-        return Fore.CYAN + Style.BRIGHT + message
 
     slow_print(Fore.CYAN + Style.BRIGHT + title_txt)
 
-    for _ in range(5):  # Title animation loop
+    for _ in range(6):  # Title animation loop
         cls()
-        style_print(title_blank)
+        print(Fore.CYAN + Style.BRIGHT + title_blank)
         time.sleep(0.3)
         cls()
-        style_print(title_txt)
+        print(Fore.CYAN + Style.BRIGHT + title_txt)
         time.sleep(0.3)
         
     time.sleep(1)
@@ -239,11 +237,10 @@ def choose_topic():
 
     topics = ["beach", "love", "nature"]
     capitalized_topics = [topic.capitalize() for topic in topics]
-    spaced_topics = " " + capitalized_topics
 
     menu_title = add_spaces_to_text("Choose a topic for your song lyrics:\n")
     terminal_menu = TerminalMenu(
-        spaced_topics,
+        capitalized_topics,
         title=menu_title,
         **menu_style
     )
@@ -287,8 +284,7 @@ def start_game():
     This function gives intro text + rules
     and starts the game using a terminal menu.
     """
-    start_text = textwrap.dedent(
-        """
+    start_text = textwrap.dedent("""
         Great, let's get started.\n
         I will ask you for some info shortly...
         """
@@ -346,16 +342,36 @@ def get_user_input(chosen_topic):
     time.sleep(0.5)
 
     words = {
-        "place1": get_colored_input("\nName a place with a beach: "),
-        "partner_name": get_colored_input("\nYour partner's name: "),
-        "pet_name": get_colored_input("\nYour pet's name: "),
-        "place2": get_colored_input("\nName a place with mountains: "),
-        "day_activity": get_colored_input("\nName a daytime activity: "),
-        "flying_animal": get_colored_input("\nName a flying animal: "),
-        "beautiful_place": get_colored_input("\nName a beautiful place: "),
-        "night_activity": get_colored_input("\nName a nighttime activity: "),
-        "swimming_animal": get_colored_input("\nName a swimming animal: "),
-        "last_vacation_spot": get_colored_input("\nName a place by the sea: "),
+        "place1": get_colored_input(add_spaces_to_text(
+        "Name a place with a beach: ")
+        ),
+        "partner_name": get_colored_input(add_spaces_to_text(
+        "Your partner's name: ")
+        ),
+        "pet_name": get_colored_input(add_spaces_to_text(
+        "Your pet's name: ")
+        ),
+        "place2": get_colored_input(add_spaces_to_text(
+        "Name a place with mountains: ")
+        ),
+        "day_activity": get_colored_input(add_spaces_to_text(
+        "Name a daytime activity: ")
+        ),
+        "flying_animal": get_colored_input(add_spaces_to_text(
+        "Name a flying animal: ")
+        ),
+        "beautiful_place": get_colored_input(add_spaces_to_text(
+        "Name a beautiful place: ")
+        ),
+        "night_activity": get_colored_input(add_spaces_to_text(
+        "Name a nighttime activity: ")
+        ),
+        "swimming_animal": get_colored_input(add_spaces_to_text(
+        "Name a swimming animal: ")
+        ),
+        "last_vacation_spot": get_colored_input(add_spaces_to_text(
+        "Name a place by the sea: ")
+        ),
     }
     return words
 
@@ -368,13 +384,11 @@ def generate_song(chosen_topic, words):
     """
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
-    thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL
-    topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
-    topic_text = "Here are your lyrics for the topic: " + topic_word
 
     cls()
     time.sleep(0.5)
 
+    thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL
     slow_print(thanks_text)
     time.sleep(0.5)
 
@@ -398,6 +412,8 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
     cls()
 
+    topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
+    topic_text = "Here are your lyrics for the topic: " + topic_word
     slow_print(topic_text)
     time.sleep(1)
 
@@ -411,19 +427,12 @@ def ask_for_next_action(song_lyrics):
     This function asks the user for the
     next action after generating lyrics.
     """
-    music_line = textwrap.dedent(
-        """
-        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-        """
-        )
-    
     time.sleep(0.5)
-    print(music_line)
 
     options = [
-        " Choose another topic",
-        " Print lyrics again",
-        " Exit the game"
+        "Choose another topic",
+        "Print lyrics again",
+        "Exit the game"
         ]
     menu_title = add_spaces_to_text("What do you want to do now?\n")
     terminal_menu = TerminalMenu(
