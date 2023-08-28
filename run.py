@@ -291,12 +291,17 @@ def choose_topic():
 
 def load_lyric_template(chosen_topic):
     """
-    This function loads the song lyric template file
-    for the chosen topic.
+    This function loads the song lyric template
+    based on the chosen topic.
     """
-    template_filename = f"{chosen_topic}_lyrics_template.txt"
-    with open(template_filename, "r") as file:
-        return file.read()
+    if chosen_topic == "beach":
+        return beach_lyrics_template
+    elif chosen_topic == "love":
+        return love_lyrics_template
+    elif chosen_topic == "nature":
+        return nature_lyrics_template
+    else:
+        return None
 
 
 def create_song_lyrics(lyrics_template, words):
