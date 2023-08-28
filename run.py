@@ -158,7 +158,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                Please enter at least one letter in your answer.\n
+                "Please enter at least one letter in your answer.\n"
                 {Style.RESET_ALL}
                 """
                 )
@@ -167,7 +167,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                Please enter a word with at least 2 characters.\n
+                "Please enter a word with at least 2 characters.\n"
                 {Style.RESET_ALL}
                 """
                 )
@@ -176,7 +176,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                Text too long. Max. characters: {max_length}\n
+                "Text too long. Max. characters: {max_length}\n"
                 +{Style.RESET_ALL}
                 """
                 )
@@ -185,7 +185,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             slow_print(textwrap.dedent(
                 f"""
                 {Fore.RED}{Style.BRIGHT}
-                Only use special characters within words, e.g. ', -, ñ.\n
+                "Only use special characters within words, e.g. ', -, ñ.\n"
                 {Style.RESET_ALL}
                 """
                 )
@@ -471,11 +471,13 @@ def handle_next_action(song_lyrics, chosen_topic):
 
         if next_action == "choose_topic":
             chosen_topic = choose_topic()
-            return chosen_topic, None  # Return None for song_lyrics
+            return chosen_topic, song_lyrics
 
         elif next_action == "print_lyrics":
             # Continue to print the lyrics and offer speed selection
-            song_lyrics = generate_song(chosen_topic, get_user_input(chosen_topic))
+            song_lyrics = generate_song(
+                chosen_topic, get_user_input(chosen_topic)
+                )
             continue
 
         elif next_action == "quit":
@@ -526,33 +528,27 @@ def main():
     starts the questions for the keywords,
     and generates and prints the lyrics.
     """
-    chosen_topic = None  # Initialize chosen_topic to None
-    song_lyrics = None  # Initialize song_lyrics to None
-    words = None  # Initialize words to None
+
+    # Welcome message for the game
+    welcome_message()
+
+    # Choose a topic
+    chosen_topic = choose_topic()
+
+    # Start the game
+    start_game()
 
     while True:
-        # Welcome message for the game (displayed only once)
-        if chosen_topic is None:
-            welcome_message()
-
-        # If chosen_topic is None or the user selects "Choose another topic,"
-        # then choose a topic
-        if chosen_topic is None or chosen_topic == "choose_topic":
-            chosen_topic = choose_topic()
-            start_game()
-
-        if words is None:  # Prompt for input only the first time
-            # Get user input for lyrics
-            words = get_user_input(chosen_topic)
+        # Get user input for lyrics
+        words = get_user_input(chosen_topic)
 
         # Generate and print lyrics
         song_lyrics = generate_song(chosen_topic, words)
 
         # Ask the user for the next action
-        next_action = ask_for_next_action(song_lyrics)
-
-        if next_action == "quit":
-            sys.exit()
+        chosen_topic, song_lyrics = handle_next_action(
+            chosen_topic, song_lyrics
+            )
 
 
 if __name__ == "__main__":
