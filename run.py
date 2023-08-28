@@ -444,7 +444,7 @@ def generate_song(chosen_topic, words):
     return song_lyrics
 
 
-def ask_for_next_action():
+def ask_for_next_action(song_lyrics):
     """
     This function asks the user for the
     next action after generating lyrics.
