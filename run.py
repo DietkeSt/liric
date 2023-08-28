@@ -68,14 +68,18 @@ def exit_cls():
 
     exit_choice_index = exit_menu.show()
 
-    exit_text = "Okay, exiting the game. Goodbye!\n"
     colored_word = Fore.CYAN + Style.BRIGHT + 'Run' + Style.RESET_ALL
-    run_text = "Hit " + colored_word + " to restart."
+    exit_text = textwrap.dedent(
+        f"""
+        Okay, exiting the game. Goodbye!\n
+        Hit {colored_word} to restart.
+        """
+    )
 
     if exit_choice_index == 1:
         cls()
     else:
-        slow_print(exit_text + run_text)
+        slow_print(exit_text)
         sys.exit()
 
 
@@ -120,7 +124,7 @@ def choose_typing_speed():
     This function allows the user to choose
     the typing speed with a terminal menu.
     """
-    ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL
+    ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL + "\n"
     cls()
     slow_print(ready_text)
     
@@ -138,7 +142,7 @@ def choose_typing_speed():
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
     chosen_option_text = Fore.CYAN + Style.BRIGHT + options[chosen_index]
-    chosen_string = "You have chosen" + chosen_option_text + Style.RESET_ALL
+    chosen_string = "You have chosen: " + chosen_option_text + Style.RESET_ALL
 
     cls()
     slow_print(chosen_string)
@@ -195,25 +199,31 @@ def welcome_message():
     when starting the game.
     It starts with the title animation and text.
     """
-    title_txt = textwrap.dedent("""
-    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-    ♩                                                             ♫
-    ♪                           LIRIC                             ♩
-    ♬                                                             ♪
-    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-    """)
+    title_txt = textwrap.dedent(add_spaces_to_text(
+        """
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        ♩                                                             ♫
+        ♪                           LIRIC                             ♩
+        ♬                                                             ♪
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        """
+        )
+    )
 
-    title_blank = textwrap.dedent("""
-    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-    ♩                                                             ♫
-    ♪                                                             ♩
-    ♬                                                             ♪
-    ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
-    """)
+    title_blank = textwrap.dedent(add_spaces_to_text(
+        """
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        ♩                                                             ♫
+        ♪                                                             ♩
+        ♬                                                             ♪
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
+        """
+        )
+    )
 
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
-
-    slow_print(Fore.CYAN + Style.BRIGHT + title_txt)
+    
+    cls()
 
     for _ in range(6):  # Title animation loop
         cls()
@@ -284,11 +294,8 @@ def start_game():
     This function gives intro text + rules
     and starts the game using a terminal menu.
     """
-    start_text = textwrap.dedent("""
-        Great, let's get started.\n
-        I will ask you for some info shortly...
-        """
-        )
+    start_text = "Great, let's get started.\n"
+    info_text = "I will ask you for some info shortly..."
     rules_text = "Please keep these rules in mind:"
 
     rules_list = Fore.CYAN + Style.BRIGHT + textwrap.dedent(
@@ -297,14 +304,14 @@ def start_game():
         2. The word can contain between 2-25 characters.\n
         3. You are not allowed to enter nothing, or just a space.\n
         4. Standalone special characters are not allowed.\n
-        5. Words like 'C3PO' are allowed.\n
+        5. Words like 'C3PO' are allowed.
         """
         ) + Style.RESET_ALL
     
     continue_cls()
     time.sleep(0.5)
 
-    slow_print(start_text)
+    slow_print(start_text + info_text)
     time.sleep(1)
     cls()
 
@@ -324,7 +331,7 @@ def get_user_input(chosen_topic):
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
-    topic_text = "Rembember, your topic is: " + topic_word
+    topic_text = "Rembember, your topic is: " + topic_word + "\n"
 
     def get_colored_input(prompt):
         """
@@ -388,7 +395,7 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
-    thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL
+    thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL + "\n"
     slow_print(thanks_text)
     time.sleep(0.5)
 
@@ -413,7 +420,7 @@ def generate_song(chosen_topic, words):
     cls()
 
     topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
-    topic_text = "Here are your lyrics for the topic: " + topic_word
+    topic_text = "Here are your lyrics for the topic: " + topic_word + "\n"
     slow_print(topic_text)
     time.sleep(1)
 
