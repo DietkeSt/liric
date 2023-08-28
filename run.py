@@ -56,8 +56,10 @@ def continue_cls():
 
 def exit_cls():
     cls()
-    exit_options = ["Yes, exit the game", "No, continue the game"]
-    menu_title = "\nAre you sure you want to exit the game?\n"
+    exit_options = [" Yes, exit the game", " No, continue the game"]
+    menu_title = add_spaces_to_text(
+        "Are you sure you want to exit the game?\n"
+        )
     exit_menu = TerminalMenu(
         exit_options,
         title=menu_title,
@@ -66,16 +68,14 @@ def exit_cls():
 
     exit_choice_index = exit_menu.show()
 
+    exit_text = "Okay, exiting the game. Goodbye!\n"
+    run_text = "Hit " + colored_word + " to restart."
+    colored_word = Fore.CYAN + Style.BRIGHT + 'Run' + Style.RESET_ALL
+
     if exit_choice_index == 1:
         cls()
     else:
-        slow_print(textwrap.dedent(
-            f"""
-            Okay, exiting the game. Goodbye!\n
-            Hit {Fore.CYAN}{Style.BRIGHT}'Run'{Style.RESET_ALL} to restart.
-            """
-            )
-        )
+        slow_print(exit_text + run_text)
         sys.exit()
 
 
@@ -87,25 +87,29 @@ def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def slow_print(text, typing_speed=90):
+def slow_print(text, typing_speed=90, num_spaces=2, add_blank_line=True):
     """
     This function simulates a human typing effect by introducing
     a random delay between printing each character.
     """
-    for char in text:
+    formatted_text = add_spaces_to_text(text, num_spaces, add_blank_line)
+
+    for char in formatted_text:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(random.random() * 5.0 / typing_speed)
     print()
 
 
-def add_spaces_to_text(text, num_spaces=3):
+def add_spaces_to_text(text, num_spaces=2, add_blank_line=True):
     """
     This function adds spaces to text.
     It splits the text into lines and then adds
     the spaces and recombines the line afterwards.
     """
     lines = text.split('\n')
+    if add_blank_line:
+        lines.insert(0, '')
     indented_lines = [f"{' ' * num_spaces}{line}" for line in lines]
     indented_text = '\n'.join(indented_lines)
     return indented_text
@@ -116,18 +120,13 @@ def choose_typing_speed():
     This function allows the user to choose
     the typing speed with a terminal menu.
     """
+    ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL
     cls()
-    slow_print(textwrap.dedent(
-        f"""
-        {Fore.CYAN}{Style.BRIGHT}
-        Ready!
-        {Style.RESET_ALL}
-        """
-        )
-    )
+    slow_print(ready_text)
+    
     time.sleep(0.5)
-    options = ["Slow", "Medium", "Fast", "Lightning Speed"]
-    menu_title = "\nChoose a printing speed:\n"
+    options = [" Slow", " Medium", " Fast", " Lightning Speed"]
+    menu_title = add_spaces_to_text("Choose a printing speed:\n")
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -138,16 +137,11 @@ def choose_typing_speed():
 
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
+    chosen_option_text = Fore.CYAN + Style.BRIGHT + options[chosen_index]
+    chosen_string = "You have chosen" + chosen_option_text + Style.RESET_ALL
 
-    chosen_option_text = options[chosen_index]
     cls()
-    slow_print(textwrap.dedent(
-        f"""
-        You have chosen: {Fore.CYAN}{Style.BRIGHT}{chosen_option_text}
-        {Style.RESET_ALL}
-        """
-        )
-    )
+    slow_print(chosen_string)
     time.sleep(0.5)
     cls()
     return chosen_typing_speed
@@ -183,7 +177,7 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
             )
         elif len(user_input) > max_length:
             slow_print(err_color(
-                "Text too long. Max. characters: {max_length}\n"
+                "Text too long. Max. characters: " + max_length + "\n"
                 )
             )
         elif not re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input):
@@ -216,28 +210,24 @@ def welcome_message():
     ♬                                                             ♪
     ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
     """)
+
+    text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
+    def style_print(message):
+        return Fore.CYAN + Style.BRIGHT + message
+
     slow_print(Fore.CYAN + Style.BRIGHT + title_txt)
 
-    for _ in range(3):  # Title animation loop
+    for _ in range(5):  # Title animation loop
         cls()
-        print(Fore.CYAN + Style.BRIGHT + title_blank)
+        style_print(title_blank)
         time.sleep(0.3)
         cls()
-        print(Fore.CYAN + Style.BRIGHT + title_txt)
-        time.sleep(0.3)
-        cls()
-        print(Fore.CYAN + Style.BRIGHT + title_blank)
-        time.sleep(0.3)
-        cls()
-        print(Fore.CYAN + Style.BRIGHT + title_txt)
+        style_print(title_txt)
         time.sleep(0.3)
         
     time.sleep(1)
 
-    slow_print( 
-        Style.RESET_ALL +
-        "Welcome to the song lyric MadLibs game!\n".center(63)
-    )
+    slow_print(text.center(63))
     time.sleep(0.5)
 
 
@@ -247,14 +237,13 @@ def choose_topic():
     option using a terminal menu.
     """
 
-    topics = [
-        "beach", "love", "nature"
-        ]
+    topics = ["beach", "love", "nature"]
     capitalized_topics = [topic.capitalize() for topic in topics]
+    spaced_topics = " " + capitalized_topics
 
-    menu_title = "\nChoose a topic for your song lyrics:\n"
+    menu_title = add_spaces_to_text("Choose a topic for your song lyrics:\n")
     terminal_menu = TerminalMenu(
-        capitalized_topics,
+        spaced_topics,
         title=menu_title,
         **menu_style
     )
@@ -265,15 +254,12 @@ def choose_topic():
     time.sleep(0.5)
 
     chosen_topic = topics[chosen_index]
+    capitalized_topic = chosen_topic.capitalize() 
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+    topic_word = topic_color + capitalized_topic + Style.RESET_ALL
 
-    slow_print(textwrap.dedent(
-        f"""
-        You chose the topic: {topic_color}{capitalized_topics[chosen_index]}
-        {Style.RESET_ALL}
-        """
-        )
-    )
+    slow_print("You chose the topic: " + topic_word)
+
     game_state["chosen_topic"] = chosen_topic
     return chosen_topic
 
@@ -298,40 +284,38 @@ def create_song_lyrics(lyrics_template, words):
 
 def start_game():
     """
-    This function starts the game using a terminal menu.
+    This function gives intro text + rules
+    and starts the game using a terminal menu.
     """
-    continue_cls()
-    time.sleep(0.5)
-    slow_print(textwrap.dedent(
-        f"""
+    start_text = textwrap.dedent(
+        """
         Great, let's get started.\n
         I will ask you for some info shortly...
         """
         )
-    )
-    time.sleep(1)
-    cls()
+    rules_text = "Please keep these rules in mind:"
 
-    slow_print(textwrap.dedent(
+    rules_list = Fore.CYAN + Style.BRIGHT + textwrap.dedent(
         f"""
-        Please keep these rules in mind:
-        """
-        )
-    )
-    time.sleep(0.5)
-
-    slow_print(textwrap.dedent(
-        f"""
-        {Fore.CYAN}{Style.BRIGHT}
         1. You have to enter at least 1 letter.\n
         2. The word can contain between 2-25 characters.\n
         3. You are not allowed to enter nothing, or just a space.\n
         4. Standalone special characters are not allowed.\n
         5. Words like 'C3PO' are allowed.\n
-        {Style.RESET_ALL}
         """
-        )
-    )
+        ) + Style.RESET_ALL
+    
+    continue_cls()
+    time.sleep(0.5)
+
+    slow_print(start_text)
+    time.sleep(1)
+    cls()
+
+    slow_print(rules_text)
+    time.sleep(0.5)
+
+    slow_print(rules_list)
     time.sleep(0.5)
     continue_cls()
     return True
@@ -343,6 +327,8 @@ def get_user_input(chosen_topic):
     Defining the keywords for the lyric placeholders.
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+    topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
+    topic_text = "Rembember, your topic is: " + topic_word
 
     def get_colored_input(prompt):
         """
@@ -352,22 +338,11 @@ def get_user_input(chosen_topic):
             Fore.CYAN + Style.BRIGHT + prompt + Style.RESET_ALL
             )
 
-    slow_print(textwrap.dedent(
-        f"""
-        I will ask you for the needed info now...
-        """
-        )
-    )
+    slow_print("I will ask you for the needed info now...")
     time.sleep(1)
     cls()
 
-    slow_print(textwrap.dedent(
-        f"""
-        Remember, your topic is: {topic_color}{chosen_topic.capitalize()}
-        {Style.RESET_ALL}
-        """
-        )
-    )
+    slow_print(topic_text)
     time.sleep(0.5)
 
     words = {
@@ -393,23 +368,17 @@ def generate_song(chosen_topic, words):
     """
     # Load the lyrics template
     lyrics_template = load_lyric_template(chosen_topic)
-    time.sleep(0.5)
+    thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL
+    topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
+    topic_text = "Here are your lyrics for the topic: " + topic_word
+
     cls()
     time.sleep(0.5)
 
-    slow_print(textwrap.dedent(
-        f"""
-        {Fore.CYAN}{Style.BRIGHT}
-        Thanks!
-        {Style.RESET_ALL}
-        """
-        )
-    )
-    slow_print(textwrap.dedent(
-        f"""
-        Generating your lyrics...\n
-        """)
-    )
+    slow_print(thanks_text)
+    time.sleep(0.5)
+
+    slow_print("Generating your lyrics...\n")
     time.sleep(0.3)
 
     # Progess bar for lyric generation
@@ -429,13 +398,7 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
     cls()
 
-    slow_print(textwrap.dedent(
-        f"""
-        Your lyrics for the topic: {topic_color}{chosen_topic.capitalize()}
-        {Style.RESET_ALL}
-        """
-        )
-    )
+    slow_print(topic_text)
     time.sleep(1)
 
     slow_print(song_lyrics, typing_speed)
@@ -448,17 +411,21 @@ def ask_for_next_action(song_lyrics):
     This function asks the user for the
     next action after generating lyrics.
     """
-    time.sleep(0.5)
-    print(textwrap.dedent(
-        f"""
-        ___________________________________________________________________\n
+    music_line = textwrap.dedent(
+        """
+        ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
         """
         )
-    )
+    
+    time.sleep(0.5)
+    print(music_line)
+
     options = [
-        "Choose another topic", "Print lyrics again", "Exit the game"
+        " Choose another topic",
+        " Print lyrics again",
+        " Exit the game"
         ]
-    menu_title = "\nWhat do you want to do now?\n"
+    menu_title = add_spaces_to_text("What do you want to do now?\n")
     terminal_menu = TerminalMenu(
         options,
         title=menu_title,
@@ -508,34 +475,43 @@ def print_generated_lyrics(chosen_topic, generated_lyrics):
     the typing speed.
     """
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
+    topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
+    topic_text = "Your lyrics for topic: " + topic_word
 
     cls()
     
     for _ in range(2):  # Loading animation loop
-        print("\nReloading.")
+        print(add_spaces_to_text(
+            "Reloading."
+            )
+        )
         time.sleep(0.3)
         cls()
         
-        print("\nReloading..")
+        print(add_spaces_to_text(
+            "Reloading.."
+            )
+        )
         time.sleep(0.3)
         cls()
         
-        print("\nReloading...")
+        print(add_spaces_to_text(
+            "Reloading..."
+            )
+        )
         time.sleep(0.3)
         cls()
 
-    print("\nReloading...")
+    print(add_spaces_to_text(
+        "Reloading..."
+        )
+    )
     time.sleep(1)
 
     typing_speed = choose_typing_speed()
     cls()
-    slow_print(textwrap.dedent(
-        f"""
-        Your lyrics for topic: {topic_color}{chosen_topic.capitalize()}
-        {Style.RESET_ALL}
-        """
-        )
-    )
+
+    slow_print(topic_text)
     slow_print(generated_lyrics, typing_speed)
 
 
