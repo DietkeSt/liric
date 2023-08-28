@@ -147,52 +147,36 @@ def get_valid_input(prompt, max_length=25, input_color=Fore.CYAN):
     It ensures that the input meets specified criteria
     and provides custom error messages.
     """
+    def err_color(message):
+        return Fore.RED + Style.BRIGHT + message
+
     while True:
         user_input = input(prompt).strip()
 
         if not user_input:
-            slow_print(textwrap.dedent(
-                f"""
-                {Fore.RED}{Style.BRIGHT}
-                You did not type anything, please enter your answer below.\n
-                {Style.RESET_ALL}
-                """
+            slow_print(err_color(
+                "You did not type anything, please enter your answer below.\n"
                 )
             )
+            
         elif not any(char.isalpha() for char in user_input):
-            slow_print(textwrap.dedent(
-                f"""
-                {Fore.RED}{Style.BRIGHT}
-                Please enter at least one letter in your answer.\n
-                {Style.RESET_ALL}
-                """
+            slow_print(err_color(
+                "Please enter at least one letter in your answer.\n"
                 )
             )
         elif len(user_input) < 2:
-            slow_print(textwrap.dedent(
-                f"""
-                {Fore.RED}{Style.BRIGHT}
-                Please enter a word with at least 2 characters.\n
-                {Style.RESET_ALL}
-                """
+            slow_print(err_color(
+                "Please enter a word with at least 2 characters.\n"
                 )
             )
         elif len(user_input) > max_length:
-            slow_print(textwrap.dedent(
-                f"""
-                {Fore.RED}{Style.BRIGHT}
-                Text too long. Max. characters: {max_length}\n
-                +{Style.RESET_ALL}
-                """
+            slow_print(err_color(
+                "Text too long. Max. characters: {max_length}\n"
                 )
             )
-        elif not re.match(r'^[A-Za-zÀ-ÖØ-öø-ÿ\s\'-]+$', user_input):
-            slow_print(textwrap.dedent(
-                f"""
-                {Fore.RED}{Style.BRIGHT}
-                Only use special characters within words, e.g. ', -, ñ.\n
-                {Style.RESET_ALL}
-                """
+        elif not re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input):
+            slow_print(err_color(
+                "Only use special characters within words, e.g. ', -, ñ.\n"
                 )
             )
         else:
@@ -209,7 +193,7 @@ def welcome_message():
     ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
     """)
 
-    title_a = textwrap.dedent("""
+    title_blank = textwrap.dedent("""
     ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬ ♫ ♩ ♪ ♬
     ♩                                                             ♫
     ♪                                                             ♩
@@ -218,15 +202,15 @@ def welcome_message():
     """)
     slow_print(Fore.CYAN + Style.BRIGHT + title_txt)
 
-    for _ in range(3):  # Loading animation loop
+    for _ in range(3):  # Title animation loop
         cls()
-        print(Fore.CYAN + Style.BRIGHT + title_a)
+        print(Fore.CYAN + Style.BRIGHT + title_blank)
         time.sleep(0.3)
         cls()
         print(Fore.CYAN + Style.BRIGHT + title_txt)
         time.sleep(0.3)
         cls()
-        print(Fore.CYAN + Style.BRIGHT + title_a)
+        print(Fore.CYAN + Style.BRIGHT + title_blank)
         time.sleep(0.3)
         cls()
         print(Fore.CYAN + Style.BRIGHT + title_txt)
