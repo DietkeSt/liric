@@ -74,7 +74,7 @@ def exit_cls():
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
     menu_title = add_spaces_to_text(
-        "Are you sure you want to exit the game?\n"
+        "Are you sure you want to exit? All progress will be lost.\n"
         )
     exit_menu = TerminalMenu(
         exit_options,
