@@ -1,6 +1,4 @@
-# Liric
-
-**~The Song Lyric MadLibs Game~**
+# Liric - A Song Lyrics MadLibs Game ♪♫
 
 Liric is a MadLibs-style game where you create song lyrics based on a chosen topic. You'll be asked for various words, and then the game will generate and display the song lyrics for you. You can choose from different topics such as beach, love, and nature to customize the theme of your lyrics. Enjoy creating your unique song!
 
@@ -118,6 +116,7 @@ Liric is a MadLibs-style game where you create song lyrics based on a chosen top
 - Use of typing speed options to make it easier to read the text while it is typed out.
 - Use of typing effect that gives the sense of a human interaction experience.
 
+---
 
 ## Flowchart
 
