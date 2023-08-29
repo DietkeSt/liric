@@ -194,3 +194,21 @@ The flowchart presents the logic of the game:
         To: `re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input)`
 
 ---
+
+## Testing
+
+The code and game functionality were constantly tested, fixed and improved during the development process. The text and lyrics were also proofread by other people to spot potential errors.
+
+### Validators
+
+Code Institute's [CI Python Linter](https://pep8ci.herokuapp.com/#) was used to ensure that the code is Pep8-compliant.
+
+No errors were found:
+
+#### run.py:
+
+![run.py Linter Testing](documentation/testing/run.py_linter.png)
+
+#### lyric_templates_py:
+
+![lyric_templates.py Linter Testing](documentation/testing/lyric_templates_linter.png)
