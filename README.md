@@ -54,9 +54,9 @@ Liric is a MadLibs-style game where you create song lyrics based on a chosen top
 
 ### Welcome, and Topic Chooser:
 
-- The user is greeted by a title animation and a welcome message, which follows the first request to select a topic for the song lyrics.
+- The user is greeted by a title animation and a welcome message that explains the game. Then, the request to select a topic for the song lyrics is displayed.
 
-![Liric Welcome Screen](documentation/features/welcome.png)
+![Liric Welcome Screen](documentation/features/welcome_screen.png)
 
 ### Topic Confirmation:
 
