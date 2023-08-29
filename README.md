@@ -260,7 +260,7 @@ Please note that both code files have the required empty line at the end of the 
         - Go to the liric GitHub Repo page.
 
         - Click the Code button and download the ZIP file containing the project.
-
+        
         - Extract the ZIP file to a location on your PC.
 
 
@@ -282,7 +282,6 @@ Please note that both code files have the required empty line at the end of the 
     `pip3 install -r requirements.txt`
 
 
-
 ### To deploy the project to Heroku:
 
 1. Clone the repository:
@@ -293,7 +292,6 @@ Please note that both code files have the required empty line at the end of the 
         `git clone https://github.com/DietkeSt/liric.git`
 
 2. Create your own GitHub repository to host the code.
-
 3. Run the command to set the remote repository location to your repository:
 
     `git remote set-url origin <Your GitHub Repo Path>`
@@ -303,17 +301,11 @@ Please note that both code files have the required empty line at the end of the 
     `git push`
 
 5. Create a Heroku account if you don't already have one here: [Heroku](https://dashboard.heroku.com/).
-
 6. Create a new Heroku application on the [Heroku App page](https://dashboard.heroku.com/apps).
-
 7. Go to the Deploy tab.
-
 8. Link your GitHub account and connect the application to the "liric" repository you created.
-
 9. Go to the Settings tab.
-
 10. Click "Add buildpack."
-
 11. Add the Python and Node.js buildpacks in the following order:
     
     1. `heroku/python`
@@ -321,7 +313,6 @@ Please note that both code files have the required empty line at the end of the 
     2. `heroku/nodejs`
 
 12. Click "Reveal Config Vars."
-
 13. Add 1 new Config Var:
 
     - Key: PORT Value: 8000
@@ -330,11 +321,25 @@ Please note that both code files have the required empty line at the end of the 
 
 
 14. Go back to the Deploy tab.
-
 15. Click "Deploy Branch."
-
 16. Wait for the completion of the deployment.
-
 17. Click "Open app" to launch the "liric" application inside a web page on Heroku.
 
 ---
+
+## Credits
+
+- [Colorama](https://pypi.org/project/colorama/): was used for the color formatting.
+- [Simple Terminal Menu](https://pypi.org/project/simple-term-menu/): was used to create the terminal menus.
+- [Heroku](https://dashboard.heroku.com/): is used to host the game.
+- [W3Schools](https://www.w3schools.com/): where I found info for several methods, like strip, format, isdigit, and modules, like re. 
+- [Datacamp](https://www.datacamp.com/tutorial/python-time-sleep): that provided an in-depth guide on the time.sleep functionality.
+- [Stackoverflow](https://stackoverflow.com/questions/4099422/printing-slowly-simulate-typing): for the idea for the slow_print function.
+- [Patrick Loeber](https://www.youtube.com/watch?v=FptVpIPhdpM&ab_channel=PatrickLoeber) and [Python Maraton](https://www.youtube.com/watch?v=e8WkGT0CP70): Provided guidance on progress loading bar.
+
+---
+
+## Acknowledgements
+
+- I am very grateful for the help and support my mentor **[Iuliia Konovalova](https://github.com/IuliiaKonovalova/)** provided.
+- Also, a huge shoutout to my husband, **Kim Steindel**, who worked with me on the creative part of creating the lyric template texts.
