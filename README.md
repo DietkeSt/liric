@@ -163,3 +163,34 @@ The flowchart presents the logic of the game:
 - [Heroku](https://render.com/) was used to deploy the project and is hosting the game in the Cloud Infrastructure.
 - [Canva](https://www.canva.com/) was used to create and resize images for the README file.
 - [FigJam](https://www.figma.com/figjam/) was used to make a flowchart for the README file.
+
+---
+
+## Bugs
+
+### Solved Bugs:
+
+1. The function `slow_print()` was not working as expected. The slow typing effect was not applied.
+
+    - **Solution:** The space in the `end=" "` parameter was causing the issue. Removing the space fixed it. 
+    ```Python
+    def slow_print(text):
+    """
+    This function uses the time module to delay
+    printing each character to achieve a typing effect.
+    """
+    for char in text:
+        print(char, end=" ", flush=True)
+        time.sleep(0.05)
+    print()
+    ```
+
+2. The error handling function `def get_valid_input()` was not allowing names like C3P0, even though I wanted to allow it.
+
+    - **Solution:** The match checker line was the issue. It did not include numbers, so no numbers would be allowed for the user input.
+
+        Changed from: `re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input)`
+                        
+        To: `re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input)`
+
+---
