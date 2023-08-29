@@ -202,6 +202,10 @@ The flowchart presents the logic of the game:
                         
         To: `re.match(r'^[A-Za-z0-9À-ÖØ-öø-ÿ\s\'-]+$', user_input)`
 
+### Remaining Bugs:
+
+- No remaining bugs.
+
 ---
 
 ## Testing
@@ -232,3 +236,105 @@ Please note that both code files have the required empty line at the end of the 
 
 ## Deployment
 
+- The code was deployed to [Heroku](https://heroku.com).
+- The live deployment can be reached via [this link](https://liric-89f62d9dc0a4.herokuapp.com/).
+
+
+### To deploy the project locally:
+
+**Note:** This project requires you to have Python installed on your local PC. Depending on your OS, you may need to use apt-get instead of apt.
+
+1. Install Python:
+  
+     `sudo apt install python3`
+
+2. Install pip:
+      
+      `sudo apt install python3-pip`
+
+ 
+3. Create a local copy of the GitHub repository by following either option below:
+
+    - Download ZIP file:
+
+        - Go to the liric GitHub Repo page.
+
+        - Click the Code button and download the ZIP file containing the project.
+
+        - Extract the ZIP file to a location on your PC.
+
+
+    - Clone the repository:
+
+        - Open a folder on your computer in the terminal.
+        - Run the following command:
+
+            `git clone https://github.com/DietkeSt/liric.git`
+        
+            `cd liric`
+
+4. Install Python module dependencies using either pip or pip3 (choose one consistently):
+
+    `pip install -r requirements.txt`
+
+    OR
+
+    `pip3 install -r requirements.txt`
+
+
+
+### To deploy the project to Heroku:
+
+1. Clone the repository:
+
+    - Open a folder on your computer with the terminal.
+    - Run the following command:
+
+        `git clone https://github.com/DietkeSt/liric.git`
+
+2. Create your own GitHub repository to host the code.
+
+3. Run the command to set the remote repository location to your repository:
+
+    `git remote set-url origin <Your GitHub Repo Path>`
+
+4. Push the files to your repository with the following command:
+
+    `git push`
+
+5. Create a Heroku account if you don't already have one here: [Heroku](https://dashboard.heroku.com/).
+
+6. Create a new Heroku application on the [Heroku App page](https://dashboard.heroku.com/apps).
+
+7. Go to the Deploy tab.
+
+8. Link your GitHub account and connect the application to the "liric" repository you created.
+
+9. Go to the Settings tab.
+
+10. Click "Add buildpack."
+
+11. Add the Python and Node.js buildpacks in the following order:
+    
+    1. `heroku/python`
+
+    2. `heroku/nodejs`
+
+12. Click "Reveal Config Vars."
+
+13. Add 1 new Config Var:
+
+    - Key: PORT Value: 8000
+
+    - *This Config was provided by [CODE INSTITUTE](https://codeinstitute.net/ie/).*
+
+
+14. Go back to the Deploy tab.
+
+15. Click "Deploy Branch."
+
+16. Wait for the completion of the deployment.
+
+17. Click "Open app" to launch the "liric" application inside a web page on Heroku.
+
+---
