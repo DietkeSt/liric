@@ -2,7 +2,7 @@
 
 Liric is a MadLibs-style game where you create song lyrics based on a chosen topic. You'll be asked for various words, and then the game will generate and display the song lyrics for you. You can choose from different topics such as beach, love, and nature to customize the theme of your lyrics. Enjoy creating your unique song!
 
-- [Deployed Liric Game](https://liric-89f62d9dc0a4.herokuapp.com/)
+- [Live Version of the Liric Game](https://liric-89f62d9dc0a4.herokuapp.com/)
 
 - [Liric repository on GitHub](https://github.com/DietkeSt/liric)
 
@@ -116,6 +116,13 @@ Liric is a MadLibs-style game where you create song lyrics based on a chosen top
 - Use of typing speed options to make it easier to read the text while it is typed out.
 - Use of typing effect that gives the sense of a human interaction experience.
 
+### Future Features
+
+- Add new topics, additional rules, and improved visual elements that keep the game fresh and exciting.
+- Allow multiple players to collaborate on creating lyrics together. Players can take turns filling in blanks or provide input for different parts of the song.
+- Implement a scoring system to rate the creativity of generated lyrics. Players can compete for high scores and see their rankings on leaderboards.
+- Implement user accounts and profiles where players can save their favorite lyrics, track their progress, and earn achievements or badges.
+
 ---
 
 ## Flowchart
@@ -203,7 +210,7 @@ The code and game functionality were constantly tested, fixed and improved durin
 
 ### Validators
 
-Code Institute's [CI Python Linter](https://pep8ci.herokuapp.com/#) was used to ensure that the code is Pep8-compliant.
+Code Institute's [PEP8 Python Validator](https://pep8ci.herokuapp.com/#) was used to ensure that the code is PEP8-compliant.
 
 No errors were found:
 
