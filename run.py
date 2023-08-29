@@ -246,6 +246,15 @@ def welcome_message():
 
     text = Style.RESET_ALL + "Welcome to the song lyric MadLibs game!\n"
 
+    explain_game = textwrap.dedent(
+        """
+        In this game, you'll be asked to type in various words.
+        Once done, the game will generate and display the song lyrics for you.
+        Choose from one of the topics below to get started.\n
+        Enjoy creating your unique song!
+        """
+        )
+
     cls()
     for _ in range(6):  # Title animation loop
         cls()
@@ -258,6 +267,7 @@ def welcome_message():
     time.sleep(1)
 
     slow_print(text.center(80))
+    slow_print(explain_game)
     time.sleep(0.5)
 
 
