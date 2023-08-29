@@ -474,7 +474,6 @@ def ask_for_next_action(song_lyrics):
     )
 
     chosen_index = terminal_menu.show()
-    print()
     time.sleep(0.5)
     cls()
 
