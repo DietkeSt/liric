@@ -122,4 +122,44 @@ Liric is a MadLibs-style game where you create song lyrics based on a chosen top
 
 The flowchart presents the logic of the game:
 
-  ![Liric Flowchart Picture](documentation/liric_flowchart.png)
+  ![Liric Flowchart Picture](documentation/flowchart.png)
+
+---
+
+## Technologies Used
+
+### Languages:
+
+- [Python 3.11.5](https://www.python.org/downloads/release/python-3115/): used to create game app and direct all behavior.
+
+### Frameworks/Libraries, Programmes and Tools:
+#### Python modules/packages:
+
+##### Standard library imports:
+
+- [os](https://docs.python.org/3/library/os.html): The os library provides a way to interface with the operating system. It's used for clearing the terminal screen using os.system().
+
+- [sys](https://docs.python.org/3/library/sys.html): The sys library is used to access system-specific parameters and functions. In this code, it's primarily used for exiting the game with sys.exit().
+
+- [time](https://docs.python.org/3/library/time.html): The time library is used for managing time-related operations. It's used for adding delays, creating a typing effect, and controlling timing throughout the game.
+
+- [random](https://docs.python.org/3/library/random.html): The random library is used for generating random numbers. In the code, it's used to introduce randomness in the typing speed for the simulated typing effect.
+
+- [re](https://docs.python.org/3/library/re.html): The re library provides support for regular expressions. In this code, it's used for validating user input to ensure it meets certain criteria, such as containing at least one letter.
+
+- [textwrap](https://docs.python.org/3/library/textwrap.html): The textwrap library is used for text formatting. It's employed to format and wrap text within the terminal to ensure readability.
+
+##### Third-party imports:
+
+- [tqdm](https://pypi.org/project/tqdm/): The tqdm library is used to create progress bars. In the code, it's utilized to display a progress bar during the lyric generation process to provide visual feedback to the user.
+- [simple_term_menu](https://pypi.org/project/simple-term-menu/): The simple_term_menu library is used for creating terminal menus. It enables the game to present menu options to the user, such as choosing a topic or selecting a typing speed.
+- [colorama](https://pypi.org/project/colorama/): The colorama library is used to add color and style to text printed in the terminal. It's employed to create visually appealing and colorful text elements in the game, such as titles and topic names.
+
+#### Other tools:
+
+- [VSCode](https://code.visualstudio.com/) was used as the Development Environment to maintain, write and edit code.
+- [Git](https://git-scm.com/) was used for the Version Control of the game.
+- [GitHub](https://github.com/) is used to host the code in the Version Control Repository.
+- [Heroku](https://render.com/) was used to deploy the project and is hosting the game in the Cloud Infrastructure.
+- [Canva](https://www.canva.com/) was used to create and resize images for the README file.
+- [FigJam](https://www.figma.com/figjam/) was used to make a flowchart for the README file.
