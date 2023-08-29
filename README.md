@@ -205,10 +205,16 @@ Code Institute's [CI Python Linter](https://pep8ci.herokuapp.com/#) was used to 
 
 No errors were found:
 
-#### run.py:
+#### run.py
 
 ![run.py Linter Testing](documentation/testing/run.py_linter.png)
 
-#### lyric_templates_py:
+#### lyric_templates_py
 
 ![lyric_templates.py Linter Testing](documentation/testing/lyric_templates_linter.png)
+
+#### Potential Issues
+
+Please note that both code files have the required empty line at the end of the codes. Github might not show the last empty line correctly, so I am adding the relevant screenshot to showcase this:
+
+![Empty Line present in code](documentation/testing/code_line_present.png)
