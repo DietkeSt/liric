@@ -222,7 +222,7 @@ No errors were found:
 
 ![run.py Linter Testing](documentation/testing/run.py_linter.png)
 
-#### lyric_templates_py
+#### lyric_templates.py
 
 ![lyric_templates.py Linter Testing](documentation/testing/lyric_templates_linter.png)
 
