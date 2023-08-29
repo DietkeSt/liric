@@ -1,32 +1,45 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Liric
 
-Welcome,
+**~The Song Lyric MadLibs Game~**
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+Liric is a MadLibs-style game where you create song lyrics based on a chosen topic. You'll be asked for various words, and then the game will generate and display the song lyrics for you. You can choose from different topics such as beach, love, and nature to customize the theme of your lyrics. Enjoy creating your unique song!
 
-## Reminders
+- [Deployed Liric Game](https://liric-89f62d9dc0a4.herokuapp.com/)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+- [Liric repository on GitHub](https://github.com/DietkeSt/liric)
 
-## Creating the Heroku app
+ ![Liric Screenshot](documentation/liric_screenshot.png)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+---
+## How to Play
 
-1. `heroku/python`
-2. `heroku/nodejs`
+1. **Open the Link:** Open [this link](https://liric-89f62d9dc0a4.herokuapp.com/). Or copy this link text in your browser's address bar: `https://liric-89f62d9dc0a4.herokuapp.com/`
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+2. **Start the Game:** Click "Run Programm" on the page and you will be greeted by a welcome message.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+3. **Choose a Topic:** Select a topic for your song lyrics from options like "Beach," "Love," or "Nature."
 
-Connect your GitHub repository and deploy as normal.
+4. **Game Rules:** Read and understand the game rules, which ensure that your inputs will not be rejected.
 
-## Constraints
+6. **Print Lyrics:** After providing all the inputs, the game will generate song lyrics based on your choices. Choose a typing speed depending on how quickly you want to read the lyrics.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+7. **View Lyrics:** Enjoy reading the song lyrics!
+
+8. **More fun:** After viewing the lyrics, you have options like choosing another topic, printing the lyrics again, or exiting the game.
+
+Remember, the goal is to create entertaining and creative lyrics based on your chosen topic. Enjoy the process and get creative!
 
 ---
 
-Happy coding!
+## User Stories
+
+### First Time Visitor Goals:
+
+### Frequent Visitor Goals:
+
+
+## Flowchart
+
+The flowchart presents the logic of the game:
+
+  ![Liric Flowchart Picture](documentation/liric_flowchart.png)
