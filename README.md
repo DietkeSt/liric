@@ -1,4 +1,4 @@
-# Liric - A Song Lyrics MadLibs Game ♪♫
+# Liric - A Song Lyric MadLib Game ♪♫
 
 Liric is a MadLibs-style game where you create song lyrics based on a chosen topic. You'll be asked for various words, and then the game will generate and display the song lyrics for you. You can choose from different topics such as beach, love, and nature to customize the theme of your lyrics. Enjoy creating your unique song!
 
@@ -152,7 +152,9 @@ The flowchart presents the logic of the game:
 ##### Third-party imports:
 
 - [tqdm](https://pypi.org/project/tqdm/): The tqdm library is used to create progress bars. In the code, it's utilized to display a progress bar during the lyric generation process to provide visual feedback to the user.
+
 - [simple_term_menu](https://pypi.org/project/simple-term-menu/): The simple_term_menu library is used for creating terminal menus. It enables the game to present menu options to the user, such as choosing a topic or selecting a typing speed.
+
 - [colorama](https://pypi.org/project/colorama/): The colorama library is used to add color and style to text printed in the terminal. It's employed to create visually appealing and colorful text elements in the game, such as titles and topic names.
 
 #### Other tools:
@@ -215,6 +217,11 @@ No errors were found:
 
 #### Potential Issues
 
-Please note that both code files have the required empty line at the end of the codes. Github might not show the last empty line correctly, so I am adding the relevant screenshot to showcase this:
+Please note that both code files have the required empty line at the end of the code. Github might not show the last empty line correctly, so I am adding the relevant screenshot to showcase this:
 
 ![Empty Line present in code](documentation/testing/code_line_present.png)
+
+---
+
+## Deployment
+
