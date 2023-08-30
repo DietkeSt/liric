@@ -67,6 +67,11 @@ def continue_cls():
 
 
 def exit_cls():
+    """
+    This function is used to clear the console screen,
+    display an exit confirmation menu, and handle the
+    user's choice to either exit the game or continue playing.
+    """
     cls()
     exit_options = ["Yes, exit the game", "No, continue the game"]
     menu_title = add_spaces_to_text(
@@ -149,11 +154,13 @@ def choose_typing_speed():
     This function allows the user to choose
     the typing speed with a terminal menu.
     """
+    #Printing the Ready confirmation
     ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL + "\n"
     cls()
     slow_print(ready_text)
-
     time.sleep(0.5)
+
+    # Define the typing speed options and create a menu
     options = ["Slow", "Medium", "Fast", "Lightning Speed"]
     menu_title = add_spaces_to_text("Choose a printing speed:\n")
     terminal_menu = TerminalMenu(
@@ -162,10 +169,13 @@ def choose_typing_speed():
         **menu_style
     )
 
+    # Show the menu and get the user's chosen index
     chosen_index = terminal_menu.show()
 
     typing_speeds = [90, 180, 270, 900]
     chosen_typing_speed = typing_speeds[chosen_index]
+
+    # Prepare a message to confirm the chosen typing speed
     chosen_option_text = Fore.CYAN + Style.BRIGHT + options[chosen_index]
     chosen_string = "You have chosen: " + chosen_option_text + Style.RESET_ALL
 
@@ -275,6 +285,7 @@ def choose_topic():
     topics = ["beach", "love", "nature"]
     capitalized_topics = [topic.capitalize() for topic in topics]
 
+    # Create a menu title and display the menu
     menu_title = add_spaces_to_text("Choose a topic for your song lyrics:\n")
     terminal_menu = TerminalMenu(
         capitalized_topics,
@@ -282,18 +293,24 @@ def choose_topic():
         **menu_style
     )
 
+    # Show menu
     chosen_index = terminal_menu.show()
     time.sleep(0.5)
-    cls()
+
+    # Clear console and pause
+    cls() 
     time.sleep(0.5)
 
+    # Determine and format the chosen topic for display
     chosen_topic = topics[chosen_index]
     capitalized_topic = chosen_topic.capitalize()
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     topic_word = topic_color + capitalized_topic + Style.RESET_ALL
 
+    # Display a message confirming the chosen topic 
     slow_print("You chose the topic: " + topic_word)
 
+    # Update the game state with the chosen topic
     game_state["chosen_topic"] = chosen_topic
     return chosen_topic
 
@@ -426,6 +443,7 @@ def generate_song(chosen_topic, words):
     cls()
     time.sleep(0.5)
 
+    # Prepare and print thanks exclamation
     thanks_text = Fore.CYAN + Style.BRIGHT + "Thanks!" + Style.RESET_ALL + "\n"
     slow_print(thanks_text)
     time.sleep(0.5)
@@ -451,11 +469,13 @@ def generate_song(chosen_topic, words):
     time.sleep(0.5)
     cls()
 
+    # Prepares and prints topic text
     topic_word = topic_color + chosen_topic.capitalize() + Style.RESET_ALL
     topic_text = "Here are your lyrics for the topic: " + topic_word + "\n"
     slow_print(topic_text)
     time.sleep(1)
 
+    # Prints lyrics
     slow_print(song_lyrics, typing_speed)
     game_state["generated_lyrics"] = song_lyrics
     return song_lyrics
@@ -497,7 +517,7 @@ def ask_for_next_action(song_lyrics):
 def handle_next_action(song_lyrics, chosen_topic):
     """
     This function ask the user for the next action
-    after downloading the lyric file.
+    after printing the lyrics.
     """
     while True:
         # Ask the user for the next action
@@ -559,6 +579,7 @@ def print_generated_lyrics(chosen_topic, generated_lyrics):
     typing_speed = choose_typing_speed()
     cls()
 
+    # Print topic and lyrics
     slow_print(topic_text)
     slow_print(generated_lyrics, typing_speed)
 
@@ -588,6 +609,9 @@ def main():
 
         # Generate and print lyrics
         song_lyrics = generate_song(game_state["chosen_topic"], words)
+
+        # Update game_state with the new lyrics
+        game_state["generated_lyrics"] = song_lyrics 
 
         # Ask the user for the next action
         chosen_topic, song_lyrics = handle_next_action(
