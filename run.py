@@ -154,7 +154,7 @@ def choose_typing_speed():
     This function allows the user to choose
     the typing speed with a terminal menu.
     """
-    #Printing the Ready confirmation
+    # Printing confirmation
     ready_text = Fore.CYAN + Style.BRIGHT + "Ready!" + Style.RESET_ALL + "\n"
     cls()
     slow_print(ready_text)
@@ -298,7 +298,7 @@ def choose_topic():
     time.sleep(0.5)
 
     # Clear console and pause
-    cls() 
+    cls()
     time.sleep(0.5)
 
     # Determine and format the chosen topic for display
@@ -307,7 +307,7 @@ def choose_topic():
     topic_color = topic_colors.get(chosen_topic, Fore.RESET)
     topic_word = topic_color + capitalized_topic + Style.RESET_ALL
 
-    # Display a message confirming the chosen topic 
+    # Display a message confirming the chosen topic
     slow_print("You chose the topic: " + topic_word)
 
     # Update the game state with the chosen topic
@@ -611,7 +611,7 @@ def main():
         song_lyrics = generate_song(game_state["chosen_topic"], words)
 
         # Update game_state with the new lyrics
-        game_state["generated_lyrics"] = song_lyrics 
+        game_state["generated_lyrics"] = song_lyrics
 
         # Ask the user for the next action
         chosen_topic, song_lyrics = handle_next_action(
