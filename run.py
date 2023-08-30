@@ -7,11 +7,7 @@ import textwrap
 from tqdm import tqdm
 from simple_term_menu import TerminalMenu
 from colorama import Fore, Style, Back, init
-from lyric_templates import (
-    beach_lyrics_template,
-    love_lyrics_template,
-    nature_lyrics_template
-)
+from lyric_templates import *
 
 
 # Initialize Colorama for Windows
@@ -253,7 +249,7 @@ def welcome_message():
         Choose from one of the topics below to get started.\n
         Enjoy creating your unique song!
         """
-        )
+    )
 
     cls()
     for _ in range(6):  # Title animation loop
@@ -341,7 +337,7 @@ def start_game():
         4. Standalone special characters are not allowed.\n
         5. Words like 'C3PO' are allowed.
         """
-        ) + Style.RESET_ALL
+    ) + Style.RESET_ALL
 
     continue_cls()
     time.sleep(0.5)
@@ -374,7 +370,7 @@ def get_user_input(chosen_topic):
         """
         return get_valid_input(
             Fore.CYAN + Style.BRIGHT + prompt + Style.RESET_ALL
-            )
+        )
 
     slow_print("I will ask you for the needed info now...")
     time.sleep(1)
@@ -447,6 +443,7 @@ def generate_song(chosen_topic, words):
 
     # Choose typing speed with a menu
     typing_speed = choose_typing_speed()
+    cls()
 
     # Create and print song lyrics
     song_lyrics = create_song_lyrics(lyrics_template, words)
@@ -595,7 +592,7 @@ def main():
         # Ask the user for the next action
         chosen_topic, song_lyrics = handle_next_action(
             song_lyrics, game_state["chosen_topic"]
-            )
+        )
 
 
 if __name__ == "__main__":
