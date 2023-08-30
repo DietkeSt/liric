@@ -109,12 +109,12 @@ Liric is a MadLibs-style game where you create song lyrics based on a chosen top
 
 ### General UX Features
 
-- Use of consistent color to highlight important text.
-- Highlight topic names in their representative color.
-- Use Terminal Menu options throughout for ease of navigation. The user does not have to input the choices themselves, but can just select them with the up and down arrows on the keyboard.
-- Is not rushed through the game, as the terminal will ask the user if they want to continue or not at several checkpoints in the game.
-- Use of typing speed options to make it easier to read the text while it is typed out.
-- Use of typing effect that gives the sense of a human interaction experience.
+1. Use of consistent color to highlight important text.
+2. Highlight topic names in their representative color.
+3. Use Terminal Menu options throughout for ease of navigation - no need to type choices. Instead, the user selects them with the up and down arrows on the keyboard.
+4. Is not rushed through the game, as the terminal will ask the user if they want to continue or not at several checkpoints in the game.
+5. Use of typing speed options to make it easier to read the text while it is typed out.
+6. Use of typing effect that gives the sense of a human interaction experience.
 
 ### Future Features
 
