@@ -232,6 +232,28 @@ Please note that both code files have the required empty line at the end of the 
 
 ![Empty Line present in code](documentation/testing/code_line_present.png)
 
+### Testing User Stories
+
+| First Time Visitor Goals | Requirements Met | Image |
+| ------------- | ------------- | ------------- |
+| As a first-time visitor, I want to understand how to play the game quickly, so I can start creating lyrics. | YES - the welcome screen features an explanatory intro text. | ![Welcome Screen Text](documentation/features/welcome_screen.png) |
+| As a first-time visitor, I want to explore different topics for song lyrics, so I can see the game's variety. | YES - after printing the lyrics the user can choose a different topic. | ![Next Action Screen](documentation/features/next_action.png) |
+| As a first-time visitor, I want to enjoy a visually appealing and engaging experience, so I can have fun while playing the game. | YES - colors are chosen for visual appeal of the game. | ![Color Example](documentation/features/lyrics.png) |
+
+
+- All First Time Visitor Goal requirements are met.
+
+
+| Frequent Visitor Goals | Requirements Met | Image |
+| ------------- | ------------- | ------------- |
+| As a frequent visitor, I want to challenge myself by choosing different topics each time, so I can explore various creative possibilities. | YES - you can choose from different topics on Start Screen. | ![Topic Chooser Screen](documentation/features/welcome_screen.png) |
+| As a frequent visitor, I want to have the option to replay the generated lyrics at different typing speeds, so I can enjoy the lyrics in different ways. | YES - you have the options to print Lyrics again and will see the typing speed options. | ![Topic Chooser Screen](documentation/features/typing_speed.png) |
+| As a frequent visitor, I want to see updates or new features in the game, so I can continue to enjoy and be engaged with it over time. | NO - planned as future feature. |  |
+
+
+- The last Frequent Visitor Goal has not been met yet. This is part of the planned [Future Features](https://github.com/DietkeSt/liric/blob/main/README.md#future-features).
+
+
 ---
 
 ## Deployment
