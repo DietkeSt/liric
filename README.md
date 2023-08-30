@@ -336,10 +336,11 @@ Please note that both code files have the required empty line at the end of the 
 - [Datacamp](https://www.datacamp.com/tutorial/python-time-sleep): that provided an in-depth guide on the time.sleep functionality.
 - [Stackoverflow](https://stackoverflow.com/questions/4099422/printing-slowly-simulate-typing): for the idea for the slow_print function.
 - [Patrick Loeber](https://www.youtube.com/watch?v=FptVpIPhdpM&ab_channel=PatrickLoeber) and [Python Maraton](https://www.youtube.com/watch?v=e8WkGT0CP70): Provided guidance on progress loading bar.
+- Song text template was a family effort in putting the text together, credits to my husband Kim Steindel.
 
 ---
 
 ## Acknowledgements
 
 - I am very grateful for the help and support my mentor **[Iuliia Konovalova](https://github.com/IuliiaKonovalova/)** provided.
-- Also, a huge shoutout to my husband, **Kim Steindel**, who worked with me on the creative part of creating the lyric template texts.
+- Also, a huge shoutout to my husband, **Kim Steindel**, who was supporting me and helping with creative text input.
